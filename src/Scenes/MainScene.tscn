@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6nnw0427tgy1"]
+
+[ext_resource type="Script" path="res://Scripts/VersionInfo.cs" id="1_lyso6"]
+[ext_resource type="PackedScene" uid="uid://r5efop8yugey" path="res://Scenes/Ground.tscn" id="2_ybfcn"]
+[ext_resource type="PackedScene" uid="uid://0kwor6t0l2s8" path="res://Scenes/Player.tscn" id="3_036xi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i2dcb"]
+sky_top_color = Color(0.250715, 0.454355, 0.708155, 1)
+ground_bottom_color = Color(0.113105, 0.0925166, 0.0686, 1)
+
+[sub_resource type="Sky" id="Sky_8jm77"]
+sky_material = SubResource("ProceduralSkyMaterial_i2dcb")
+
+[sub_resource type="Environment" id="Environment_4nq1g"]
+background_mode = 2
+sky = SubResource("Sky_8jm77")
+
+[node name="MainScene" type="Node3D"]
+
+[node name="VersionInfo" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_lyso6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.866025, 0.5, 0, 0.5, 0.866025, -1, 3.78552e-08, -2.18557e-08, 0, 0, 0)
+
+[node name="Ground" parent="." instance=ExtResource("2_ybfcn")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -1, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_036xi")]
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2, 4)
+environment = SubResource("Environment_4nq1g")
