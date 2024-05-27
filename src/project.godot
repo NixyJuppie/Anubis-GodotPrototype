@@ -13,7 +13,8 @@ config_version=5
 config/name="Anubis"
 config/version="v0.0.0"
 run/main_scene="res://Scenes/MainScene.tscn"
-config/features=PackedStringArray("4.3")
+config/features=PackedStringArray("4.3", "C#")
+config/icon="res://Icon.svg"
 
 [dotnet]
 
