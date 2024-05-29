@@ -13,12 +13,6 @@
 
 [node name="Core" type="Node" parent="."]
 
-[node name="TopDownCamera" parent="Core" node_paths=PackedStringArray("Target") instance=ExtResource("1_spc0r")]
-Target = NodePath("../../Player")
-MinZoom = 0.5
-MaxZoom = 2.5
-ZoomLerpWeight = 7.5
-
 [node name="VersionInfo" parent="Core" instance=ExtResource("1_lxjk0")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Core"]
@@ -32,22 +26,27 @@ z_index = -10
 scale = Vector2(10000, 10000)
 texture = SubResource("CanvasTexture_qgvai")
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="World"]
+[node name="DirectionalLight" type="DirectionalLight2D" parent="World"]
 
-[node name="Red Light" type="Node2D" parent="World"]
+[node name="PointLight" type="Node2D" parent="World"]
 position = Vector2(-500, 500)
 scale = Vector2(0.75, 0.75)
 
-[node name="Sprite2D" type="Sprite2D" parent="World/Red Light"]
+[node name="Sprite2D" type="Sprite2D" parent="World/PointLight"]
 modulate = Color(0, 1, 1, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_iwdsj")
 
-[node name="PointLight2D" type="PointLight2D" parent="World/Red Light"]
+[node name="PointLight2D" type="PointLight2D" parent="World/PointLight"]
 color = Color(1, 0, 1, 1)
 shadow_enabled = true
 texture = ExtResource("3_iwdsj")
 texture_scale = 2.5
+
+[node name="TopDownCamera" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("1_spc0r")]
+Target = NodePath("../Player")
+MinZoom = 0.5
+MaxZoom = 2.5
 
 [node name="Player" parent="." instance=ExtResource("3_036xi")]
 Speed = 500.0

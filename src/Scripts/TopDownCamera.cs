@@ -13,7 +13,7 @@ public partial class TopDownCamera : Camera2D
 
     [ExportCategory("Zoom")]
     [Export(PropertyHint.Range, "0.1,1,0.01")]
-    public float MinZoom { get; set; } = 0.1f;
+    public float MinZoom { get; set; } = 0.5f;
 
     [Export(PropertyHint.Range, "1,10,0.01")]
     public float MaxZoom { get; set; } = 5f;
