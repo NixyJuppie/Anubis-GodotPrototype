@@ -1,42 +1,61 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6nnw0427tgy1"]
+[gd_scene load_steps=8 format=3 uid="uid://bp12243ymi7xu"]
 
-[ext_resource type="Script" path="res://Scripts/VersionInfo.cs" id="1_lyso6"]
-[ext_resource type="PackedScene" uid="uid://r5efop8yugey" path="res://Scenes/Ground.tscn" id="2_ybfcn"]
-[ext_resource type="PackedScene" uid="uid://0kwor6t0l2s8" path="res://Scenes/Player.tscn" id="3_036xi"]
+[ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
+[ext_resource type="PackedScene" uid="uid://br25rf51jx6gk" path="res://Scenes/TopDownCamera.tscn" id="1_spc0r"]
+[ext_resource type="PackedScene" uid="uid://cnorwg0grqktw" path="res://Scenes/Character/Player.tscn" id="3_036xi"]
+[ext_resource type="Texture2D" uid="uid://exgmahplfi5j" path="res://Sprites/Light.png" id="3_iwdsj"]
+[ext_resource type="PackedScene" uid="uid://bljeyd2vbmtjd" path="res://Scenes/Character/Enemy.tscn" id="4_0txh2"]
+[ext_resource type="PackedScene" uid="uid://cailhgk73vcgu" path="res://Scenes/Character/Npc.tscn" id="5_qkppw"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i2dcb"]
-sky_top_color = Color(0.250715, 0.454355, 0.708155, 1)
-ground_bottom_color = Color(0.113105, 0.0925166, 0.0686, 1)
+[sub_resource type="CanvasTexture" id="CanvasTexture_qgvai"]
 
-[sub_resource type="Sky" id="Sky_8jm77"]
-sky_material = SubResource("ProceduralSkyMaterial_i2dcb")
+[node name="MainScene" type="Node2D"]
 
-[sub_resource type="Environment" id="Environment_4nq1g"]
-background_mode = 2
-sky = SubResource("Sky_8jm77")
+[node name="Core" type="Node" parent="."]
 
-[node name="MainScene" type="Node3D"]
+[node name="TopDownCamera" parent="Core" node_paths=PackedStringArray("Target") instance=ExtResource("1_spc0r")]
+Target = NodePath("../../Player")
+MinZoom = 0.5
+MaxZoom = 2.5
+ZoomLerpWeight = 7.5
 
-[node name="VersionInfo" type="Label" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-script = ExtResource("1_lyso6")
+[node name="VersionInfo" parent="Core" instance=ExtResource("1_lxjk0")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, -0.866025, 0.5, 0, 0.5, 0.866025, -1, 3.78552e-08, -2.18557e-08, 0, 0, 0)
+[node name="CanvasModulate" type="CanvasModulate" parent="Core"]
+color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 
-[node name="Ground" parent="." instance=ExtResource("2_ybfcn")]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -1, 0)
+[node name="World" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="World"]
+modulate = Color(1.68458e-07, 0.338395, 0.210037, 1)
+z_index = -10
+scale = Vector2(10000, 10000)
+texture = SubResource("CanvasTexture_qgvai")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="World"]
+
+[node name="Red Light" type="Node2D" parent="World"]
+position = Vector2(-500, 500)
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Red Light"]
+modulate = Color(0, 1, 1, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_iwdsj")
+
+[node name="PointLight2D" type="PointLight2D" parent="World/Red Light"]
+color = Color(1, 0, 1, 1)
+shadow_enabled = true
+texture = ExtResource("3_iwdsj")
+texture_scale = 2.5
 
 [node name="Player" parent="." instance=ExtResource("3_036xi")]
+Speed = 500.0
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2, 4)
-environment = SubResource("Environment_4nq1g")
+[node name="Npc" parent="." instance=ExtResource("5_qkppw")]
+position = Vector2(426, 221)
+CharacterName = "Merchant"
+
+[node name="Enemy" parent="." instance=ExtResource("4_0txh2")]
+position = Vector2(-419, -173)
+CharacterName = "Twój Stary"
