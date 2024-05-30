@@ -1,4 +1,4 @@
-namespace Anubis.Character;
+namespace Anubis.Characters;
 
 [Tool] // required for setters to work in editor
 [GlobalClass]

@@ -1,0 +1,95 @@
+[gd_scene load_steps=26 format=3 uid="uid://cailhgk73vcgu"]
+
+[ext_resource type="PackedScene" uid="uid://b08eu0e0b3tb1" path="res://Scenes/Characters/Character.tscn" id="1_d5n6d"]
+[ext_resource type="Script" path="res://Scripts/Characters/Npc.cs" id="2_2pi6w"]
+[ext_resource type="Texture2D" uid="uid://dqaprw573syu7" path="res://Sprites/Characters/NPC.png" id="3_sf57x"]
+[ext_resource type="Script" path="res://Scripts/Characters/BoundedAttributeValue.cs" id="3_wldti"]
+[ext_resource type="Script" path="res://Scripts/Characters/AttributeValue.cs" id="4_mebnf"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquipmentSlot.cs" id="5_ycx3c"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/CharacterEquipment.cs" id="6_mdpbg"]
+[ext_resource type="Script" path="res://Scripts/Items/Inventory.cs" id="7_jwg51"]
+
+[sub_resource type="Resource" id="Resource_6kgpx"]
+script = ExtResource("3_wldti")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_3bl8w"]
+script = ExtResource("3_wldti")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_eeckp"]
+script = ExtResource("3_wldti")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_gfa2q"]
+script = ExtResource("4_mebnf")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_me8jw"]
+script = ExtResource("4_mebnf")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_qrsvw"]
+script = ExtResource("4_mebnf")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_rydr0"]
+script = ExtResource("5_ycx3c")
+
+[sub_resource type="Resource" id="Resource_wqcuw"]
+script = ExtResource("5_ycx3c")
+
+[sub_resource type="Resource" id="Resource_rkr5m"]
+script = ExtResource("5_ycx3c")
+
+[sub_resource type="Resource" id="Resource_fw2l3"]
+script = ExtResource("5_ycx3c")
+
+[sub_resource type="Resource" id="Resource_8na8l"]
+script = ExtResource("5_ycx3c")
+
+[sub_resource type="Resource" id="Resource_ph0y0"]
+script = ExtResource("5_ycx3c")
+
+[sub_resource type="Resource" id="Resource_mi7dw"]
+script = ExtResource("5_ycx3c")
+
+[sub_resource type="Resource" id="Resource_8mtex"]
+script = ExtResource("5_ycx3c")
+
+[sub_resource type="Resource" id="Resource_ay0cb"]
+script = ExtResource("5_ycx3c")
+
+[sub_resource type="Resource" id="Resource_7yobe"]
+script = ExtResource("6_mdpbg")
+RightHand = SubResource("Resource_ay0cb")
+LeftHand = SubResource("Resource_ph0y0")
+Head = SubResource("Resource_8na8l")
+Neck = SubResource("Resource_8mtex")
+Chest = SubResource("Resource_wqcuw")
+Arms = SubResource("Resource_rydr0")
+Hands = SubResource("Resource_fw2l3")
+Legs = SubResource("Resource_mi7dw")
+Feet = SubResource("Resource_rkr5m")
+
+[sub_resource type="Resource" id="Resource_4rdmj"]
+script = ExtResource("7_jwg51")
+Items = []
+
+[node name="Npc" instance=ExtResource("1_d5n6d")]
+script = ExtResource("2_2pi6w")
+CharacterName = "NPC"
+Health = SubResource("Resource_6kgpx")
+Stamina = SubResource("Resource_3bl8w")
+Mana = SubResource("Resource_eeckp")
+Strength = SubResource("Resource_gfa2q")
+Agility = SubResource("Resource_me8jw")
+Intelligence = SubResource("Resource_qrsvw")
+Equipment = SubResource("Resource_7yobe")
+Inventory = SubResource("Resource_4rdmj")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_sf57x")

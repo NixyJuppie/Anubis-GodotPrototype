@@ -1,11 +1,11 @@
-using Anubis.Character;
+using Anubis.Characters;
 
 namespace Anubis;
 
 public partial class TopDownCamera : Camera2D
 {
     [ExportGroup("Movement")]
-    [Export] public CharacterBase? Target { get; set; }
+    [Export] public Character? Target { get; set; }
     [Export(PropertyHint.Range, "1,10,0.1")] public float MoveLerpWeight { get; set; } = 5f;
 
     [ExportGroup("Zoom")]

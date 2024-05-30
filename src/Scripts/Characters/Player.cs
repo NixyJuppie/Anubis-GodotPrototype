@@ -1,6 +1,6 @@
-namespace Anubis.Character;
+namespace Anubis.Characters;
 
-public partial class Player : CharacterBase
+public partial class Player : Character
 {
     public override void _Process(double delta)
     {
