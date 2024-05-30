@@ -18,6 +18,8 @@ public partial class WorldItem : Area2D
 
             if (Sprite is not null)
                 Sprite.Texture = _item?.Texture;
+
+            UpdateConfigurationWarnings();
         }
     }
 
@@ -26,8 +28,13 @@ public partial class WorldItem : Area2D
 
     public override void _Ready()
     {
-        if (Item is null)
+        if (Item is null && !Engine.IsEditorHint())
             throw new InvalidOperationException("World item must have an item assigned");
+    }
+
+    public override string[] _GetConfigurationWarnings()
+    {
+        return Item is null ? ["World item must have an item assigned"] : [];
     }
 
     private void OnBodyEntered(Node2D node)
