@@ -17,7 +17,7 @@ jobs:
       uses: firebelley/godot-export@v5.2.1
       id: export
       with:
-        godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.3-dev6/Godot_v4.3-dev6_mono_linux_x86_64.zip
+        godot_executable_download_url: https://github.com/poohcom1/godot/releases/download/4.3-ie6/Godot_v4.3-ie6_mono_linux_x86_64.zip
         godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.3-dev6/Godot_v4.3-dev6_mono_export_templates.tpz
         relative_project_path: ./src/
         archive_output: true
