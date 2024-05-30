@@ -1,4 +1,4 @@
-namespace Anubis.Character;
+namespace Anubis.Characters;
 
 [GlobalClass]
 public partial class AttributeValue : Resource

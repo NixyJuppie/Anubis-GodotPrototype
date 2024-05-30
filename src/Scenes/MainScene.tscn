@@ -1,15 +1,132 @@
-[gd_scene load_steps=22 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=59 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
 [ext_resource type="PackedScene" uid="uid://br25rf51jx6gk" path="res://Scenes/TopDownCamera.tscn" id="1_spc0r"]
-[ext_resource type="PackedScene" uid="uid://cnorwg0grqktw" path="res://Scenes/Character/Player.tscn" id="3_036xi"]
+[ext_resource type="PackedScene" uid="uid://cnorwg0grqktw" path="res://Scenes/Characters/Player.tscn" id="3_036xi"]
 [ext_resource type="Texture2D" uid="uid://exgmahplfi5j" path="res://Sprites/Light.png" id="3_iwdsj"]
-[ext_resource type="PackedScene" uid="uid://bljeyd2vbmtjd" path="res://Scenes/Character/Enemy.tscn" id="4_0txh2"]
-[ext_resource type="PackedScene" uid="uid://cailhgk73vcgu" path="res://Scenes/Character/Npc.tscn" id="5_qkppw"]
-[ext_resource type="Script" path="res://Scripts/Character/BoundedAttributeValue.cs" id="6_jjmq5"]
-[ext_resource type="Script" path="res://Scripts/Character/AttributeValue.cs" id="7_jdfv5"]
+[ext_resource type="PackedScene" uid="uid://bljeyd2vbmtjd" path="res://Scenes/Characters/Enemy.tscn" id="4_0txh2"]
+[ext_resource type="PackedScene" uid="uid://cailhgk73vcgu" path="res://Scenes/Characters/Npc.tscn" id="5_qkppw"]
+[ext_resource type="Script" path="res://Scripts/Characters/BoundedAttributeValue.cs" id="6_jjmq5"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquipmentSlot.cs" id="7_238tr"]
+[ext_resource type="Script" path="res://Scripts/Characters/AttributeValue.cs" id="7_jdfv5"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/CharacterEquipment.cs" id="7_uw3nu"]
+[ext_resource type="Script" path="res://Scripts/Items/Inventory.cs" id="8_14doo"]
+[ext_resource type="PackedScene" uid="uid://cfmn8f8enoyu7" path="res://Scenes/WorldItem.tscn" id="12_x6ga0"]
+[ext_resource type="Resource" uid="uid://cttqppdt7hkv8" path="res://Resources/Sword.tres" id="13_lkwrb"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qgvai"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clccw"]
+size = Vector2(512, 256)
+
+[sub_resource type="Resource" id="Resource_gu81e"]
+script = ExtResource("6_jjmq5")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_odh26"]
+script = ExtResource("6_jjmq5")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_2ctu7"]
+script = ExtResource("6_jjmq5")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_ckqrt"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_a2r70"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_0jg7w"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_aqn14"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_m0iel"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_m8j61"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_j68xy"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_kmcnv"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_h5awt"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_vgpd0"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_2umyy"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_d23gk"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_om2tb"]
+script = ExtResource("7_uw3nu")
+RightHand = SubResource("Resource_d23gk")
+LeftHand = SubResource("Resource_h5awt")
+Head = SubResource("Resource_kmcnv")
+Neck = SubResource("Resource_2umyy")
+Chest = SubResource("Resource_m0iel")
+Arms = SubResource("Resource_aqn14")
+Hands = SubResource("Resource_j68xy")
+Legs = SubResource("Resource_vgpd0")
+Feet = SubResource("Resource_m8j61")
+
+[sub_resource type="Resource" id="Resource_4r8cy"]
+script = ExtResource("8_14doo")
+Items = []
+
+[sub_resource type="Resource" id="Resource_bqnto"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_vjuph"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_r34i4"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_fj5t0"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_n5new"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_po6w1"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_mcwte"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_jim83"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_mf07d"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_orxkg"]
+script = ExtResource("7_uw3nu")
+RightHand = SubResource("Resource_mf07d")
+LeftHand = SubResource("Resource_po6w1")
+Head = SubResource("Resource_n5new")
+Neck = SubResource("Resource_jim83")
+Chest = SubResource("Resource_vjuph")
+Arms = SubResource("Resource_bqnto")
+Hands = SubResource("Resource_fj5t0")
+Legs = SubResource("Resource_mcwte")
+Feet = SubResource("Resource_r34i4")
 
 [sub_resource type="Resource" id="Resource_x2sxj"]
 script = ExtResource("6_jjmq5")
@@ -38,32 +155,44 @@ Value = 10
 script = ExtResource("7_jdfv5")
 Value = 10
 
-[sub_resource type="Resource" id="Resource_gu81e"]
-script = ExtResource("6_jjmq5")
-MaxValue = 10
-CurrentValue = 10
+[sub_resource type="Resource" id="Resource_hv6gl"]
+script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_odh26"]
-script = ExtResource("6_jjmq5")
-MaxValue = 10
-CurrentValue = 10
+[sub_resource type="Resource" id="Resource_he5lj"]
+script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_2ctu7"]
-script = ExtResource("6_jjmq5")
-MaxValue = 10
-CurrentValue = 10
+[sub_resource type="Resource" id="Resource_kbufr"]
+script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_ckqrt"]
-script = ExtResource("7_jdfv5")
-Value = 10
+[sub_resource type="Resource" id="Resource_myh6p"]
+script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_a2r70"]
-script = ExtResource("7_jdfv5")
-Value = 10
+[sub_resource type="Resource" id="Resource_stlfv"]
+script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_0jg7w"]
-script = ExtResource("7_jdfv5")
-Value = 10
+[sub_resource type="Resource" id="Resource_4vnct"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_adw63"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_dydjx"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_vokon"]
+script = ExtResource("7_238tr")
+
+[sub_resource type="Resource" id="Resource_rusba"]
+script = ExtResource("7_uw3nu")
+RightHand = SubResource("Resource_vokon")
+LeftHand = SubResource("Resource_4vnct")
+Head = SubResource("Resource_stlfv")
+Neck = SubResource("Resource_dydjx")
+Chest = SubResource("Resource_he5lj")
+Arms = SubResource("Resource_hv6gl")
+Hands = SubResource("Resource_myh6p")
+Legs = SubResource("Resource_adw63")
+Feet = SubResource("Resource_kbufr")
 
 [node name="MainScene" type="Node2D"]
 
@@ -99,6 +228,8 @@ texture = ExtResource("3_iwdsj")
 
 [node name="PointLight2D" type="PointLight2D" parent="World/WhitePointLight"]
 shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 0.5
 texture = ExtResource("3_iwdsj")
 texture_scale = 2.5
 
@@ -107,12 +238,14 @@ position = Vector2(750, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/YellowPointLight"]
 modulate = Color(1, 1, 0, 1)
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_iwdsj")
 
 [node name="PointLight2D" type="PointLight2D" parent="World/YellowPointLight"]
 color = Color(1, 1, 0, 1)
 shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 0.5
 texture = ExtResource("3_iwdsj")
 texture_scale = 2.5
 
@@ -122,22 +255,24 @@ scale = Vector2(0.75, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/BluePointLight"]
 modulate = Color(0, 0, 1, 1)
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("3_iwdsj")
 
 [node name="PointLight2D" type="PointLight2D" parent="World/BluePointLight"]
 color = Color(0, 0, 1, 1)
 shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 0.5
 texture = ExtResource("3_iwdsj")
 texture_scale = 2.5
 
-[node name="Player" parent="." instance=ExtResource("3_036xi")]
-Health = SubResource("Resource_x2sxj")
-Stamina = SubResource("Resource_vscja")
-Mana = SubResource("Resource_q16b7")
-Strength = SubResource("Resource_cdyu1")
-Agility = SubResource("Resource_uqyxb")
-Intelligence = SubResource("Resource_xhq0t")
+[node name="Sword" parent="." node_paths=PackedStringArray("Sprite") instance=ExtResource("12_x6ga0")]
+position = Vector2(500, -150)
+Item = ExtResource("13_lkwrb")
+Sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+shape = SubResource("RectangleShape2D_clccw")
 
 [node name="Npc" parent="." instance=ExtResource("5_qkppw")]
 position = Vector2(426, 221)
@@ -148,6 +283,8 @@ Mana = SubResource("Resource_2ctu7")
 Strength = SubResource("Resource_ckqrt")
 Agility = SubResource("Resource_a2r70")
 Intelligence = SubResource("Resource_0jg7w")
+Equipment = SubResource("Resource_om2tb")
+Inventory = SubResource("Resource_4r8cy")
 
 [node name="Enemy" parent="." instance=ExtResource("4_0txh2")]
 position = Vector2(-419, -173)
@@ -158,3 +295,15 @@ Mana = SubResource("Resource_2ctu7")
 Strength = SubResource("Resource_ckqrt")
 Agility = SubResource("Resource_a2r70")
 Intelligence = SubResource("Resource_0jg7w")
+Equipment = SubResource("Resource_orxkg")
+Inventory = SubResource("Resource_4r8cy")
+
+[node name="Player" parent="." instance=ExtResource("3_036xi")]
+Health = SubResource("Resource_x2sxj")
+Stamina = SubResource("Resource_vscja")
+Mana = SubResource("Resource_q16b7")
+Strength = SubResource("Resource_cdyu1")
+Agility = SubResource("Resource_uqyxb")
+Intelligence = SubResource("Resource_xhq0t")
+Equipment = SubResource("Resource_rusba")
+Inventory = SubResource("Resource_4r8cy")
