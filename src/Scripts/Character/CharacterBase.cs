@@ -2,11 +2,18 @@ namespace Anubis.Character;
 
 public abstract partial class CharacterBase : CharacterBody2D
 {
-    [Export]
-    public string CharacterName { get; set; }
+    [ExportGroup("Base")]
+    [Export] public string CharacterName { get; set; } = "Character";
 
-    [Export]
-    public float Speed { get; set; }
+    [ExportGroup("Attributes")]
+    [ExportSubgroup("Core")]
+    [Export] public BoundedAttributeValue Health { get; set; } = new();
+    [Export] public BoundedAttributeValue Stamina { get; set; } = new();
+    [Export] public BoundedAttributeValue Mana { get; set; } = new();
+    [ExportSubgroup("Specialized")]
+    [Export] public AttributeValue Strength { get; set; } = new();
+    [Export] public AttributeValue Agility { get; set; } = new();
+    [Export] public AttributeValue Intelligence { get; set; } = new();
 
     public override void _Ready()
     {

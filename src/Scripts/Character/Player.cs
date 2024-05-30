@@ -16,7 +16,7 @@ public partial class Player : CharacterBase
         if (Input.IsActionPressed("MoveRight"))
             direction.X++;
 
-        Velocity = direction * Speed;
+        Velocity = direction * uint.Clamp(Agility.Value, 1, 100) * 50f;
         MoveAndSlide();
     }
 }
