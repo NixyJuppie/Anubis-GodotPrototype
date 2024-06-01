@@ -6,7 +6,7 @@ public partial class Player : Character
     {
         var direction = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
         var multiplier = Input.IsActionPressed("Sprint") ? 50f : 25f;
-        Velocity = direction * uint.Clamp(Agility.Value, 1, 100) * multiplier;
+        Velocity = direction * uint.Clamp(Attributes.Agility, 1, 100) * multiplier;
         MoveAndSlide();
     }
 }

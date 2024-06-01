@@ -1,0 +1,62 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://41h2lpmp454s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfamd"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 0.784314)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.0980392, 0.0980392, 0.0980392, 0.784314)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hckd2"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 0.784314)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.227451, 0.52549, 1, 0.784314)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rn2c5"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 0.784314)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.980392, 0.639216, 0.027451, 0.784314)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjfr5"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 0.784314)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.815686, 0, 0, 0.784314)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+MarginContainer/constants/margin_bottom = 8
+MarginContainer/constants/margin_left = 8
+MarginContainer/constants/margin_right = 8
+MarginContainer/constants/margin_top = 8
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_gfamd")
+PanelContainerBlue/base_type = &"PanelContainer"
+PanelContainerBlue/styles/panel = SubResource("StyleBoxFlat_hckd2")
+PanelContainerGold/base_type = &"PanelContainer"
+PanelContainerGold/styles/panel = SubResource("StyleBoxFlat_rn2c5")
+PanelContainerRed/base_type = &"PanelContainer"
+PanelContainerRed/styles/panel = SubResource("StyleBoxFlat_hjfr5")

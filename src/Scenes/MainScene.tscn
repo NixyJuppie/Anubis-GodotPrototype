@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=57 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
 [ext_resource type="PackedScene" uid="uid://br25rf51jx6gk" path="res://Scenes/TopDownCamera.tscn" id="1_spc0r"]
@@ -6,45 +6,61 @@
 [ext_resource type="Texture2D" uid="uid://exgmahplfi5j" path="res://Sprites/Light.png" id="3_iwdsj"]
 [ext_resource type="PackedScene" uid="uid://bljeyd2vbmtjd" path="res://Scenes/Characters/Enemy.tscn" id="4_0txh2"]
 [ext_resource type="PackedScene" uid="uid://cailhgk73vcgu" path="res://Scenes/Characters/Npc.tscn" id="5_qkppw"]
-[ext_resource type="Script" path="res://Scripts/Characters/BoundedAttributeValue.cs" id="6_jjmq5"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/BoundedAttributeValue.cs" id="6_jjmq5"]
 [ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquipmentSlot.cs" id="7_238tr"]
-[ext_resource type="Script" path="res://Scripts/Characters/AttributeValue.cs" id="7_jdfv5"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeValue.cs" id="7_jdfv5"]
 [ext_resource type="Script" path="res://Scripts/Characters/Equipment/CharacterEquipment.cs" id="7_uw3nu"]
 [ext_resource type="Script" path="res://Scripts/Items/Inventory.cs" id="8_14doo"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/CharacterAttributes.cs" id="9_5ltpo"]
 [ext_resource type="PackedScene" uid="uid://cfmn8f8enoyu7" path="res://Scenes/WorldItem.tscn" id="12_x6ga0"]
 [ext_resource type="Resource" uid="uid://cttqppdt7hkv8" path="res://Resources/Sword.tres" id="13_lkwrb"]
+[ext_resource type="PackedScene" uid="uid://cxegfgq1inyo" path="res://Scenes/UI/CharacterScreen.tscn" id="15_bff3w"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qgvai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_clccw"]
 size = Vector2(512, 256)
 
-[sub_resource type="Resource" id="Resource_gu81e"]
+[sub_resource type="Resource" id="Resource_4fxn7"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_b712i"]
 script = ExtResource("6_jjmq5")
 MaxValue = 10
 CurrentValue = 10
 
-[sub_resource type="Resource" id="Resource_odh26"]
+[sub_resource type="Resource" id="Resource_lw2ns"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_8yplj"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_60o2o"]
 script = ExtResource("6_jjmq5")
 MaxValue = 10
 CurrentValue = 10
 
-[sub_resource type="Resource" id="Resource_2ctu7"]
+[sub_resource type="Resource" id="Resource_7mvt2"]
 script = ExtResource("6_jjmq5")
 MaxValue = 10
 CurrentValue = 10
 
-[sub_resource type="Resource" id="Resource_ckqrt"]
+[sub_resource type="Resource" id="Resource_l2u5b"]
 script = ExtResource("7_jdfv5")
 Value = 10
 
-[sub_resource type="Resource" id="Resource_a2r70"]
-script = ExtResource("7_jdfv5")
-Value = 10
-
-[sub_resource type="Resource" id="Resource_0jg7w"]
-script = ExtResource("7_jdfv5")
-Value = 10
+[sub_resource type="Resource" id="Resource_q6x3q"]
+script = ExtResource("9_5ltpo")
+Health = SubResource("Resource_b712i")
+Stamina = SubResource("Resource_7mvt2")
+Mana = SubResource("Resource_60o2o")
+Strength = SubResource("Resource_l2u5b")
+Agility = SubResource("Resource_4fxn7")
+Intelligence = SubResource("Resource_lw2ns")
+Luck = SubResource("Resource_8yplj")
 
 [sub_resource type="Resource" id="Resource_aqn14"]
 script = ExtResource("7_238tr")
@@ -128,33 +144,6 @@ Hands = SubResource("Resource_fj5t0")
 Legs = SubResource("Resource_mcwte")
 Feet = SubResource("Resource_r34i4")
 
-[sub_resource type="Resource" id="Resource_x2sxj"]
-script = ExtResource("6_jjmq5")
-MaxValue = 10
-CurrentValue = 10
-
-[sub_resource type="Resource" id="Resource_vscja"]
-script = ExtResource("6_jjmq5")
-MaxValue = 10
-CurrentValue = 10
-
-[sub_resource type="Resource" id="Resource_q16b7"]
-script = ExtResource("6_jjmq5")
-MaxValue = 10
-CurrentValue = 10
-
-[sub_resource type="Resource" id="Resource_cdyu1"]
-script = ExtResource("7_jdfv5")
-Value = 10
-
-[sub_resource type="Resource" id="Resource_uqyxb"]
-script = ExtResource("7_jdfv5")
-Value = 10
-
-[sub_resource type="Resource" id="Resource_xhq0t"]
-script = ExtResource("7_jdfv5")
-Value = 10
-
 [sub_resource type="Resource" id="Resource_hv6gl"]
 script = ExtResource("7_238tr")
 
@@ -201,7 +190,7 @@ Feet = SubResource("Resource_kbufr")
 [node name="VersionInfo" parent="Core" instance=ExtResource("1_lxjk0")]
 
 [node name="TopDownCamera" parent="Core" node_paths=PackedStringArray("Target") instance=ExtResource("1_spc0r")]
-Target = NodePath("../../Player")
+Target = NodePath("../../Content/Player")
 MaxZoom = 2.5
 
 [node name="World" type="Node" parent="."]
@@ -266,44 +255,35 @@ shadow_filter_smooth = 0.5
 texture = ExtResource("3_iwdsj")
 texture_scale = 2.5
 
-[node name="Sword" parent="." node_paths=PackedStringArray("Sprite") instance=ExtResource("12_x6ga0")]
+[node name="Content" type="Node" parent="."]
+
+[node name="Sword" parent="Content" instance=ExtResource("12_x6ga0")]
 position = Vector2(500, -150)
 Item = ExtResource("13_lkwrb")
-Sprite = NodePath("Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Content/Sword"]
 shape = SubResource("RectangleShape2D_clccw")
 
-[node name="Npc" parent="." instance=ExtResource("5_qkppw")]
+[node name="Npc" parent="Content" instance=ExtResource("5_qkppw")]
 position = Vector2(426, 221)
 CharacterName = "Merchant"
-Health = SubResource("Resource_gu81e")
-Stamina = SubResource("Resource_odh26")
-Mana = SubResource("Resource_2ctu7")
-Strength = SubResource("Resource_ckqrt")
-Agility = SubResource("Resource_a2r70")
-Intelligence = SubResource("Resource_0jg7w")
+Attributes = SubResource("Resource_q6x3q")
 Equipment = SubResource("Resource_om2tb")
 Inventory = SubResource("Resource_4r8cy")
 
-[node name="Enemy" parent="." instance=ExtResource("4_0txh2")]
+[node name="Enemy" parent="Content" instance=ExtResource("4_0txh2")]
 position = Vector2(-419, -173)
 CharacterName = "Twój Stary"
-Health = SubResource("Resource_gu81e")
-Stamina = SubResource("Resource_odh26")
-Mana = SubResource("Resource_2ctu7")
-Strength = SubResource("Resource_ckqrt")
-Agility = SubResource("Resource_a2r70")
-Intelligence = SubResource("Resource_0jg7w")
+Attributes = SubResource("Resource_q6x3q")
 Equipment = SubResource("Resource_orxkg")
 Inventory = SubResource("Resource_4r8cy")
 
-[node name="Player" parent="." instance=ExtResource("3_036xi")]
-Health = SubResource("Resource_x2sxj")
-Stamina = SubResource("Resource_vscja")
-Mana = SubResource("Resource_q16b7")
-Strength = SubResource("Resource_cdyu1")
-Agility = SubResource("Resource_uqyxb")
-Intelligence = SubResource("Resource_xhq0t")
+[node name="Player" parent="Content" instance=ExtResource("3_036xi")]
+Attributes = SubResource("Resource_q6x3q")
 Equipment = SubResource("Resource_rusba")
 Inventory = SubResource("Resource_4r8cy")
+
+[node name="UI" type="Node" parent="."]
+
+[node name="CharacterScreen" parent="UI" node_paths=PackedStringArray("Character") instance=ExtResource("15_bff3w")]
+Character = NodePath("../../Content/Player")

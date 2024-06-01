@@ -6,6 +6,7 @@ namespace Anubis.Items;
 [Tool]
 public partial class WorldItem : Area2D
 {
+    private Sprite2D _sprite2D = null!;
     private Item _item = null!;
 
     [Export]
@@ -16,25 +17,25 @@ public partial class WorldItem : Area2D
         {
             _item = value;
 
-            if (Sprite is not null)
-                Sprite.Texture = _item?.Texture;
+            if (_sprite2D is not null)
+                _sprite2D.Texture = _item?.Texture;
 
             UpdateConfigurationWarnings();
         }
     }
 
-    [Export]
-    public Sprite2D? Sprite { get; set; }
+    public override string[] _GetConfigurationWarnings()
+    {
+        return Item is null ? ["World item must have an item assigned"] : [];
+    }
 
     public override void _Ready()
     {
         if (Item is null && !Engine.IsEditorHint())
             throw new InvalidOperationException("World item must have an item assigned");
-    }
 
-    public override string[] _GetConfigurationWarnings()
-    {
-        return Item is null ? ["World item must have an item assigned"] : [];
+        _sprite2D = this.GetRequiredNode<Sprite2D>("%Sprite2D");
+        _sprite2D.Texture = Item?.Texture;
     }
 
     private void OnBodyEntered(Node2D node)

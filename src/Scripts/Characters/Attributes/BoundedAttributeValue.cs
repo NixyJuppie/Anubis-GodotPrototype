@@ -1,4 +1,4 @@
-namespace Anubis.Characters;
+namespace Anubis.Characters.Attributes;
 
 [Tool] // required for setters to work in editor
 [GlobalClass]
@@ -26,5 +26,12 @@ public partial class BoundedAttributeValue : Resource
         {
             _currentValue = uint.Clamp(value, 0, _maxValue);
         }
+    }
+
+    public static implicit operator uint(BoundedAttributeValue value) => value.CurrentValue;
+
+    public override string ToString()
+    {
+        return $"{CurrentValue}/{MaxValue}";
     }
 }
