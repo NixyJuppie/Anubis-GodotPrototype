@@ -15,10 +15,7 @@ public partial class WorldItem : Area2D
         set
         {
             _item = value;
-
-            if (_sprite2D is not null)
-                _sprite2D.Texture = _item?.Texture;
-
+            UpdateView();
             UpdateConfigurationWarnings();
         }
     }
@@ -34,7 +31,13 @@ public partial class WorldItem : Area2D
             throw new InvalidOperationException("World item must have an item assigned");
 
         _sprite2D = this.GetRequiredNode<Sprite2D>("%Sprite2D");
-        _sprite2D.Texture = Item?.Texture;
+        UpdateView();
+    }
+
+    private void UpdateView()
+    {
+        if (_sprite2D is not null)
+            _sprite2D.Texture = _item?.Texture;
     }
 
     private void OnBodyEntered(Node2D node)

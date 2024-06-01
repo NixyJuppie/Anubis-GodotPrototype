@@ -3,10 +3,13 @@ using Anubis.Items;
 namespace Anubis.UI;
 
 [Tool]
-public partial class InventoryItem : Container
+public partial class InventoryItem : Control
 {
     private TextureRect _textureRect = null!;
     private Item _item = null!;
+
+    [Export]
+    public string FocusedThemeTypeVariation { get; set; } = string.Empty;
 
     [Export]
     public Item Item
@@ -15,11 +18,7 @@ public partial class InventoryItem : Container
         set
         {
             _item = value;
-            TooltipText = _item?.ItemName;
-
-            if (_textureRect is not null)
-                _textureRect.Texture = _item?.Texture;
-
+            UpdateView();
             UpdateConfigurationWarnings();
         }
     }
@@ -34,9 +33,23 @@ public partial class InventoryItem : Container
         if (Item is null && !Engine.IsEditorHint())
             throw new InvalidOperationException("Inventory item must have an item assigned");
 
-        TooltipText = Item?.ItemName;
         _textureRect = this.GetRequiredNode<TextureRect>("%TextureRect");
-        _textureRect.Texture = Item?.Texture;
+        UpdateView();
     }
 
+    private void UpdateView()
+    {
+        if (_textureRect is not null)
+            _textureRect.Texture = _item?.Texture;
+    }
+
+    private void OnFocusEntered()
+    {
+        ThemeTypeVariation = FocusedThemeTypeVariation;
+    }
+
+    private void OnFocusExited()
+    {
+        ThemeTypeVariation = string.Empty;
+    }
 }

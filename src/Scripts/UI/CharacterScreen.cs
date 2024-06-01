@@ -1,4 +1,5 @@
 using Anubis.Characters;
+using Anubis.Items;
 
 namespace Anubis.UI;
 
@@ -8,6 +9,9 @@ public partial class CharacterScreen : CanvasLayer
     private string _characterInfoTemplate = null!;
 
     private Container _inventory = null!;
+    private Control _itemDescription = null!;
+    private RichTextLabel _itemDescriptionText = null!;
+    private string _itemDescriptionTemplate = null!;
 
     [Export] public Character Character { get; set; } = null!;
     [Export] public PackedScene InventoryItemTemplate { get; set; } = null!;
@@ -17,7 +21,7 @@ public partial class CharacterScreen : CanvasLayer
         if (Input.IsActionJustPressed("CharacterScreen"))
         {
             Visible = !Visible;
-            UpdateScreen();
+            UpdateView();
         }
     }
 
@@ -26,10 +30,19 @@ public partial class CharacterScreen : CanvasLayer
         _characterInfo = this.GetRequiredNode<RichTextLabel>("%CharacterInfo");
         _characterInfoTemplate = _characterInfo.Text;
         _inventory = this.GetRequiredNode<Container>("%Inventory");
-        UpdateScreen();
+        _itemDescription = this.GetRequiredNode<Control>("%ItemDescription");
+        _itemDescriptionText = this.GetRequiredNode<RichTextLabel>("%ItemDescriptionText");
+        _itemDescriptionTemplate = _itemDescriptionText.Text;
+        UpdateView();
     }
 
-    private void UpdateScreen()
+    public override void _Process(double delta)
+    {
+        if (Visible && _inventory.GetChildCount() != Character.Inventory.Items.Count)
+            UpdateView();
+    }
+
+    private void UpdateView()
     {
         if (!Visible)
             return;
@@ -45,14 +58,37 @@ public partial class CharacterScreen : CanvasLayer
             .Replace("{Intelligence}", $"{Character.Attributes.Intelligence}")
             .Replace("{Luck}", $"{Character.Attributes.Luck}");
 
+        Item? lastFocus = null;
         foreach (var child in _inventory.GetChildren())
+        {
+            if (child is InventoryItem i && i.HasFocus())
+                lastFocus = i.Item;
+
             child.QueueFree();
+        }
 
         foreach (var item in Character.Inventory.Items)
         {
             var inventoryItem = InventoryItemTemplate.Instantiate<InventoryItem>();
             inventoryItem.Item = item;
+            inventoryItem.FocusEntered += () => OnItemFocusEntered(item);
+            inventoryItem.FocusExited += OnItemFocusExited;
             _inventory.AddChild(inventoryItem);
+
+            if (lastFocus == item)
+                inventoryItem.GrabFocus();
         }
+    }
+
+    private void OnItemFocusEntered(Item item)
+    {
+        _itemDescription.Visible = true;
+        _itemDescriptionText.Text = _itemDescriptionTemplate
+            .Replace("{Name}", item.ItemName);
+    }
+
+    private void OnItemFocusExited()
+    {
+        _itemDescription.Visible = false;
     }
 }

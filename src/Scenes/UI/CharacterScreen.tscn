@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bjsplmnbnmbx5" path="res://Scenes/UI/InventoryItem.tscn" id="2_i35ar"]
 
 [node name="CharacterScreen" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_82n5e")
 InventoryItemTemplate = ExtResource("2_i35ar")
 
@@ -115,3 +114,24 @@ layout_mode = 2
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 1
+
+[node name="ItemDescription" type="PanelContainer" parent="PanelContainer/HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 10
+theme_type_variation = &"PanelContainerGold"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer/ItemDescription"]
+layout_mode = 2
+
+[node name="ItemDescriptionText" type="RichTextLabel" parent="PanelContainer/HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer/ItemDescription/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=24px][center]{Name}[/center][/font_size]
+TODO
+TODO
+TODO
+TODO"
+fit_content = true
+autowrap_mode = 0

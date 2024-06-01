@@ -2,20 +2,26 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/InventoryItem.cs" id="1_n06to"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gxk4s"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g4640"]
 
 [node name="InventoryItem" type="PanelContainer"]
-offset_right = 208.0
-offset_bottom = 227.0
+offset_right = 124.0
+offset_bottom = 124.0
+focus_mode = 2
 script = ExtResource("1_n06to")
+FocusedThemeTypeVariation = "PanelContainerGold"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_gxk4s")
+mouse_default_cursor_shape = 2
+texture = SubResource("PlaceholderTexture2D_g4640")
 expand_mode = 1
 stretch_mode = 6
+
+[connection signal="focus_entered" from="." to="." method="OnFocusEntered"]
+[connection signal="focus_exited" from="." to="." method="OnFocusExited"]
