@@ -1,5 +1,3 @@
-using System;
-
 namespace Anubis.Characters.Equipment;
 
 [Flags]

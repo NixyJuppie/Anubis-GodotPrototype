@@ -1,4 +1,3 @@
-using System;
 using Anubis.Characters;
 
 namespace Anubis.UI;
@@ -8,7 +7,10 @@ public partial class CharacterScreen : CanvasLayer
     private RichTextLabel _characterInfo = null!;
     private string _characterInfoTemplate = null!;
 
+    private Container _inventory = null!;
+
     [Export] public Character Character { get; set; } = null!;
+    [Export] public PackedScene InventoryItemTemplate { get; set; } = null!;
 
     public override void _Input(InputEvent @event)
     {
@@ -23,6 +25,7 @@ public partial class CharacterScreen : CanvasLayer
     {
         _characterInfo = this.GetRequiredNode<RichTextLabel>("%CharacterInfo");
         _characterInfoTemplate = _characterInfo.Text;
+        _inventory = this.GetRequiredNode<Container>("%Inventory");
         UpdateScreen();
     }
 
@@ -40,7 +43,16 @@ public partial class CharacterScreen : CanvasLayer
             .Replace("{Strength}", $"{Character.Attributes.Strength}")
             .Replace("{Agility}", $"{Character.Attributes.Agility}")
             .Replace("{Intelligence}", $"{Character.Attributes.Intelligence}")
-            .Replace("{Luck}", $"{Character.Attributes.Luck}")
-            ;
+            .Replace("{Luck}", $"{Character.Attributes.Luck}");
+
+        foreach (var child in _inventory.GetChildren())
+            child.QueueFree();
+
+        foreach (var item in Character.Inventory.Items)
+        {
+            var inventoryItem = InventoryItemTemplate.Instantiate<InventoryItem>();
+            inventoryItem.Item = item;
+            _inventory.AddChild(inventoryItem);
+        }
     }
 }

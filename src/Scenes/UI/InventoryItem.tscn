@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjsplmnbnmbx5"]
+
+[ext_resource type="Script" path="res://Scripts/UI/InventoryItem.cs" id="1_n06to"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gxk4s"]
+
+[node name="InventoryItem" type="PanelContainer"]
+offset_right = 208.0
+offset_bottom = 227.0
+script = ExtResource("1_n06to")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_gxk4s")
+expand_mode = 1
+stretch_mode = 6

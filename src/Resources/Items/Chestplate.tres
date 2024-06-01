@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=3 format=3 uid="uid://ckh7obfakw31n"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="1_2d38a"]
+[ext_resource type="Texture2D" uid="uid://cboepc5eswno8" path="res://Sprites/Items/Chestplate.png" id="1_8g44q"]
+
+[resource]
+script = ExtResource("1_2d38a")
+SlotType = 16
+ItemName = "Chestplate"
+Texture = ExtResource("1_8g44q")

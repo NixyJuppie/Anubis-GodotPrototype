@@ -1,4 +1,3 @@
-using System;
 using Anubis.Characters;
 
 namespace Anubis.Items;
