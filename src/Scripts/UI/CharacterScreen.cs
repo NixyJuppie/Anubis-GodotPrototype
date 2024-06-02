@@ -1,9 +1,11 @@
+using System.Diagnostics;
 using Anubis.Characters;
+using Anubis.Characters.Equipment;
 using Anubis.Items;
 
 namespace Anubis.UI;
 
-public partial class CharacterScreen : CanvasLayer
+public partial class CharacterScreen : Container
 {
     private RichTextLabel _characterInfo = null!;
     private string _characterInfoTemplate = null!;
@@ -12,6 +14,16 @@ public partial class CharacterScreen : CanvasLayer
     private Control _itemDescription = null!;
     private RichTextLabel _itemDescriptionText = null!;
     private string _itemDescriptionTemplate = null!;
+
+    private EquipmentSlotView _rightHandView = null!;
+    private EquipmentSlotView _leftHandView = null!;
+    private EquipmentSlotView _headView = null!;
+    private EquipmentSlotView _backView = null!;
+    private EquipmentSlotView _chestView = null!;
+    private EquipmentSlotView _armsView = null!;
+    private EquipmentSlotView _handsView = null!;
+    private EquipmentSlotView _legsView = null!;
+    private EquipmentSlotView _feetView = null!;
 
     [Export] public Character Character { get; set; } = null!;
     [Export] public PackedScene InventoryItemTemplate { get; set; } = null!;
@@ -33,7 +45,24 @@ public partial class CharacterScreen : CanvasLayer
         _itemDescription = this.GetRequiredNode<Control>("%ItemDescription");
         _itemDescriptionText = this.GetRequiredNode<RichTextLabel>("%ItemDescriptionText");
         _itemDescriptionTemplate = _itemDescriptionText.Text;
+        _rightHandView = ConnectSlotView("%RightHand");
+        _leftHandView = ConnectSlotView("%LeftHand");
+        _headView = ConnectSlotView("%Head");
+        _backView = ConnectSlotView("%Back");
+        _chestView = ConnectSlotView("%Chest");
+        _armsView = ConnectSlotView("%Arms");
+        _handsView = ConnectSlotView("%Hands");
+        _legsView = ConnectSlotView("%Legs");
+        _feetView = ConnectSlotView("%Feet");
         UpdateView();
+    }
+
+    private EquipmentSlotView ConnectSlotView(NodePath path)
+    {
+        var view = this.GetRequiredNode<EquipmentSlotView>(path);
+        view.FocusEntered += () => SetDescriptionItem(view.Item);
+        view.FocusExited += () => SetDescriptionItem(null);
+        return view;
     }
 
     public override void _Process(double delta)
@@ -58,10 +87,20 @@ public partial class CharacterScreen : CanvasLayer
             .Replace("{Intelligence}", $"{Character.Attributes.Intelligence}")
             .Replace("{Luck}", $"{Character.Attributes.Luck}");
 
+        _rightHandView.Item = Character.Equipment.RightHand.Item;
+        _leftHandView.Item = Character.Equipment.LeftHand.Item;
+        _headView.Item = Character.Equipment.Head.Item;
+        _backView.Item = Character.Equipment.Back.Item;
+        _chestView.Item = Character.Equipment.Chest.Item;
+        _armsView.Item = Character.Equipment.Arms.Item;
+        _handsView.Item = Character.Equipment.Hands.Item;
+        _legsView.Item = Character.Equipment.Legs.Item;
+        _feetView.Item = Character.Equipment.Feet.Item;
+
         Item? lastFocus = null;
         foreach (var child in _inventory.GetChildren())
         {
-            if (child is InventoryItem i && i.HasFocus())
+            if (child is InventoryItemView i && i.HasFocus())
                 lastFocus = i.Item;
 
             child.QueueFree();
@@ -69,10 +108,10 @@ public partial class CharacterScreen : CanvasLayer
 
         foreach (var item in Character.Inventory.Items)
         {
-            var inventoryItem = InventoryItemTemplate.Instantiate<InventoryItem>();
+            var inventoryItem = InventoryItemTemplate.Instantiate<InventoryItemView>();
             inventoryItem.Item = item;
-            inventoryItem.FocusEntered += () => OnItemFocusEntered(item);
-            inventoryItem.FocusExited += OnItemFocusExited;
+            inventoryItem.FocusEntered += () => SetDescriptionItem(item);
+            inventoryItem.FocusExited += () => SetDescriptionItem(null);
             _inventory.AddChild(inventoryItem);
 
             if (lastFocus == item)
@@ -80,15 +119,21 @@ public partial class CharacterScreen : CanvasLayer
         }
     }
 
-    private void OnItemFocusEntered(Item item)
+    private void SetDescriptionItem(Item? item)
     {
-        _itemDescription.Visible = true;
-        _itemDescriptionText.Text = _itemDescriptionTemplate
-            .Replace("{Name}", item.ItemName);
+        _itemDescription.Visible = item is not null;
+
+        if (item is not null)
+            _itemDescriptionText.Text = _itemDescriptionTemplate
+                .Replace("{Name}", item.ItemName);
     }
 
-    private void OnItemFocusExited()
+    private void OnEquipItemRequest(Resource item, int slotType)
     {
-        _itemDescription.Visible = false;
+        Debug.Assert(item is EquippableItem);
+        Debug.Assert(Enum.IsDefined((EquipmentSlotType)slotType));
+
+        Character.Equipment.Equip((EquippableItem)item, (EquipmentSlotType)slotType, Character.Inventory);
+        UpdateView();
     }
 }

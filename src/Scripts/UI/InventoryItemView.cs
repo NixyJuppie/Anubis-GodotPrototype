@@ -3,9 +3,9 @@ using Anubis.Items;
 namespace Anubis.UI;
 
 [Tool]
-public partial class InventoryItem : Control
+public partial class InventoryItemView : Control
 {
-    private TextureRect _textureRect = null!;
+    private TextureRect _itemTexture = null!;
     private Item _item = null!;
 
     [Export]
@@ -33,14 +33,20 @@ public partial class InventoryItem : Control
         if (Item is null && !Engine.IsEditorHint())
             throw new InvalidOperationException("Inventory item must have an item assigned");
 
-        _textureRect = this.GetRequiredNode<TextureRect>("%TextureRect");
+        _itemTexture = this.GetRequiredNode<TextureRect>("%ItemTexture");
         UpdateView();
+    }
+
+    public override Variant _GetDragData(Vector2 atPosition)
+    {
+        SetDragPreview((Control)_itemTexture.Duplicate());
+        return _item;
     }
 
     private void UpdateView()
     {
-        if (_textureRect is not null)
-            _textureRect.Texture = _item?.Texture;
+        if (_itemTexture is not null)
+            _itemTexture.Texture = _item?.Texture;
     }
 
     private void OnFocusEntered()

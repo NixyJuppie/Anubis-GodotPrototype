@@ -11,7 +11,7 @@ public partial class CharacterEquipment : Resource
 
     [ExportGroup("Passive")]
     [Export] public EquipmentSlot Head { get; set; } = new();
-    [Export] public EquipmentSlot Neck { get; set; } = new();
+    [Export] public EquipmentSlot Back { get; set; } = new();
     [Export] public EquipmentSlot Chest { get; set; } = new();
     [Export] public EquipmentSlot Arms { get; set; } = new();
     [Export] public EquipmentSlot Hands { get; set; } = new();
@@ -31,7 +31,7 @@ public partial class CharacterEquipment : Resource
             EquipmentSlotType.RightHand => RightHand,
             EquipmentSlotType.LeftHand => LeftHand,
             EquipmentSlotType.Head => Head,
-            EquipmentSlotType.Neck => Neck,
+            EquipmentSlotType.Back => Back,
             EquipmentSlotType.Chest => Chest,
             EquipmentSlotType.Arms => Arms,
             EquipmentSlotType.Hands => Hands,

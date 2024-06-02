@@ -1,25 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjsplmnbnmbx5"]
+[gd_scene load_steps=2 format=3 uid="uid://bjsplmnbnmbx5"]
 
-[ext_resource type="Script" path="res://Scripts/UI/InventoryItem.cs" id="1_n06to"]
+[ext_resource type="Script" path="res://Scripts/UI/InventoryItemView.cs" id="1_67bio"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_g4640"]
-
-[node name="InventoryItem" type="PanelContainer"]
+[node name="InventoryItemView" type="PanelContainer"]
 offset_right = 124.0
 offset_bottom = 124.0
 focus_mode = 2
-script = ExtResource("1_n06to")
+script = ExtResource("1_67bio")
 FocusedThemeTypeVariation = "PanelContainerGold"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+[node name="ItemTexture" type="TextureRect" parent="MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture = SubResource("PlaceholderTexture2D_g4640")
 expand_mode = 1
 stretch_mode = 6
 
