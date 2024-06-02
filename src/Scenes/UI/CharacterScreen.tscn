@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cxegfgq1inyo"]
+[gd_scene load_steps=14 format=3 uid="uid://cxegfgq1inyo"]
 
 [ext_resource type="Script" path="res://Scripts/UI/CharacterScreen.cs" id="1_82n5e"]
 [ext_resource type="PackedScene" uid="uid://bjsplmnbnmbx5" path="res://Scenes/UI/InventoryItemView.tscn" id="2_i35ar"]
@@ -12,8 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://baug7rw3kwjye" path="res://Sprites/Slots/LeftHand.png" id="9_1kj6n"]
 [ext_resource type="Texture2D" uid="uid://muuj444ge6jd" path="res://Sprites/Slots/Feet.png" id="9_j5pwk"]
 [ext_resource type="Texture2D" uid="uid://be10pwx2afmri" path="res://Sprites/Slots/RightHand.png" id="9_npib1"]
+[ext_resource type="Script" path="res://Scripts/UI/InventoryView.cs" id="13_jnje4"]
 
 [node name="CharacterScreen" type="PanelContainer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -187,9 +189,11 @@ autowrap_mode = 0
 [node name="Inventory" type="HFlowContainer" parent="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 alignment = 1
+script = ExtResource("13_jnje4")
 
 [node name="ItemDescription" type="PanelContainer" parent="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -222,3 +226,4 @@ autowrap_mode = 0
 [connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HandsContainer/RightHand" to="." method="OnEquipItemRequest"]
 [connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Legs" to="." method="OnEquipItemRequest"]
 [connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Feet" to="." method="OnEquipItemRequest"]
+[connection signal="UnequipItemRequest" from="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer/Inventory" to="." method="OnUnequipItemRequest"]

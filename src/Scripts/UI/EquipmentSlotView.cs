@@ -48,6 +48,15 @@ public partial class EquipmentSlotView : Control
         UpdateView();
     }
 
+    public override Variant _GetDragData(Vector2 atPosition)
+    {
+        if (_item is null)
+            return Variant.CreateFrom<GodotObject?>(null!);
+
+        SetDragPreview((Control)_itemTextureRect.Duplicate());
+        return _item;
+    }
+
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
         return data.VariantType == Variant.Type.Object && data.AsGodotObject() is EquippableItem item && item.SlotType.HasFlag(SlotType);

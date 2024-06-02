@@ -10,7 +10,7 @@ public partial class CharacterScreen : Container
     private RichTextLabel _characterInfo = null!;
     private string _characterInfoTemplate = null!;
 
-    private Container _inventory = null!;
+    private InventoryView _inventory = null!;
     private Control _itemDescription = null!;
     private RichTextLabel _itemDescriptionText = null!;
     private string _itemDescriptionTemplate = null!;
@@ -41,7 +41,7 @@ public partial class CharacterScreen : Container
     {
         _characterInfo = this.GetRequiredNode<RichTextLabel>("%CharacterInfo");
         _characterInfoTemplate = _characterInfo.Text;
-        _inventory = this.GetRequiredNode<Container>("%Inventory");
+        _inventory = this.GetRequiredNode<InventoryView>("%Inventory");
         _itemDescription = this.GetRequiredNode<Control>("%ItemDescription");
         _itemDescriptionText = this.GetRequiredNode<RichTextLabel>("%ItemDescriptionText");
         _itemDescriptionTemplate = _itemDescriptionText.Text;
@@ -71,7 +71,7 @@ public partial class CharacterScreen : Container
             UpdateView();
     }
 
-    private void UpdateView()
+    private void UpdateView(bool resetFocus = false)
     {
         if (!Visible)
             return;
@@ -117,6 +117,9 @@ public partial class CharacterScreen : Container
             if (lastFocus == item)
                 inventoryItem.GrabFocus();
         }
+
+        if (resetFocus)
+            _inventory.GetChildOrNull<InventoryItemView>(0)?.GrabFocus();
     }
 
     private void SetDescriptionItem(Item? item)
@@ -130,10 +133,16 @@ public partial class CharacterScreen : Container
 
     private void OnEquipItemRequest(Resource item, int slotType)
     {
-        Debug.Assert(item is EquippableItem);
-        Debug.Assert(Enum.IsDefined((EquipmentSlotType)slotType));
-
         Character.Equipment.Equip((EquippableItem)item, (EquipmentSlotType)slotType, Character.Inventory);
-        UpdateView();
+        UpdateView(true);
+    }
+
+    private void OnUnequipItemRequest(Resource item)
+    {
+        if (item is not EquippableItem equippableItem)
+            return;
+
+        Character.Equipment.Unequip(equippableItem, Character.Inventory);
+        UpdateView(true);
     }
 }

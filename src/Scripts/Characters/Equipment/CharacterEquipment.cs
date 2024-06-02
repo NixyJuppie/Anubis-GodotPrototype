@@ -1,3 +1,4 @@
+using System.Linq;
 using Anubis.Items;
 
 namespace Anubis.Characters.Equipment;
@@ -26,7 +27,37 @@ public partial class CharacterEquipment : Resource
             return;
         }
 
-        var slot = slotType switch
+        Unequip(item, inventory);
+
+        var slot = GetSlot(slotType);
+        if (slot.Item is not null)
+            inventory.Items.Add(slot.Item);
+
+        slot.Item = item;
+        inventory.Items.Remove(item);
+        GD.Print($"Equipped {item.ItemName} in slot {slotType}");
+    }
+
+    public void Unequip(EquippableItem item, Inventory inventory)
+    {
+        var unequipped = false;
+        foreach (var slotType in Enum.GetValues<EquipmentSlotType>().Where(s => item.SlotType.HasFlag(s)))
+        {
+            var slot = GetSlot(slotType);
+            if (slot.Item == item)
+            {
+                slot.Item = null;
+                unequipped = true;
+            }
+        }
+
+        if (unequipped)
+            inventory.Items.Add(item);
+    }
+
+    private EquipmentSlot GetSlot(EquipmentSlotType slotType)
+    {
+        return slotType switch
         {
             EquipmentSlotType.RightHand => RightHand,
             EquipmentSlotType.LeftHand => LeftHand,
@@ -39,12 +70,5 @@ public partial class CharacterEquipment : Resource
             EquipmentSlotType.Feet => Feet,
             _ => throw new ArgumentOutOfRangeException(nameof(slotType), slotType, "Invalid slot")
         };
-
-        if (slot.Item is not null)
-            inventory.Items.Add(slot.Item);
-
-        slot.Item = item;
-        inventory.Items.Remove(item);
-        GD.Print($"Equipped {item.ItemName} in slot {slotType}");
     }
 }
