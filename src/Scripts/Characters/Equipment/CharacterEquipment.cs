@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using Anubis.Items;
 
 namespace Anubis.Characters.Equipment;
@@ -12,7 +12,7 @@ public partial class CharacterEquipment : Resource
 
     [ExportGroup("Passive")]
     [Export] public EquipmentSlot Head { get; set; } = new();
-    [Export] public EquipmentSlot Neck { get; set; } = new();
+    [Export] public EquipmentSlot Back { get; set; } = new();
     [Export] public EquipmentSlot Chest { get; set; } = new();
     [Export] public EquipmentSlot Arms { get; set; } = new();
     [Export] public EquipmentSlot Hands { get; set; } = new();
@@ -27,12 +27,42 @@ public partial class CharacterEquipment : Resource
             return;
         }
 
-        var slot = slotType switch
+        Unequip(item, inventory);
+
+        var slot = GetSlot(slotType);
+        if (slot.Item is not null)
+            inventory.Items.Add(slot.Item);
+
+        slot.Item = item;
+        inventory.Items.Remove(item);
+        GD.Print($"Equipped {item.ItemName} in slot {slotType}");
+    }
+
+    public void Unequip(EquippableItem item, Inventory inventory)
+    {
+        var unequipped = false;
+        foreach (var slotType in Enum.GetValues<EquipmentSlotType>().Where(s => item.SlotType.HasFlag(s)))
+        {
+            var slot = GetSlot(slotType);
+            if (slot.Item == item)
+            {
+                slot.Item = null;
+                unequipped = true;
+            }
+        }
+
+        if (unequipped)
+            inventory.Items.Add(item);
+    }
+
+    private EquipmentSlot GetSlot(EquipmentSlotType slotType)
+    {
+        return slotType switch
         {
             EquipmentSlotType.RightHand => RightHand,
             EquipmentSlotType.LeftHand => LeftHand,
             EquipmentSlotType.Head => Head,
-            EquipmentSlotType.Neck => Neck,
+            EquipmentSlotType.Back => Back,
             EquipmentSlotType.Chest => Chest,
             EquipmentSlotType.Arms => Arms,
             EquipmentSlotType.Hands => Hands,
@@ -40,12 +70,5 @@ public partial class CharacterEquipment : Resource
             EquipmentSlotType.Feet => Feet,
             _ => throw new ArgumentOutOfRangeException(nameof(slotType), slotType, "Invalid slot")
         };
-
-        if (slot.Item is not null)
-            inventory.Items.Add(slot.Item);
-
-        slot.Item = item;
-        inventory.Items.Remove(item);
-        GD.Print($"Equipped {item.ItemName} in slot {slotType}");
     }
 }

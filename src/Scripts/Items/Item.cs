@@ -1,5 +1,6 @@
 namespace Anubis.Items;
 
+[Tool] // required because of https://github.com/godotengine/godot/issues/85459
 [GlobalClass]
 public partial class Item : Resource
 {

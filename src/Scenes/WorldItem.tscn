@@ -1,14 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfmn8f8enoyu7"]
+[gd_scene load_steps=3 format=3 uid="uid://cfmn8f8enoyu7"]
 
 [ext_resource type="Script" path="res://Scripts/Items/WorldItem.cs" id="1_w36ba"]
 
-[node name="WorldItem" type="Area2D" node_paths=PackedStringArray("Sprite")]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f1h8l"]
+size = Vector2(64, 64)
+
+[node name="WorldItem" type="Area2D"]
 scale = Vector2(0.2, 0.2)
 collision_layer = 2
 monitorable = false
 script = ExtResource("1_w36ba")
-Sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = SubResource("PlaceholderTexture2D_f1h8l")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

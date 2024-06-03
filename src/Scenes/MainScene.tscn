@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=44 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
 [ext_resource type="PackedScene" uid="uid://br25rf51jx6gk" path="res://Scenes/TopDownCamera.tscn" id="1_spc0r"]
@@ -6,193 +6,117 @@
 [ext_resource type="Texture2D" uid="uid://exgmahplfi5j" path="res://Sprites/Light.png" id="3_iwdsj"]
 [ext_resource type="PackedScene" uid="uid://bljeyd2vbmtjd" path="res://Scenes/Characters/Enemy.tscn" id="4_0txh2"]
 [ext_resource type="PackedScene" uid="uid://cailhgk73vcgu" path="res://Scenes/Characters/Npc.tscn" id="5_qkppw"]
-[ext_resource type="Script" path="res://Scripts/Characters/BoundedAttributeValue.cs" id="6_jjmq5"]
+[ext_resource type="Resource" uid="uid://ckh7obfakw31n" path="res://Resources/Items/Chestplate.tres" id="6_2jljx"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/BoundedAttributeValue.cs" id="6_jjmq5"]
 [ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquipmentSlot.cs" id="7_238tr"]
-[ext_resource type="Script" path="res://Scripts/Characters/AttributeValue.cs" id="7_jdfv5"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeValue.cs" id="7_jdfv5"]
+[ext_resource type="Resource" uid="uid://dbgpi3c4dcs8m" path="res://Resources/Items/HealthPotion.tres" id="7_rldhx"]
 [ext_resource type="Script" path="res://Scripts/Characters/Equipment/CharacterEquipment.cs" id="7_uw3nu"]
+[ext_resource type="Resource" uid="uid://b7jxel115e2sm" path="res://Resources/Items/StaminaPotion.tres" id="8_8itw4"]
 [ext_resource type="Script" path="res://Scripts/Items/Inventory.cs" id="8_14doo"]
+[ext_resource type="Resource" uid="uid://c6kqcxdwujjp1" path="res://Resources/Items/ManaPotion.tres" id="8_bxk6c"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/CharacterAttributes.cs" id="9_5ltpo"]
 [ext_resource type="PackedScene" uid="uid://cfmn8f8enoyu7" path="res://Scenes/WorldItem.tscn" id="12_x6ga0"]
-[ext_resource type="Resource" uid="uid://cttqppdt7hkv8" path="res://Resources/Sword.tres" id="13_lkwrb"]
+[ext_resource type="Resource" uid="uid://cttqppdt7hkv8" path="res://Resources/Items/Sword.tres" id="13_lkwrb"]
+[ext_resource type="PackedScene" uid="uid://cxegfgq1inyo" path="res://Scenes/UI/CharacterScreen.tscn" id="15_bff3w"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qgvai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_clccw"]
 size = Vector2(512, 256)
 
-[sub_resource type="Resource" id="Resource_gu81e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f20lb"]
+size = Vector2(256, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsddj"]
+size = Vector2(256, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2fx7"]
+size = Vector2(256, 256)
+
+[sub_resource type="Resource" id="Resource_w644k"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_wt0id"]
 script = ExtResource("6_jjmq5")
 MaxValue = 10
 CurrentValue = 10
 
-[sub_resource type="Resource" id="Resource_odh26"]
+[sub_resource type="Resource" id="Resource_2kigk"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_kmj2s"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_37rtq"]
 script = ExtResource("6_jjmq5")
 MaxValue = 10
 CurrentValue = 10
 
-[sub_resource type="Resource" id="Resource_2ctu7"]
+[sub_resource type="Resource" id="Resource_mtr55"]
 script = ExtResource("6_jjmq5")
 MaxValue = 10
 CurrentValue = 10
 
-[sub_resource type="Resource" id="Resource_ckqrt"]
+[sub_resource type="Resource" id="Resource_4mv4y"]
 script = ExtResource("7_jdfv5")
 Value = 10
 
-[sub_resource type="Resource" id="Resource_a2r70"]
-script = ExtResource("7_jdfv5")
-Value = 10
+[sub_resource type="Resource" id="Resource_qbiuy"]
+script = ExtResource("9_5ltpo")
+Health = SubResource("Resource_wt0id")
+Stamina = SubResource("Resource_mtr55")
+Mana = SubResource("Resource_37rtq")
+Strength = SubResource("Resource_4mv4y")
+Agility = SubResource("Resource_w644k")
+Intelligence = SubResource("Resource_2kigk")
+Luck = SubResource("Resource_kmj2s")
 
-[sub_resource type="Resource" id="Resource_0jg7w"]
-script = ExtResource("7_jdfv5")
-Value = 10
-
-[sub_resource type="Resource" id="Resource_aqn14"]
+[sub_resource type="Resource" id="Resource_0ivld"]
 script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_m0iel"]
+[sub_resource type="Resource" id="Resource_4caja"]
 script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_m8j61"]
+[sub_resource type="Resource" id="Resource_2rrxd"]
 script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_j68xy"]
+[sub_resource type="Resource" id="Resource_42q3y"]
 script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_kmcnv"]
+[sub_resource type="Resource" id="Resource_hcbpe"]
 script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_h5awt"]
+[sub_resource type="Resource" id="Resource_unngo"]
 script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_vgpd0"]
+[sub_resource type="Resource" id="Resource_uhl8m"]
 script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_2umyy"]
+[sub_resource type="Resource" id="Resource_03sw6"]
 script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_d23gk"]
+[sub_resource type="Resource" id="Resource_g5w42"]
 script = ExtResource("7_238tr")
 
-[sub_resource type="Resource" id="Resource_om2tb"]
+[sub_resource type="Resource" id="Resource_rjch6"]
 script = ExtResource("7_uw3nu")
-RightHand = SubResource("Resource_d23gk")
-LeftHand = SubResource("Resource_h5awt")
-Head = SubResource("Resource_kmcnv")
-Neck = SubResource("Resource_2umyy")
-Chest = SubResource("Resource_m0iel")
-Arms = SubResource("Resource_aqn14")
-Hands = SubResource("Resource_j68xy")
-Legs = SubResource("Resource_vgpd0")
-Feet = SubResource("Resource_m8j61")
+RightHand = SubResource("Resource_g5w42")
+LeftHand = SubResource("Resource_uhl8m")
+Head = SubResource("Resource_unngo")
+Back = SubResource("Resource_4caja")
+Chest = SubResource("Resource_2rrxd")
+Arms = SubResource("Resource_0ivld")
+Hands = SubResource("Resource_hcbpe")
+Legs = SubResource("Resource_03sw6")
+Feet = SubResource("Resource_42q3y")
 
-[sub_resource type="Resource" id="Resource_4r8cy"]
+[sub_resource type="Resource" id="Resource_pt7f8"]
 script = ExtResource("8_14doo")
 Items = []
-
-[sub_resource type="Resource" id="Resource_bqnto"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_vjuph"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_r34i4"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_fj5t0"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_n5new"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_po6w1"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_mcwte"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_jim83"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_mf07d"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_orxkg"]
-script = ExtResource("7_uw3nu")
-RightHand = SubResource("Resource_mf07d")
-LeftHand = SubResource("Resource_po6w1")
-Head = SubResource("Resource_n5new")
-Neck = SubResource("Resource_jim83")
-Chest = SubResource("Resource_vjuph")
-Arms = SubResource("Resource_bqnto")
-Hands = SubResource("Resource_fj5t0")
-Legs = SubResource("Resource_mcwte")
-Feet = SubResource("Resource_r34i4")
-
-[sub_resource type="Resource" id="Resource_x2sxj"]
-script = ExtResource("6_jjmq5")
-MaxValue = 10
-CurrentValue = 10
-
-[sub_resource type="Resource" id="Resource_vscja"]
-script = ExtResource("6_jjmq5")
-MaxValue = 10
-CurrentValue = 10
-
-[sub_resource type="Resource" id="Resource_q16b7"]
-script = ExtResource("6_jjmq5")
-MaxValue = 10
-CurrentValue = 10
-
-[sub_resource type="Resource" id="Resource_cdyu1"]
-script = ExtResource("7_jdfv5")
-Value = 10
-
-[sub_resource type="Resource" id="Resource_uqyxb"]
-script = ExtResource("7_jdfv5")
-Value = 10
-
-[sub_resource type="Resource" id="Resource_xhq0t"]
-script = ExtResource("7_jdfv5")
-Value = 10
-
-[sub_resource type="Resource" id="Resource_hv6gl"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_he5lj"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_kbufr"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_myh6p"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_stlfv"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_4vnct"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_adw63"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_dydjx"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_vokon"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_rusba"]
-script = ExtResource("7_uw3nu")
-RightHand = SubResource("Resource_vokon")
-LeftHand = SubResource("Resource_4vnct")
-Head = SubResource("Resource_stlfv")
-Neck = SubResource("Resource_dydjx")
-Chest = SubResource("Resource_he5lj")
-Arms = SubResource("Resource_hv6gl")
-Hands = SubResource("Resource_myh6p")
-Legs = SubResource("Resource_adw63")
-Feet = SubResource("Resource_kbufr")
 
 [node name="MainScene" type="Node2D"]
 
@@ -201,7 +125,7 @@ Feet = SubResource("Resource_kbufr")
 [node name="VersionInfo" parent="Core" instance=ExtResource("1_lxjk0")]
 
 [node name="TopDownCamera" parent="Core" node_paths=PackedStringArray("Target") instance=ExtResource("1_spc0r")]
-Target = NodePath("../../Player")
+Target = NodePath("../../Content/Player")
 MaxZoom = 2.5
 
 [node name="World" type="Node" parent="."]
@@ -266,44 +190,63 @@ shadow_filter_smooth = 0.5
 texture = ExtResource("3_iwdsj")
 texture_scale = 2.5
 
-[node name="Sword" parent="." node_paths=PackedStringArray("Sprite") instance=ExtResource("12_x6ga0")]
+[node name="Content" type="Node" parent="."]
+
+[node name="Sword" parent="Content" instance=ExtResource("12_x6ga0")]
 position = Vector2(500, -150)
 Item = ExtResource("13_lkwrb")
-Sprite = NodePath("Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Content/Sword"]
 shape = SubResource("RectangleShape2D_clccw")
 
-[node name="Npc" parent="." instance=ExtResource("5_qkppw")]
+[node name="Chestplate" parent="Content" instance=ExtResource("12_x6ga0")]
+position = Vector2(361, 1.99998)
+Item = ExtResource("6_2jljx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Content/Chestplate"]
+shape = SubResource("RectangleShape2D_f20lb")
+
+[node name="HealthPotion" parent="Content" instance=ExtResource("12_x6ga0")]
+position = Vector2(173, 176)
+Item = ExtResource("7_rldhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Content/HealthPotion"]
+shape = SubResource("RectangleShape2D_lsddj")
+
+[node name="StaminaPotion" parent="Content" instance=ExtResource("12_x6ga0")]
+position = Vector2(156, 19)
+Item = ExtResource("8_8itw4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Content/StaminaPotion"]
+shape = SubResource("RectangleShape2D_lsddj")
+
+[node name="ManaPotion" parent="Content" instance=ExtResource("12_x6ga0")]
+position = Vector2(190, -178)
+Item = ExtResource("8_bxk6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Content/ManaPotion"]
+shape = SubResource("RectangleShape2D_b2fx7")
+
+[node name="Npc" parent="Content" instance=ExtResource("5_qkppw")]
 position = Vector2(426, 221)
 CharacterName = "Merchant"
-Health = SubResource("Resource_gu81e")
-Stamina = SubResource("Resource_odh26")
-Mana = SubResource("Resource_2ctu7")
-Strength = SubResource("Resource_ckqrt")
-Agility = SubResource("Resource_a2r70")
-Intelligence = SubResource("Resource_0jg7w")
-Equipment = SubResource("Resource_om2tb")
-Inventory = SubResource("Resource_4r8cy")
+Attributes = SubResource("Resource_qbiuy")
+Equipment = SubResource("Resource_rjch6")
+Inventory = SubResource("Resource_pt7f8")
 
-[node name="Enemy" parent="." instance=ExtResource("4_0txh2")]
+[node name="Enemy" parent="Content" instance=ExtResource("4_0txh2")]
 position = Vector2(-419, -173)
 CharacterName = "Twój Stary"
-Health = SubResource("Resource_gu81e")
-Stamina = SubResource("Resource_odh26")
-Mana = SubResource("Resource_2ctu7")
-Strength = SubResource("Resource_ckqrt")
-Agility = SubResource("Resource_a2r70")
-Intelligence = SubResource("Resource_0jg7w")
-Equipment = SubResource("Resource_orxkg")
-Inventory = SubResource("Resource_4r8cy")
+Attributes = SubResource("Resource_qbiuy")
+Equipment = SubResource("Resource_rjch6")
+Inventory = SubResource("Resource_pt7f8")
 
-[node name="Player" parent="." instance=ExtResource("3_036xi")]
-Health = SubResource("Resource_x2sxj")
-Stamina = SubResource("Resource_vscja")
-Mana = SubResource("Resource_q16b7")
-Strength = SubResource("Resource_cdyu1")
-Agility = SubResource("Resource_uqyxb")
-Intelligence = SubResource("Resource_xhq0t")
-Equipment = SubResource("Resource_rusba")
-Inventory = SubResource("Resource_4r8cy")
+[node name="Player" parent="Content" instance=ExtResource("3_036xi")]
+Attributes = SubResource("Resource_qbiuy")
+Equipment = SubResource("Resource_rjch6")
+Inventory = SubResource("Resource_pt7f8")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="CharacterScreen" parent="UI" node_paths=PackedStringArray("Character") instance=ExtResource("15_bff3w")]
+Character = NodePath("../../Content/Player")

@@ -1,0 +1,229 @@
+[gd_scene load_steps=14 format=3 uid="uid://cxegfgq1inyo"]
+
+[ext_resource type="Script" path="res://Scripts/UI/CharacterScreen.cs" id="1_82n5e"]
+[ext_resource type="PackedScene" uid="uid://bjsplmnbnmbx5" path="res://Scenes/UI/InventoryItemView.tscn" id="2_i35ar"]
+[ext_resource type="PackedScene" uid="uid://022r8jp6vht1" path="res://Scenes/UI/EquipmentSlotView.tscn" id="3_4aeq1"]
+[ext_resource type="Texture2D" uid="uid://b6ehjb44f5mvy" path="res://Sprites/Slots/Head.png" id="4_ac3v4"]
+[ext_resource type="Texture2D" uid="uid://reua3fg1wykn" path="res://Sprites/Slots/Hands.png" id="4_i6mbx"]
+[ext_resource type="Texture2D" uid="uid://6gh6da6ryp13" path="res://Sprites/Slots/Chest.png" id="6_isxhg"]
+[ext_resource type="Texture2D" uid="uid://dr4pf0g1aeeex" path="res://Sprites/Slots/Arms.png" id="7_85m08"]
+[ext_resource type="Texture2D" uid="uid://nsnubuqfw30s" path="res://Sprites/Slots/Back.png" id="7_umnyj"]
+[ext_resource type="Texture2D" uid="uid://dtdo2lmvy46o7" path="res://Sprites/Slots/Legs.png" id="8_y7840"]
+[ext_resource type="Texture2D" uid="uid://baug7rw3kwjye" path="res://Sprites/Slots/LeftHand.png" id="9_1kj6n"]
+[ext_resource type="Texture2D" uid="uid://muuj444ge6jd" path="res://Sprites/Slots/Feet.png" id="9_j5pwk"]
+[ext_resource type="Texture2D" uid="uid://be10pwx2afmri" path="res://Sprites/Slots/RightHand.png" id="9_npib1"]
+[ext_resource type="Script" path="res://Scripts/UI/InventoryView.cs" id="13_jnje4"]
+
+[node name="CharacterScreen" type="PanelContainer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -910.0
+offset_top = -490.0
+offset_right = 910.0
+offset_bottom = 490.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelContainerGold"
+script = ExtResource("1_82n5e")
+InventoryItemTemplate = ExtResource("2_i35ar")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CharacterContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/CharacterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PanelContainerGold"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CharacterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="CharacterInfo" type="RichTextLabel" parent="HBoxContainer/CharacterContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=32px][center]Character[/center][/font_size]
+
+[fill]Name: [/fill] {Name}
+[fill]Level: [/fill] {Level}
+
+[fill]Health: [/fill] {Health}
+[fill]Stamina: [/fill] {Stamina}
+[fill]Mana: [/fill] {Mana}
+[fill]Strength: [/fill] {Strength}
+[fill]Agility: [/fill] {Agility}
+[fill]Intelligence: [/fill] {Intelligence}
+[fill]Luck: [/fill] {Luck}
+
+[fill]Skill1:[/fill] False
+[fill]Skill2:[/fill] False
+[fill]Skill3:[/fill] False
+[fill]Skill4:[/fill] False
+[fill]Skill5:[/fill] False
+[fill]Skill6:[/fill] False
+[fill]Skill7:[/fill] False
+[fill]Skill8:[/fill] False
+[fill]Skill9:[/fill] False
+[fill]Skill10:[/fill] False"
+fit_content = true
+autowrap_mode = 0
+
+[node name="EquipmentContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/EquipmentContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PanelContainerGold"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/EquipmentContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="EquipmentLabel" type="RichTextLabel" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=32px][center]Equipment[/center][/font_size]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Head" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_4aeq1")]
+unique_name_in_owner = true
+layout_mode = 2
+BackgroundTexture = ExtResource("4_ac3v4")
+SlotType = 4
+
+[node name="ChestContainer" type="HBoxContainer" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Arms" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ChestContainer" instance=ExtResource("3_4aeq1")]
+unique_name_in_owner = true
+layout_mode = 2
+BackgroundTexture = ExtResource("7_85m08")
+SlotType = 32
+
+[node name="Chest" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ChestContainer" instance=ExtResource("3_4aeq1")]
+unique_name_in_owner = true
+layout_mode = 2
+BackgroundTexture = ExtResource("6_isxhg")
+SlotType = 16
+
+[node name="Back" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ChestContainer" instance=ExtResource("3_4aeq1")]
+unique_name_in_owner = true
+layout_mode = 2
+BackgroundTexture = ExtResource("7_umnyj")
+SlotType = 8
+
+[node name="HandsContainer" type="HBoxContainer" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftHand" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HandsContainer" instance=ExtResource("3_4aeq1")]
+unique_name_in_owner = true
+layout_mode = 2
+BackgroundTexture = ExtResource("9_1kj6n")
+SlotType = 2
+
+[node name="Hands" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HandsContainer" instance=ExtResource("3_4aeq1")]
+unique_name_in_owner = true
+layout_mode = 2
+BackgroundTexture = ExtResource("4_i6mbx")
+SlotType = 64
+
+[node name="RightHand" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HandsContainer" instance=ExtResource("3_4aeq1")]
+unique_name_in_owner = true
+layout_mode = 2
+BackgroundTexture = ExtResource("9_npib1")
+SlotType = 1
+
+[node name="Legs" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_4aeq1")]
+unique_name_in_owner = true
+layout_mode = 2
+BackgroundTexture = ExtResource("8_y7840")
+SlotType = 128
+
+[node name="Feet" parent="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_4aeq1")]
+unique_name_in_owner = true
+layout_mode = 2
+BackgroundTexture = ExtResource("9_j5pwk")
+SlotType = 256
+
+[node name="InventoryContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/InventoryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PanelContainerGold"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/InventoryContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="InventoryLabel" type="RichTextLabel" parent="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=32px][center]Inventory[/center][/font_size]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Inventory" type="HFlowContainer" parent="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+alignment = 1
+script = ExtResource("13_jnje4")
+
+[node name="ItemDescription" type="PanelContainer" parent="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 10
+theme_type_variation = &"PanelContainerGold"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer/ItemDescription"]
+layout_mode = 2
+
+[node name="ItemDescriptionText" type="RichTextLabel" parent="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer/ItemDescription/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=24px][center]{Name}[/center][/font_size]
+TODO
+TODO
+TODO
+TODO"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Head" to="." method="OnEquipItemRequest"]
+[connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ChestContainer/Arms" to="." method="OnEquipItemRequest"]
+[connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ChestContainer/Chest" to="." method="OnEquipItemRequest"]
+[connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/ChestContainer/Back" to="." method="OnEquipItemRequest"]
+[connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HandsContainer/LeftHand" to="." method="OnEquipItemRequest"]
+[connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HandsContainer/Hands" to="." method="OnEquipItemRequest"]
+[connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HandsContainer/RightHand" to="." method="OnEquipItemRequest"]
+[connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Legs" to="." method="OnEquipItemRequest"]
+[connection signal="EquipItemRequest" from="HBoxContainer/EquipmentContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Feet" to="." method="OnEquipItemRequest"]
+[connection signal="UnequipItemRequest" from="HBoxContainer/InventoryContainer/PanelContainer/MarginContainer/VBoxContainer/Inventory" to="." method="OnUnequipItemRequest"]
