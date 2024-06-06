@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("2_bwp4s")
 ItemName = "Stamina Potion"
+ItemDescription = "Stamina++"
 Texture = ExtResource("1_b8sv4")

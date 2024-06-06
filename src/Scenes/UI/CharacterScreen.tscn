@@ -51,9 +51,11 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[font_size=32px][center]Character[/center][/font_size]
 
+[font_size=24px][b]Base[/b][/font_size]
 [fill]Name: [/fill] {Name}
 [fill]Level: [/fill] {Level}
 
+[font_size=24px][b]Attributes[/b][/font_size]
 [fill]Health: [/fill] {Health}
 [fill]Stamina: [/fill] {Stamina}
 [fill]Mana: [/fill] {Mana}
@@ -62,16 +64,27 @@ text = "[font_size=32px][center]Character[/center][/font_size]
 [fill]Intelligence: [/fill] {Intelligence}
 [fill]Luck: [/fill] {Luck}
 
-[fill]Skill1:[/fill] False
-[fill]Skill2:[/fill] False
-[fill]Skill3:[/fill] False
-[fill]Skill4:[/fill] False
-[fill]Skill5:[/fill] False
-[fill]Skill6:[/fill] False
-[fill]Skill7:[/fill] False
-[fill]Skill8:[/fill] False
-[fill]Skill9:[/fill] False
-[fill]Skill10:[/fill] False"
+[font_size=24px][b]Damage[/b][/font_size]
+[fill]Slash: [/fill] {SlashDamage}
+[fill]Pierce: [/fill] {PierceDamage}
+[fill]Blunt: [/fill] {BluntDamage}
+[fill]Fire: [/fill] {FireDamage}
+[fill]Cold: [/fill] {ColdDamage}
+[fill]Lightning: [/fill] {LightningDamage}
+[fill]Nature: [/fill] {NatureDamage}
+[fill]Light: [/fill] {LightDamage}
+[fill]Dark: [/fill] {DarkDamage}
+
+[font_size=24px][b]Resistance[/b][/font_size]
+[fill]Slash: [/fill] {SlashResistance}
+[fill]Pierce: [/fill] {PierceResistance}
+[fill]Blunt: [/fill] {BluntResistance}
+[fill]Fire: [/fill] {FireResistance}
+[fill]Cold: [/fill] {ColdResistance}
+[fill]Lightning: [/fill] {LightningResistance}
+[fill]Nature: [/fill] {NatureResistance}
+[fill]Light: [/fill] {LightResistance}
+[fill]Dark: [/fill] {DarkResistance}"
 fit_content = true
 autowrap_mode = 0
 
@@ -210,10 +223,9 @@ unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[font_size=24px][center]{Name}[/center][/font_size]
-TODO
-TODO
-TODO
-TODO"
+{Description}
+
+{Effects}"
 fit_content = true
 autowrap_mode = 0
 

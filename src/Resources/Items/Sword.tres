@@ -1,10 +1,31 @@
-[gd_resource type="Resource" script_class="EquippableItem" load_steps=3 format=3 uid="uid://cttqppdt7hkv8"]
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=7 format=3 uid="uid://cttqppdt7hkv8"]
 
 [ext_resource type="Texture2D" uid="uid://daxj6voie0hfp" path="res://Sprites/Items/Sword.png" id="1_1hhk2"]
 [ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="1_8hxo8"]
+[ext_resource type="Script" path="res://Scripts/Characters/Combat/DamageSet.cs" id="1_pp1kl"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/AddedDamageEffect.cs" id="2_nfgia"]
+
+[sub_resource type="Resource" id="Resource_xmn6j"]
+script = ExtResource("1_pp1kl")
+Slash = 100
+Pierce = 0
+Blunt = 0
+Fire = 0
+Cold = 20
+Lightning = 0
+Nature = 0
+Light = 0
+Dark = 0
+
+[sub_resource type="Resource" id="Resource_mr5jd"]
+script = ExtResource("2_nfgia")
+Damage = SubResource("Resource_xmn6j")
 
 [resource]
 script = ExtResource("1_8hxo8")
-SlotType = 3
+SlotTypes = 3
+CurrentSlot = 0
+Effects = [SubResource("Resource_mr5jd")]
 ItemName = "Sword"
+ItemDescription = "Knight sword enchanted with cold"
 Texture = ExtResource("1_1hhk2")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=64 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
 [ext_resource type="PackedScene" uid="uid://br25rf51jx6gk" path="res://Scenes/TopDownCamera.tscn" id="1_spc0r"]
@@ -8,17 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://cailhgk73vcgu" path="res://Scenes/Characters/Npc.tscn" id="5_qkppw"]
 [ext_resource type="Resource" uid="uid://ckh7obfakw31n" path="res://Resources/Items/Chestplate.tres" id="6_2jljx"]
 [ext_resource type="Script" path="res://Scripts/Characters/Attributes/BoundedAttributeValue.cs" id="6_jjmq5"]
-[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquipmentSlot.cs" id="7_238tr"]
 [ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeValue.cs" id="7_jdfv5"]
 [ext_resource type="Resource" uid="uid://dbgpi3c4dcs8m" path="res://Resources/Items/HealthPotion.tres" id="7_rldhx"]
-[ext_resource type="Script" path="res://Scripts/Characters/Equipment/CharacterEquipment.cs" id="7_uw3nu"]
 [ext_resource type="Resource" uid="uid://b7jxel115e2sm" path="res://Resources/Items/StaminaPotion.tres" id="8_8itw4"]
-[ext_resource type="Script" path="res://Scripts/Items/Inventory.cs" id="8_14doo"]
 [ext_resource type="Resource" uid="uid://c6kqcxdwujjp1" path="res://Resources/Items/ManaPotion.tres" id="8_bxk6c"]
-[ext_resource type="Script" path="res://Scripts/Characters/Attributes/CharacterAttributes.cs" id="9_5ltpo"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeSet.cs" id="9_5ltpo"]
 [ext_resource type="PackedScene" uid="uid://cfmn8f8enoyu7" path="res://Scenes/WorldItem.tscn" id="12_x6ga0"]
 [ext_resource type="Resource" uid="uid://cttqppdt7hkv8" path="res://Resources/Items/Sword.tres" id="13_lkwrb"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquipmentSlot.cs" id="14_ip5r2"]
 [ext_resource type="PackedScene" uid="uid://cxegfgq1inyo" path="res://Scenes/UI/CharacterScreen.tscn" id="15_bff3w"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/CharacterEquipment.cs" id="15_mxtyv"]
+[ext_resource type="Script" path="res://Scripts/Items/Inventory.cs" id="16_6v7fo"]
+[ext_resource type="Script" path="res://Scripts/Characters/Combat/DamageSet.cs" id="17_v7gj5"]
+[ext_resource type="Script" path="res://Scripts/Characters/Combat/ResistanceSet.cs" id="18_iab8o"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qgvai"]
 
@@ -33,6 +35,155 @@ size = Vector2(256, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2fx7"]
 size = Vector2(256, 256)
+
+[sub_resource type="Resource" id="Resource_s1lwi"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_ly7wq"]
+script = ExtResource("6_jjmq5")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_benwd"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_lq4db"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_ejkp3"]
+script = ExtResource("6_jjmq5")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_ik2kv"]
+script = ExtResource("6_jjmq5")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_kxkvy"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_1stph"]
+script = ExtResource("9_5ltpo")
+Health = SubResource("Resource_ly7wq")
+Stamina = SubResource("Resource_ik2kv")
+Mana = SubResource("Resource_ejkp3")
+Strength = SubResource("Resource_kxkvy")
+Agility = SubResource("Resource_s1lwi")
+Intelligence = SubResource("Resource_benwd")
+Luck = SubResource("Resource_lq4db")
+
+[sub_resource type="Resource" id="Resource_xx0kl"]
+script = ExtResource("14_ip5r2")
+
+[sub_resource type="Resource" id="Resource_8xihq"]
+script = ExtResource("14_ip5r2")
+
+[sub_resource type="Resource" id="Resource_v2c12"]
+script = ExtResource("14_ip5r2")
+
+[sub_resource type="Resource" id="Resource_13s6e"]
+script = ExtResource("14_ip5r2")
+
+[sub_resource type="Resource" id="Resource_wolvx"]
+script = ExtResource("14_ip5r2")
+
+[sub_resource type="Resource" id="Resource_o70aa"]
+script = ExtResource("14_ip5r2")
+
+[sub_resource type="Resource" id="Resource_4i4ka"]
+script = ExtResource("14_ip5r2")
+
+[sub_resource type="Resource" id="Resource_tuagb"]
+script = ExtResource("14_ip5r2")
+
+[sub_resource type="Resource" id="Resource_7w654"]
+script = ExtResource("14_ip5r2")
+
+[sub_resource type="Resource" id="Resource_s27fb"]
+script = ExtResource("15_mxtyv")
+RightHand = SubResource("Resource_7w654")
+LeftHand = SubResource("Resource_4i4ka")
+Head = SubResource("Resource_o70aa")
+Chest = SubResource("Resource_v2c12")
+Back = SubResource("Resource_8xihq")
+Arms = SubResource("Resource_xx0kl")
+Hands = SubResource("Resource_wolvx")
+Legs = SubResource("Resource_tuagb")
+Feet = SubResource("Resource_13s6e")
+
+[sub_resource type="Resource" id="Resource_6c6sg"]
+script = ExtResource("16_6v7fo")
+_items = []
+
+[sub_resource type="Resource" id="Resource_n4d5e"]
+script = ExtResource("17_v7gj5")
+Slash = 0
+Pierce = 0
+Blunt = 0
+Fire = 0
+Cold = 0
+Lightning = 0
+Nature = 0
+Light = 0
+Dark = 0
+
+[sub_resource type="Resource" id="Resource_icuc0"]
+script = ExtResource("18_iab8o")
+Slash = 0
+Pierce = 0
+Blunt = 0
+Fire = 0
+Cold = 0
+Lightning = 0
+Nature = 0
+Light = 0
+Dark = 0
+
+[sub_resource type="Resource" id="Resource_w5dwo"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_jf5vc"]
+script = ExtResource("6_jjmq5")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_ftf8v"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_44c2u"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_3tp2v"]
+script = ExtResource("6_jjmq5")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_jn6ve"]
+script = ExtResource("6_jjmq5")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_rh41i"]
+script = ExtResource("7_jdfv5")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_0a3y3"]
+script = ExtResource("9_5ltpo")
+Health = SubResource("Resource_jf5vc")
+Stamina = SubResource("Resource_jn6ve")
+Mana = SubResource("Resource_3tp2v")
+Strength = SubResource("Resource_rh41i")
+Agility = SubResource("Resource_w5dwo")
+Intelligence = SubResource("Resource_ftf8v")
+Luck = SubResource("Resource_44c2u")
 
 [sub_resource type="Resource" id="Resource_w644k"]
 script = ExtResource("7_jdfv5")
@@ -74,49 +225,6 @@ Strength = SubResource("Resource_4mv4y")
 Agility = SubResource("Resource_w644k")
 Intelligence = SubResource("Resource_2kigk")
 Luck = SubResource("Resource_kmj2s")
-
-[sub_resource type="Resource" id="Resource_0ivld"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_4caja"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_2rrxd"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_42q3y"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_hcbpe"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_unngo"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_uhl8m"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_03sw6"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_g5w42"]
-script = ExtResource("7_238tr")
-
-[sub_resource type="Resource" id="Resource_rjch6"]
-script = ExtResource("7_uw3nu")
-RightHand = SubResource("Resource_g5w42")
-LeftHand = SubResource("Resource_uhl8m")
-Head = SubResource("Resource_unngo")
-Back = SubResource("Resource_4caja")
-Chest = SubResource("Resource_2rrxd")
-Arms = SubResource("Resource_0ivld")
-Hands = SubResource("Resource_hcbpe")
-Legs = SubResource("Resource_03sw6")
-Feet = SubResource("Resource_42q3y")
-
-[sub_resource type="Resource" id="Resource_pt7f8"]
-script = ExtResource("8_14doo")
-Items = []
 
 [node name="MainScene" type="Node2D"]
 
@@ -230,21 +338,30 @@ shape = SubResource("RectangleShape2D_b2fx7")
 [node name="Npc" parent="Content" instance=ExtResource("5_qkppw")]
 position = Vector2(426, 221)
 CharacterName = "Merchant"
-Attributes = SubResource("Resource_qbiuy")
-Equipment = SubResource("Resource_rjch6")
-Inventory = SubResource("Resource_pt7f8")
+Attributes = SubResource("Resource_1stph")
+Equipment = SubResource("Resource_s27fb")
+Inventory = SubResource("Resource_6c6sg")
+ComputedDamage = SubResource("Resource_n4d5e")
+ComputedResistance = SubResource("Resource_icuc0")
+ComputedAttributes = SubResource("Resource_0a3y3")
 
 [node name="Enemy" parent="Content" instance=ExtResource("4_0txh2")]
 position = Vector2(-419, -173)
 CharacterName = "Twój Stary"
-Attributes = SubResource("Resource_qbiuy")
-Equipment = SubResource("Resource_rjch6")
-Inventory = SubResource("Resource_pt7f8")
+Attributes = SubResource("Resource_1stph")
+Equipment = SubResource("Resource_s27fb")
+Inventory = SubResource("Resource_6c6sg")
+ComputedDamage = SubResource("Resource_n4d5e")
+ComputedResistance = SubResource("Resource_icuc0")
+ComputedAttributes = SubResource("Resource_0a3y3")
 
 [node name="Player" parent="Content" instance=ExtResource("3_036xi")]
 Attributes = SubResource("Resource_qbiuy")
-Equipment = SubResource("Resource_rjch6")
-Inventory = SubResource("Resource_pt7f8")
+Equipment = SubResource("Resource_s27fb")
+Inventory = SubResource("Resource_6c6sg")
+ComputedDamage = SubResource("Resource_n4d5e")
+ComputedResistance = SubResource("Resource_icuc0")
+ComputedAttributes = SubResource("Resource_0a3y3")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

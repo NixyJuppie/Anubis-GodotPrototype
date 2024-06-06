@@ -1,4 +1,5 @@
 using Anubis.Items;
+using Godot.Collections;
 
 namespace Anubis.Characters.Equipment;
 
@@ -7,5 +8,7 @@ namespace Anubis.Characters.Equipment;
 public partial class EquippableItem : Item
 {
     [ExportGroup("Equippable")]
-    [Export] public EquipmentSlotType SlotType { get; set; }
+    [Export] public EquipmentSlotType SlotTypes { get; set; }
+    [Export] public EquipmentSlotType CurrentSlot { get; set; }
+    [Export] public Array<CharacterEffect> Effects { get; set; } = [];
 }

@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System.Linq;
 using Anubis.Characters;
 using Anubis.Characters.Equipment;
 using Anubis.Items;
@@ -67,7 +67,7 @@ public partial class CharacterScreen : Container
 
     public override void _Process(double delta)
     {
-        if (Visible && _inventory.GetChildCount() != Character.Inventory.Items.Count)
+        if (Visible && _inventory.GetChildCount() != Character.Inventory.Count)
             UpdateView();
     }
 
@@ -75,6 +75,8 @@ public partial class CharacterScreen : Container
     {
         if (!Visible)
             return;
+
+        // TODO: refactor this bullshit
 
         _characterInfo.Text = _characterInfoTemplate
             .Replace("{Name}", Character.CharacterName)
@@ -85,7 +87,33 @@ public partial class CharacterScreen : Container
             .Replace("{Strength}", $"{Character.Attributes.Strength}")
             .Replace("{Agility}", $"{Character.Attributes.Agility}")
             .Replace("{Intelligence}", $"{Character.Attributes.Intelligence}")
-            .Replace("{Luck}", $"{Character.Attributes.Luck}");
+            .Replace("{Luck}", $"{Character.Attributes.Luck}")
+            .Replace("{ComputedHealth}", $"{Character.ComputedAttributes.Health}")
+            .Replace("{ComputedStamina}", $"{Character.ComputedAttributes.Stamina}")
+            .Replace("{ComputedMana}", $"{Character.ComputedAttributes.Mana}")
+            .Replace("{ComputedStrength}", $"{Character.ComputedAttributes.Strength}")
+            .Replace("{ComputedAgility}", $"{Character.ComputedAttributes.Agility}")
+            .Replace("{ComputedIntelligence}", $"{Character.ComputedAttributes.Intelligence}")
+            .Replace("{ComputedLuck}", $"{Character.ComputedAttributes.Luck}")
+            .Replace("{SlashDamage}", $"{Character.ComputedDamage.Slash}")
+            .Replace("{PierceDamage}", $"{Character.ComputedDamage.Pierce}")
+            .Replace("{BluntDamage}", $"{Character.ComputedDamage.Blunt}")
+            .Replace("{FireDamage}", $"{Character.ComputedDamage.Fire}")
+            .Replace("{ColdDamage}", $"{Character.ComputedDamage.Cold}")
+            .Replace("{LightningDamage}", $"{Character.ComputedDamage.Lightning}")
+            .Replace("{NatureDamage}", $"{Character.ComputedDamage.Nature}")
+            .Replace("{LightDamage}", $"{Character.ComputedDamage.Light}")
+            .Replace("{DarkDamage}", $"{Character.ComputedDamage.Dark}")
+            .Replace("{SlashResistance}", $"{Character.ComputedResistance.Slash}")
+            .Replace("{PierceResistance}", $"{Character.ComputedResistance.Pierce}")
+            .Replace("{BluntResistance}", $"{Character.ComputedResistance.Blunt}")
+            .Replace("{FireResistance}", $"{Character.ComputedResistance.Fire}")
+            .Replace("{ColdResistance}", $"{Character.ComputedResistance.Cold}")
+            .Replace("{LightningResistance}", $"{Character.ComputedResistance.Lightning}")
+            .Replace("{NatureResistance}", $"{Character.ComputedResistance.Nature}")
+            .Replace("{LightResistance}", $"{Character.ComputedResistance.Light}")
+            .Replace("{DarkResistance}", $"{Character.ComputedResistance.Dark}")
+            ;
 
         _rightHandView.Item = Character.Equipment.RightHand.Item;
         _leftHandView.Item = Character.Equipment.LeftHand.Item;
@@ -106,7 +134,7 @@ public partial class CharacterScreen : Container
             child.QueueFree();
         }
 
-        foreach (var item in Character.Inventory.Items)
+        foreach (var item in Character.Inventory)
         {
             var inventoryItem = InventoryItemTemplate.Instantiate<InventoryItemView>();
             inventoryItem.Item = item;
@@ -128,12 +156,15 @@ public partial class CharacterScreen : Container
 
         if (item is not null)
             _itemDescriptionText.Text = _itemDescriptionTemplate
-                .Replace("{Name}", item.ItemName);
+                .Replace("{Name}", item.ItemName)
+                .Replace("{Description}", item.ItemDescription)
+                .Replace("{Effects}", item is EquippableItem e ? string.Join(System.Environment.NewLine, e.Effects.Select(e => e.Description)) : string.Empty)
+                ;
     }
 
     private void OnEquipItemRequest(Resource item, int slotType)
     {
-        Character.Equipment.Equip((EquippableItem)item, (EquipmentSlotType)slotType, Character.Inventory);
+        Character.Equip((EquippableItem)item, (EquipmentSlotType)slotType);
         UpdateView(true);
     }
 
@@ -142,7 +173,7 @@ public partial class CharacterScreen : Container
         if (item is not EquippableItem equippableItem)
             return;
 
-        Character.Equipment.Unequip(equippableItem, Character.Inventory);
+        Character.Unequip(equippableItem.CurrentSlot);
         UpdateView(true);
     }
 }

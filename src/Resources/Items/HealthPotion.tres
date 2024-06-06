@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("1_eclff")
 ItemName = "Health Potion"
+ItemDescription = "Health++"
 Texture = ExtResource("1_kckv7")
