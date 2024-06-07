@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("2_5dj36")
 ItemName = "Mana Potion"
+ItemDescription = "Mana++"
 Texture = ExtResource("1_v62vx")

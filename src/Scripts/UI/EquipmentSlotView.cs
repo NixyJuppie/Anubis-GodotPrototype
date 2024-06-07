@@ -59,7 +59,7 @@ public partial class EquipmentSlotView : Control
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
-        return data.VariantType == Variant.Type.Object && data.AsGodotObject() is EquippableItem item && item.SlotType.HasFlag(SlotType);
+        return data.VariantType == Variant.Type.Object && data.AsGodotObject() is EquippableItem item && item.SlotTypes.HasFlag(SlotType);
     }
 
     public override void _DropData(Vector2 atPosition, Variant data)

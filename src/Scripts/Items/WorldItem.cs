@@ -48,7 +48,7 @@ public partial class WorldItem : Area2D
             return;
         }
 
-        character.Inventory.Items.Add(Item);
+        character.Inventory.Add(Item);
         QueueFree();
     }
 }

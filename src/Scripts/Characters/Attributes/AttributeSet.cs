@@ -1,6 +1,6 @@
 namespace Anubis.Characters.Attributes;
 
-public partial class CharacterAttributes : Resource
+public partial class AttributeSet : Resource
 {
     [ExportGroup("Core")]
     [Export] public BoundedAttributeValue Health { get; set; } = new();
