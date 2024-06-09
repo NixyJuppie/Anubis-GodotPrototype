@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://exgmahplfi5j"
-path="res://.godot/imported/Light.png-dbbc354ad348a8e00c74d622895827d5.ctex"
+uid="uid://bgsahx6qe0im4"
+path="res://.godot/imported/ItemRarityIndicator.png-e04b0b34a918f1d7c96e2f152d03009b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Light.png"
-dest_files=["res://.godot/imported/Light.png-dbbc354ad348a8e00c74d622895827d5.ctex"]
+source_file="res://Sprites/ItemRarityIndicator.png"
+dest_files=["res://.godot/imported/ItemRarityIndicator.png-e04b0b34a918f1d7c96e2f152d03009b.ctex"]
 
 [params]
 

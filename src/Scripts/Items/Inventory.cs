@@ -1,15 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using Godot.Collections;
 
 namespace Anubis.Items;
 
 [GlobalClass]
-public partial class Inventory : Resource, IEnumerable<Item>
+public partial class Inventory : Resource
 {
     [Export] private Array<Item> _items = [];
 
-    public int Count => _items.Count;
+    public IReadOnlyCollection<Item> Items => _items.AsReadOnly();
 
     public void Add(Item item)
     {
@@ -20,8 +19,4 @@ public partial class Inventory : Resource, IEnumerable<Item>
     {
         _items.Remove(item);
     }
-
-    public IEnumerator<Item> GetEnumerator() => _items.GetEnumerator();
-
-    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

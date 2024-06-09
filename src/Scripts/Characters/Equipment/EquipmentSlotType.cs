@@ -4,13 +4,16 @@ namespace Anubis.Characters.Equipment;
 public enum EquipmentSlotType
 {
     None = 0,
-    RightHand = 1,
-    LeftHand = 2,
+
+    // Weapons
+    LeftHand = 1,
+    RightHand = 2,
+
+    // Armor
     Head = 4,
-    Back = 8,
-    Chest = 16,
-    Arms = 32,
-    Hands = 64,
-    Legs = 128,
-    Feet = 256
+    Chest = 8,
+    Hands = 16,
+    Legs = 32,
+
+    // TODO: Accessories
 }

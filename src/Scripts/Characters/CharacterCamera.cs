@@ -1,8 +1,6 @@
-using Anubis.Characters;
+namespace Anubis.Characters;
 
-namespace Anubis;
-
-public partial class TopDownCamera : Camera2D
+public partial class CharacterCamera : Camera2D
 {
     [ExportGroup("Movement")]
     [Export] public Character? Target { get; set; }

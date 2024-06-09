@@ -7,8 +7,5 @@ public partial class AttributeValue : Resource
 
     public static implicit operator uint(AttributeValue value) => value.Value;
 
-    public override string ToString()
-    {
-        return $"{Value}";
-    }
+    public override string ToString() => Value.ToString();
 }

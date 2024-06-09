@@ -1,8 +1,7 @@
-namespace Anubis.Characters.Equipment;
+namespace Anubis.Characters.Effects;
 
 public enum EffectOrder
 {
-    Irrelevant,
     Addition,
     Multiplication,
 }

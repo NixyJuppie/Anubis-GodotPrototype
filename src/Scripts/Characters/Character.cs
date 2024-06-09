@@ -9,17 +9,14 @@ namespace Anubis.Characters;
 
 public abstract partial class Character : CharacterBody2D
 {
-    [ExportGroup("Base")]
-    [Export] public string CharacterName { get; set; } = "Character";
+    [ExportGroup("Base")] [Export] public string CharacterName { get; set; } = "Character";
     [Export] public uint CharacterLevel { get; set; }
     [Export] public AttributeSet Attributes { get; set; } = new();
 
-    [ExportGroup("Storage")]
-    [Export] public CharacterEquipment Equipment { get; set; } = [];
-    [Export] public Inventory Inventory { get; set; } = [];
+    [ExportGroup("Storage")] [Export] public CharacterEquipment Equipment { get; set; } = new();
+    [Export] public Inventory Inventory { get; set; } = new();
 
-    [ExportGroup("Computed")]
-    [Export] public DamageSet ComputedDamage { get; set; } = new();
+    [ExportGroup("Computed")] [Export] public DamageSet ComputedDamage { get; set; } = new();
     [Export] public ResistanceSet ComputedResistance { get; set; } = new();
     [Export] public AttributeSet ComputedAttributes { get; set; } = new();
 
@@ -54,7 +51,7 @@ public abstract partial class Character : CharacterBody2D
         ComputedResistance = new ResistanceSet();
         ComputedAttributes = (AttributeSet)Attributes.Duplicate(true);
 
-        foreach (var effect in Equipment.SelectMany(i => i.Effects).OrderBy(e => e.Order))
+        foreach (var effect in Equipment.EquippedItems.SelectMany(i => i.Effects).OrderBy(e => e.Order))
             effect.Apply(this);
     }
 }
