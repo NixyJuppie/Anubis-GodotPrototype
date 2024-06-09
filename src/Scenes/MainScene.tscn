@@ -1,14 +1,67 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=27 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
 [ext_resource type="Script" path="res://Scripts/Characters/CharacterCamera.cs" id="1_vfxa4"]
 [ext_resource type="PackedScene" uid="uid://dkqp68tmxp2rf" path="res://Scenes/Player.tscn" id="2_ohp4h"]
+[ext_resource type="PackedScene" uid="uid://dv7vonv5ph5j8" path="res://Scenes/WorldItem.tscn" id="3_f3ycq"]
 [ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="3_fby22"]
+[ext_resource type="Resource" uid="uid://t7olpvko072x" path="res://Resources/Items/Spear.tres" id="5_ju6gt"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeValue.cs" id="5_ys4mm"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/BoundedAttributeValue.cs" id="6_3gkt2"]
+[ext_resource type="Resource" uid="uid://dv03sr6j1d0vt" path="res://Resources/Items/LeatherBoots.tres" id="6_e8yex"]
+[ext_resource type="Resource" uid="uid://ca30cqaqu2mc3" path="res://Resources/Items/Sword.tres" id="6_y1fw4"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeSet.cs" id="7_6lekf"]
+[ext_resource type="Resource" uid="uid://bl27mkv2m382n" path="res://Resources/Items/HornedHelmet.tres" id="7_d8w60"]
+[ext_resource type="Resource" uid="uid://2omiamc4jrj0" path="res://Resources/Items/LeatherGloves.tres" id="7_y7oy6"]
+[ext_resource type="Resource" uid="uid://ca0t3y4oqpbeg" path="res://Resources/Items/Breastplate.tres" id="8_28vkm"]
+[ext_resource type="Resource" uid="uid://b37gq37xbbkvr" path="res://Resources/Items/WoodenShield.tres" id="10_s27gt"]
+[ext_resource type="PackedScene" uid="uid://bp26ym3vkmuqj" path="res://Scenes/UI/CharacterScreen.tscn" id="15_j8yig"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qgvai"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d7c48"]
 radius = 8.0
+
+[sub_resource type="Resource" id="Resource_r5yu6"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_bb81w"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_418ts"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_1vrlm"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_2vgip"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_45s7y"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_02yyo"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_o7wj7"]
+script = ExtResource("7_6lekf")
+Health = SubResource("Resource_bb81w")
+Stamina = SubResource("Resource_45s7y")
+Mana = SubResource("Resource_2vgip")
+Strength = SubResource("Resource_02yyo")
+Agility = SubResource("Resource_r5yu6")
+Intelligence = SubResource("Resource_418ts")
+Luck = SubResource("Resource_1vrlm")
 
 [node name="MainScene" type="Node2D"]
 
@@ -20,8 +73,6 @@ script = ExtResource("1_vfxa4")
 Target = NodePath("../../Content/Player")
 MinZoom = 3.0
 MaxZoom = 15.0
-
-[node name="VersionInfo" parent="Core" instance=ExtResource("1_lxjk0")]
 
 [node name="World" type="Node" parent="."]
 
@@ -37,13 +88,13 @@ color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 [node name="DirectionalLight" type="DirectionalLight2D" parent="World"]
 energy = 0.5
 
-[node name="RedLight" type="StaticBody2D" parent="World"]
+[node name="PurpleLight" type="StaticBody2D" parent="World"]
 position = Vector2(85, -40)
 
-[node name="Sprite2D" type="Sprite2D" parent="World/RedLight"]
+[node name="Sprite2D" type="Sprite2D" parent="World/PurpleLight"]
 texture = ExtResource("3_fby22")
 
-[node name="PointLight2D" type="PointLight2D" parent="World/RedLight"]
+[node name="PointLight2D" type="PointLight2D" parent="World/PurpleLight"]
 color = Color(0.478431, 0.211765, 0.482353, 1)
 energy = 1.5
 shadow_enabled = true
@@ -52,9 +103,44 @@ shadow_filter_smooth = 0.5
 texture = ExtResource("3_fby22")
 texture_scale = 10.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/RedLight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PurpleLight"]
 shape = SubResource("CircleShape2D_d7c48")
 
 [node name="Content" type="Node" parent="."]
 
+[node name="Sword" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-42, -42)
+Item = ExtResource("6_y1fw4")
+
+[node name="Spear" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-64, 14)
+Item = ExtResource("5_ju6gt")
+
+[node name="LeatherBoots" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-98, -50)
+Item = ExtResource("6_e8yex")
+
+[node name="HornedHelmet" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-72, -31)
+Item = ExtResource("7_d8w60")
+
+[node name="Breastplate" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-99, 19)
+Item = ExtResource("8_28vkm")
+
+[node name="LeatherGloves" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-99, -11)
+Item = ExtResource("7_y7oy6")
+
+[node name="WoodenShield" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-76, 34)
+Item = ExtResource("10_s27gt")
+
 [node name="Player" parent="Content" instance=ExtResource("2_ohp4h")]
+Attributes = SubResource("Resource_o7wj7")
+
+[node name="UI" type="Node" parent="."]
+
+[node name="CharacterScreen" parent="UI" instance=ExtResource("15_j8yig")]
+
+[node name="VersionInfo" parent="UI" instance=ExtResource("1_lxjk0")]

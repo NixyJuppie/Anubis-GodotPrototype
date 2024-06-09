@@ -38,6 +38,16 @@ public partial class WorldItem : Area2D
         UpdateView();
     }
 
+    public override void _Process(double delta)
+    {
+        if (_raritySprite is null)
+            return;
+
+        var seconds = Time.GetTicksMsec() / 1000f;
+        var alpha = 0.6f + float.Sin(seconds * 4f) * 0.4f;
+        _raritySprite.Modulate = _raritySprite.Modulate with { A = alpha };
+    }
+
     private void UpdateView()
     {
         if (_itemSprite is not null)
