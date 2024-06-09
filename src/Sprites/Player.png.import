@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgsahx6qe0im4"
-path="res://.godot/imported/ItemRarityIndicator.png-e04b0b34a918f1d7c96e2f152d03009b.ctex"
+uid="uid://c16h4pvlurbyq"
+path="res://.godot/imported/Player.png-0662117005c6b9039deb63a286c8efe4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/ItemRarityIndicator.png"
-dest_files=["res://.godot/imported/ItemRarityIndicator.png-e04b0b34a918f1d7c96e2f152d03009b.ctex"]
+source_file="res://Sprites/Player.png"
+dest_files=["res://.godot/imported/Player.png-0662117005c6b9039deb63a286c8efe4.ctex"]
 
 [params]
 

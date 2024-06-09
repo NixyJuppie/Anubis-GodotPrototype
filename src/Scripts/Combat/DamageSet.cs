@@ -11,9 +11,6 @@ public partial class DamageSet : Resource
     [Export] public uint Lightning { get; set; }
     [Export] public uint Nature { get; set; }
 
-    [ExportGroup("Magic")] [Export] public uint Light { get; set; }
-    [Export] public uint Dark { get; set; }
-
     public void Add(DamageSet damage)
     {
         Slash += damage.Slash;
@@ -23,8 +20,6 @@ public partial class DamageSet : Resource
         Cold += damage.Cold;
         Lightning += damage.Lightning;
         Nature += damage.Nature;
-        Light += damage.Light;
-        Dark += damage.Dark;
     }
 
     public void Increase(DamageSet damage)
@@ -36,8 +31,6 @@ public partial class DamageSet : Resource
         Cold = IncreaseByPercent(Cold, damage.Cold);
         Lightning = IncreaseByPercent(Lightning, damage.Lightning);
         Nature = IncreaseByPercent(Nature, damage.Nature);
-        Light = IncreaseByPercent(Light, damage.Light);
-        Dark = IncreaseByPercent(Dark, damage.Dark);
     }
 
     private static uint IncreaseByPercent(uint value, uint percent)

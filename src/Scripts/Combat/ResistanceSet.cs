@@ -11,9 +11,6 @@ public partial class ResistanceSet : Resource
     [Export] public byte Lightning { get; set; }
     [Export] public byte Nature { get; set; }
 
-    [ExportGroup("Magic")] [Export] public byte Light { get; set; }
-    [Export] public byte Dark { get; set; }
-
     public void Add(ResistanceSet resistance)
     {
         Slash += resistance.Slash;
@@ -23,7 +20,5 @@ public partial class ResistanceSet : Resource
         Cold += resistance.Cold;
         Lightning += resistance.Lightning;
         Nature += resistance.Nature;
-        Light += resistance.Light;
-        Dark += resistance.Dark;
     }
 }

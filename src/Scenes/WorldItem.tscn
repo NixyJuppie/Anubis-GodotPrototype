@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dv7vonv5ph5j8"]
 
 [ext_resource type="Script" path="res://Scripts/Items/WorldItem.cs" id="1_lamhq"]
-[ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/ItemRarityIndicator.png" id="2_qmvlp"]
+[ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="2_qmvlp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_debko"]
 radius = 8.0

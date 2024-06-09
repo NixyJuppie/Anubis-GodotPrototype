@@ -16,6 +16,6 @@ public partial class AttributeSet : Resource
     {
         var effectiveValue = uint.Clamp(Agility, 1, 100);
         var value = 5f + effectiveValue / 5f; // 5..25
-        return isSprinting ? value * 2f : value;
+        return (isSprinting ? value * 2f : value) * 10f;
     }
 }

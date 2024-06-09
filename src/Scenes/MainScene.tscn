@@ -1,15 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=7 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
+[ext_resource type="Script" path="res://Scripts/Characters/CharacterCamera.cs" id="1_vfxa4"]
+[ext_resource type="PackedScene" uid="uid://dkqp68tmxp2rf" path="res://Scenes/Player.tscn" id="2_ohp4h"]
+[ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="3_fby22"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qgvai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7c48"]
+radius = 8.0
 
 [node name="MainScene" type="Node2D"]
 
 [node name="Core" type="Node" parent="."]
 
-[node name="Camera" type="Camera2D" parent="Core"]
-zoom = Vector2(5, 5)
+[node name="Camera" type="Camera2D" parent="Core" node_paths=PackedStringArray("Target")]
+zoom = Vector2(7.5, 7.5)
+script = ExtResource("1_vfxa4")
+Target = NodePath("../../Content/Player")
+MinZoom = 3.0
+MaxZoom = 15.0
 
 [node name="VersionInfo" parent="Core" instance=ExtResource("1_lxjk0")]
 
@@ -27,4 +37,24 @@ color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 [node name="DirectionalLight" type="DirectionalLight2D" parent="World"]
 energy = 0.5
 
+[node name="RedLight" type="StaticBody2D" parent="World"]
+position = Vector2(85, -40)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/RedLight"]
+texture = ExtResource("3_fby22")
+
+[node name="PointLight2D" type="PointLight2D" parent="World/RedLight"]
+color = Color(0.478431, 0.211765, 0.482353, 1)
+energy = 1.5
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 0.5
+texture = ExtResource("3_fby22")
+texture_scale = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/RedLight"]
+shape = SubResource("CircleShape2D_d7c48")
+
 [node name="Content" type="Node" parent="."]
+
+[node name="Player" parent="Content" instance=ExtResource("2_ohp4h")]
