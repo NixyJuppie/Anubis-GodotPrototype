@@ -13,7 +13,19 @@ public enum EquipmentSlotType
     Head = 4,
     Chest = 8,
     Hands = 16,
-    Legs = 32,
+    Waist = 32,
+    Legs = 64,
 
-    // TODO: Accessories
+    // Accessories
+    Amulet = 128,
+    Ring1 = 256,
+    Ring2 = 512,
+
+    // Charms
+    Charm1 = 1024,
+    Charm2 = 2048,
+    Charm3 = 4096,
+    Charm4 = 8192,
+    Charm5 = 16384,
+    Charm6 = 32768
 }

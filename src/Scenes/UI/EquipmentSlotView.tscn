@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddhgyppjme4ml"]
+
+[ext_resource type="Script" path="res://Scripts/UI/EquipmentSlotView.cs" id="1_6ef3t"]
+[ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="3_n30bt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7upmm"]
+line_spacing = 0.0
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="EquipmentSlotView" type="CenterContainer"]
+z_index = 1
+offset_right = 100.0
+offset_bottom = 100.0
+focus_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"MetalPanelContainer4"
+script = ExtResource("1_6ef3t")
+MagicRarityColor = Color(0.235294, 0.368627, 0.545098, 1)
+EpicRarityColor = Color(0.478431, 0.211765, 0.482353, 1)
+UniqueRarityColor = Color(0.745098, 0.466667, 0.168627, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 2
+theme_type_variation = &"MetalPanelContainer4"
+
+[node name="SlotName" type="Label" parent="PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_7upmm")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemTexture" type="TextureRect" parent="PanelContainer"]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="RarityTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+texture = ExtResource("3_n30bt")
+stretch_mode = 5
+
+[connection signal="focus_entered" from="." to="." method="OnFocusEntered"]
+[connection signal="focus_exited" from="." to="." method="OnFocusExited"]

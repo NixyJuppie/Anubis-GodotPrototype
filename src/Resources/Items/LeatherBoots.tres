@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_ybtym")
-SlotTypes = 32
+SlotTypes = 64
 Effects = []
 Name = "Leather Boots"
 Description = "TODO"

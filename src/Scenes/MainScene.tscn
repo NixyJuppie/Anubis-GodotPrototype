@@ -1,67 +1,210 @@
-[gd_scene load_steps=27 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=66 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
 [ext_resource type="Script" path="res://Scripts/Characters/CharacterCamera.cs" id="1_vfxa4"]
 [ext_resource type="PackedScene" uid="uid://dkqp68tmxp2rf" path="res://Scenes/Player.tscn" id="2_ohp4h"]
 [ext_resource type="PackedScene" uid="uid://dv7vonv5ph5j8" path="res://Scenes/WorldItem.tscn" id="3_f3ycq"]
 [ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="3_fby22"]
+[ext_resource type="Resource" uid="uid://cwelonwjkusvr" path="res://Resources/Items/FireStaff.tres" id="5_70r50"]
 [ext_resource type="Resource" uid="uid://t7olpvko072x" path="res://Resources/Items/Spear.tres" id="5_ju6gt"]
 [ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeValue.cs" id="5_ys4mm"]
 [ext_resource type="Script" path="res://Scripts/Characters/Attributes/BoundedAttributeValue.cs" id="6_3gkt2"]
+[ext_resource type="Resource" uid="uid://okeqfqsfu4dk" path="res://Resources/Items/Amulet.tres" id="6_5vh28"]
 [ext_resource type="Resource" uid="uid://dv03sr6j1d0vt" path="res://Resources/Items/LeatherBoots.tres" id="6_e8yex"]
 [ext_resource type="Resource" uid="uid://ca30cqaqu2mc3" path="res://Resources/Items/Sword.tres" id="6_y1fw4"]
 [ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeSet.cs" id="7_6lekf"]
 [ext_resource type="Resource" uid="uid://bl27mkv2m382n" path="res://Resources/Items/HornedHelmet.tres" id="7_d8w60"]
+[ext_resource type="Resource" uid="uid://dabb5vq0agy1n" path="res://Resources/Items/SilverRing.tres" id="7_kmqgl"]
 [ext_resource type="Resource" uid="uid://2omiamc4jrj0" path="res://Resources/Items/LeatherGloves.tres" id="7_y7oy6"]
 [ext_resource type="Resource" uid="uid://ca0t3y4oqpbeg" path="res://Resources/Items/Breastplate.tres" id="8_28vkm"]
+[ext_resource type="Resource" uid="uid://dqkl2n0cqexp7" path="res://Resources/Items/GoldRing.tres" id="8_wy68b"]
 [ext_resource type="Resource" uid="uid://b37gq37xbbkvr" path="res://Resources/Items/WoodenShield.tres" id="10_s27gt"]
+[ext_resource type="Resource" uid="uid://d2rfvb4fe77jm" path="res://Resources/Items/WizardHat.tres" id="12_umh35"]
+[ext_resource type="Resource" uid="uid://hwkuu4ubx1bp" path="res://Resources/Items/Charm.tres" id="13_j6oi7"]
 [ext_resource type="PackedScene" uid="uid://bp26ym3vkmuqj" path="res://Scenes/UI/CharacterScreen.tscn" id="15_j8yig"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquipmentSlot.cs" id="15_uriii"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/CharacterEquipment.cs" id="16_v7qj0"]
+[ext_resource type="Script" path="res://Scripts/Items/Inventory.cs" id="17_g3cfj"]
+[ext_resource type="Script" path="res://Scripts/Combat/DamageSet.cs" id="18_mv6si"]
+[ext_resource type="Script" path="res://Scripts/Combat/ResistanceSet.cs" id="19_77roy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qgvai"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d7c48"]
 radius = 8.0
 
-[sub_resource type="Resource" id="Resource_r5yu6"]
+[sub_resource type="Resource" id="Resource_cd35k"]
 script = ExtResource("5_ys4mm")
 Value = 10
 
-[sub_resource type="Resource" id="Resource_bb81w"]
+[sub_resource type="Resource" id="Resource_64lmn"]
 script = ExtResource("6_3gkt2")
 MaxValue = 10
 CurrentValue = 10
 
-[sub_resource type="Resource" id="Resource_418ts"]
+[sub_resource type="Resource" id="Resource_4srms"]
 script = ExtResource("5_ys4mm")
 Value = 10
 
-[sub_resource type="Resource" id="Resource_1vrlm"]
+[sub_resource type="Resource" id="Resource_dtyf6"]
 script = ExtResource("5_ys4mm")
 Value = 10
 
-[sub_resource type="Resource" id="Resource_2vgip"]
+[sub_resource type="Resource" id="Resource_kt4oy"]
 script = ExtResource("6_3gkt2")
 MaxValue = 10
 CurrentValue = 10
 
-[sub_resource type="Resource" id="Resource_45s7y"]
+[sub_resource type="Resource" id="Resource_jf7nk"]
 script = ExtResource("6_3gkt2")
 MaxValue = 10
 CurrentValue = 10
 
-[sub_resource type="Resource" id="Resource_02yyo"]
+[sub_resource type="Resource" id="Resource_uda2v"]
 script = ExtResource("5_ys4mm")
 Value = 10
 
-[sub_resource type="Resource" id="Resource_o7wj7"]
+[sub_resource type="Resource" id="Resource_7pbv8"]
 script = ExtResource("7_6lekf")
-Health = SubResource("Resource_bb81w")
-Stamina = SubResource("Resource_45s7y")
-Mana = SubResource("Resource_2vgip")
-Strength = SubResource("Resource_02yyo")
-Agility = SubResource("Resource_r5yu6")
-Intelligence = SubResource("Resource_418ts")
-Luck = SubResource("Resource_1vrlm")
+Health = SubResource("Resource_64lmn")
+Stamina = SubResource("Resource_jf7nk")
+Mana = SubResource("Resource_kt4oy")
+Strength = SubResource("Resource_uda2v")
+Agility = SubResource("Resource_cd35k")
+Intelligence = SubResource("Resource_4srms")
+Luck = SubResource("Resource_dtyf6")
+
+[sub_resource type="Resource" id="Resource_1oh2j"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_0rqjb"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_yb4nv"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_vsl1s"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_kp23x"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_d1e5g"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_5npic"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_ge33j"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_jysdp"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_t4fwm"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_hnl6i"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_np581"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_8ori2"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_eksol"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_ryt7o"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_h5arg"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_6ceot"]
+script = ExtResource("16_v7qj0")
+LeftHand = SubResource("Resource_hnl6i")
+RightHand = SubResource("Resource_8ori2")
+Head = SubResource("Resource_t4fwm")
+Chest = SubResource("Resource_ge33j")
+Hands = SubResource("Resource_jysdp")
+Waist = SubResource("Resource_h5arg")
+Legs = SubResource("Resource_np581")
+Amulet = SubResource("Resource_1oh2j")
+Ring1 = SubResource("Resource_eksol")
+Ring2 = SubResource("Resource_ryt7o")
+Charm1 = SubResource("Resource_0rqjb")
+Charm2 = SubResource("Resource_yb4nv")
+Charm3 = SubResource("Resource_vsl1s")
+Charm4 = SubResource("Resource_kp23x")
+Charm5 = SubResource("Resource_d1e5g")
+Charm6 = SubResource("Resource_5npic")
+
+[sub_resource type="Resource" id="Resource_25nxj"]
+script = ExtResource("17_g3cfj")
+_items = []
+
+[sub_resource type="Resource" id="Resource_ms6op"]
+script = ExtResource("18_mv6si")
+Slash = 0
+Pierce = 0
+Blunt = 0
+Fire = 0
+Cold = 0
+Lightning = 0
+Nature = 0
+
+[sub_resource type="Resource" id="Resource_kej2f"]
+script = ExtResource("19_77roy")
+Slash = 0
+Pierce = 0
+Blunt = 0
+Fire = 0
+Cold = 0
+Lightning = 0
+Nature = 0
+
+[sub_resource type="Resource" id="Resource_bmhps"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_us2li"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_4ubcf"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_2wung"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_ksoq5"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_eyxiy"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_k4f2n"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_gj1ww"]
+script = ExtResource("7_6lekf")
+Health = SubResource("Resource_us2li")
+Stamina = SubResource("Resource_eyxiy")
+Mana = SubResource("Resource_ksoq5")
+Strength = SubResource("Resource_k4f2n")
+Agility = SubResource("Resource_bmhps")
+Intelligence = SubResource("Resource_4ubcf")
+Luck = SubResource("Resource_2wung")
 
 [node name="MainScene" type="Node2D"]
 
@@ -112,9 +255,25 @@ shape = SubResource("CircleShape2D_d7c48")
 position = Vector2(-42, -42)
 Item = ExtResource("6_y1fw4")
 
+[node name="FireStaff" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-18, -58)
+Item = ExtResource("5_70r50")
+
 [node name="Spear" parent="Content" instance=ExtResource("3_f3ycq")]
 position = Vector2(-64, 14)
 Item = ExtResource("5_ju6gt")
+
+[node name="Amulet" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-47, 44)
+Item = ExtResource("6_5vh28")
+
+[node name="SilverRing" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-65, -9)
+Item = ExtResource("7_kmqgl")
+
+[node name="GoldRing" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-107, 52)
+Item = ExtResource("8_wy68b")
 
 [node name="LeatherBoots" parent="Content" instance=ExtResource("3_f3ycq")]
 position = Vector2(-98, -50)
@@ -123,6 +282,14 @@ Item = ExtResource("6_e8yex")
 [node name="HornedHelmet" parent="Content" instance=ExtResource("3_f3ycq")]
 position = Vector2(-72, -31)
 Item = ExtResource("7_d8w60")
+
+[node name="WizardHat" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-103, -33)
+Item = ExtResource("12_umh35")
+
+[node name="Charm" parent="Content" instance=ExtResource("3_f3ycq")]
+position = Vector2(-71, -56)
+Item = ExtResource("13_j6oi7")
 
 [node name="Breastplate" parent="Content" instance=ExtResource("3_f3ycq")]
 position = Vector2(-99, 19)
@@ -137,10 +304,17 @@ position = Vector2(-76, 34)
 Item = ExtResource("10_s27gt")
 
 [node name="Player" parent="Content" instance=ExtResource("2_ohp4h")]
-Attributes = SubResource("Resource_o7wj7")
+CharacterName = "Player"
+Attributes = SubResource("Resource_7pbv8")
+Equipment = SubResource("Resource_6ceot")
+Inventory = SubResource("Resource_25nxj")
+ComputedDamage = SubResource("Resource_ms6op")
+ComputedResistance = SubResource("Resource_kej2f")
+ComputedAttributes = SubResource("Resource_gj1ww")
 
 [node name="UI" type="Node" parent="."]
 
-[node name="CharacterScreen" parent="UI" instance=ExtResource("15_j8yig")]
+[node name="CharacterScreen" parent="UI" node_paths=PackedStringArray("Character") instance=ExtResource("15_j8yig")]
+Character = NodePath("../../Content/Player")
 
 [node name="VersionInfo" parent="UI" instance=ExtResource("1_lxjk0")]

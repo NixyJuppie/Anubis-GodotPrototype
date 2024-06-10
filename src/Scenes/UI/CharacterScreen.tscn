@@ -1,3 +1,38 @@
-[gd_scene format=3 uid="uid://bp26ym3vkmuqj"]
+[gd_scene load_steps=5 format=3 uid="uid://bp26ym3vkmuqj"]
+
+[ext_resource type="Script" path="res://Scripts/UI/CharacterScreen.cs" id="1_i2qne"]
+[ext_resource type="PackedScene" uid="uid://sfpyiivlqxe1" path="res://Scenes/UI/CharacterInfoView.tscn" id="2_dh0p8"]
+[ext_resource type="PackedScene" uid="uid://kwqwa6t4euxt" path="res://Scenes/UI/EquipmentView.tscn" id="3_7dot3"]
+[ext_resource type="PackedScene" uid="uid://gba3whqg1g20" path="res://Scenes/UI/InventoryView.tscn" id="3_t4tu5"]
 
 [node name="CharacterScreen" type="CanvasLayer"]
+script = ExtResource("1_i2qne")
+
+[node name="MainFrame" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -910.0
+offset_top = -490.0
+offset_right = 910.0
+offset_bottom = 490.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"WoodenPanelContainer8"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainFrame"]
+layout_mode = 2
+
+[node name="CharacterInfoView" parent="MainFrame/HBoxContainer" instance=ExtResource("2_dh0p8")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="EquipmentView" parent="MainFrame/HBoxContainer" instance=ExtResource("3_7dot3")]
+layout_mode = 2
+
+[node name="InventoryView" parent="MainFrame/HBoxContainer" instance=ExtResource("3_t4tu5")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
