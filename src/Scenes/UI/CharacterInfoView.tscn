@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://sfpyiivlqxe1"]
+
+[ext_resource type="Script" path="res://Scripts/UI/CharacterInfoView.cs" id="1_74kpw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w1iw0"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="CharacterInfoView" type="PanelContainer"]
+theme_type_variation = &"WoodenPanelContainer4"
+script = ExtResource("1_74kpw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TitleContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"PaperPanelContainer4"
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Character"
+label_settings = SubResource("LabelSettings_w1iw0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=42px][center][b]Base[/b][/center][/font_size]
+[font_size=28px][fill]Name: [/fill]{Name}[/font_size]
+[font_size=28px][fill]Level: [/fill]{Level}[/font_size]
+
+[font_size=42px][center][b]Attributes[/b][/center][/font_size]
+[font_size=28px][fill]Health: [/fill]{Health}[/font_size]
+[font_size=28px][fill]Stamina: [/fill]{Stamina}[/font_size]
+[font_size=28px][fill]Mana: [/fill]{Mana}[/font_size]
+[font_size=28px][fill]Strength: [/fill]{Strength}[/font_size]
+[font_size=28px][fill]Agility: [/fill]{Agility}[/font_size]
+[font_size=28px][fill]Intelligence: [/fill]{Intelligence}[/font_size]
+[font_size=28px][fill]Luck: [/fill]{Luck}[/font_size]
+
+[font_size=42px][center][b]Damage[/b][/center][/font_size]
+[font_size=28px][fill]Slash: [/fill]{SlashDamage}[/font_size]
+[font_size=28px][fill]Pierce: [/fill]{PierceDamage}[/font_size]
+[font_size=28px][fill]Blunt: [/fill]{BluntDamage}[/font_size]
+[font_size=28px][fill]Fire: [/fill]{FireDamage}[/font_size]
+[font_size=28px][fill]Cold: [/fill]{ColdDamage}[/font_size]
+[font_size=28px][fill]Lightning: [/fill]{LightningDamage}[/font_size]
+[font_size=28px][fill]Nature: [/fill]{NatureDamage}[/font_size]
+
+[font_size=42px][center][b]Resistance[/b][/center][/font_size]
+[font_size=28px][fill]Slash: [/fill]{SlashResistance}%[/font_size]
+[font_size=28px][fill]Pierce: [/fill]{PierceResistance}%[/font_size]
+[font_size=28px][fill]Blunt: [/fill]{BluntResistance}%[/font_size]
+[font_size=28px][fill]Fire: [/fill]{FireResistance}%[/font_size]
+[font_size=28px][fill]Cold: [/fill]{ColdResistance}%[/font_size]
+[font_size=28px][fill]Lightning: [/fill]{LightningResistance}%[/font_size]
+[font_size=28px][fill]Nature: [/fill]{NatureResistance}%[/font_size]"
+fit_content = true
+autowrap_mode = 0

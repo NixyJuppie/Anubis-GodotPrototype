@@ -22,16 +22,10 @@ public partial class BoundedAttributeValue : Resource
     public uint CurrentValue
     {
         get => _currentValue;
-        set
-        {
-            _currentValue = uint.Clamp(value, 0, _maxValue);
-        }
+        set => _currentValue = uint.Clamp(value, 0, _maxValue);
     }
 
     public static implicit operator uint(BoundedAttributeValue value) => value.CurrentValue;
 
-    public override string ToString()
-    {
-        return $"{CurrentValue}/{MaxValue}";
-    }
+    public override string ToString() => $"{CurrentValue}/{MaxValue}";
 }

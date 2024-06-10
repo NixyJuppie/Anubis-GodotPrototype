@@ -1,0 +1,144 @@
+[gd_scene load_steps=4 format=3 uid="uid://kwqwa6t4euxt"]
+
+[ext_resource type="PackedScene" uid="uid://ddhgyppjme4ml" path="res://Scenes/UI/EquipmentSlotView.tscn" id="1_7ym10"]
+[ext_resource type="Script" path="res://Scripts/UI/EquipmentView.cs" id="1_541ia"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w1iw0"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="EquipmentView" type="PanelContainer"]
+theme_type_variation = &"WoodenPanelContainer4"
+script = ExtResource("1_541ia")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TitleContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"PaperPanelContainer4"
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Equipment
+"
+label_settings = SubResource("LabelSettings_w1iw0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeadSlot" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 4
+
+[node name="Container1" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftHandSlot" parent="MarginContainer/VBoxContainer/Container1" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 1
+
+[node name="ChestSlot" parent="MarginContainer/VBoxContainer/Container1" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 8
+
+[node name="RightHandSlot" parent="MarginContainer/VBoxContainer/Container1" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 2
+
+[node name="Container2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LegsSlot" parent="MarginContainer/VBoxContainer/Container2" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 64
+
+[node name="WaistSlot" parent="MarginContainer/VBoxContainer/Container2" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 32
+
+[node name="HandsSlot" parent="MarginContainer/VBoxContainer/Container2" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 16
+
+[node name="Accessories" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Container3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Accessories"]
+layout_mode = 2
+alignment = 1
+
+[node name="Ring1Slot" parent="MarginContainer/VBoxContainer/Accessories/Container3" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 256
+
+[node name="AmuletSlot" parent="MarginContainer/VBoxContainer/Accessories/Container3" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 128
+
+[node name="Ring2Slot" parent="MarginContainer/VBoxContainer/Accessories/Container3" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 512
+
+[node name="Charms" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Row1" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Charms"]
+layout_mode = 2
+
+[node name="Charm1Slot" parent="MarginContainer/VBoxContainer/Charms/Row1" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 1024
+
+[node name="Charm2Slot" parent="MarginContainer/VBoxContainer/Charms/Row1" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 2048
+
+[node name="Charm3Slot" parent="MarginContainer/VBoxContainer/Charms/Row1" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 4096
+
+[node name="Row2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Charms"]
+layout_mode = 2
+
+[node name="Charm4Slot" parent="MarginContainer/VBoxContainer/Charms/Row2" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 8192
+
+[node name="Charm5Slot" parent="MarginContainer/VBoxContainer/Charms/Row2" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 16384
+
+[node name="Charm6Slot" parent="MarginContainer/VBoxContainer/Charms/Row2" instance=ExtResource("1_7ym10")]
+unique_name_in_owner = true
+layout_mode = 2
+SlotType = 32768

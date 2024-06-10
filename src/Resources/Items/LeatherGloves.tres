@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=3 format=3 uid="uid://2omiamc4jrj0"]
+
+[ext_resource type="Texture2D" uid="uid://bq16dyt3nxil2" path="res://Sprites/Items/LeatherGloves.png" id="1_gyafr"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="2_h7eya"]
+
+[resource]
+script = ExtResource("2_h7eya")
+SlotTypes = 16
+Effects = []
+Name = "Leather Gloves"
+Description = "TODO"
+Rarity = 0
+Texture = ExtResource("1_gyafr")

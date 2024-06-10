@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=3 format=3 uid="uid://okeqfqsfu4dk"]
+
+[ext_resource type="Texture2D" uid="uid://ciujlnf8skh5e" path="res://Sprites/Items/Amulet.png" id="1_aqtkb"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="2_j43us"]
+
+[resource]
+script = ExtResource("2_j43us")
+SlotTypes = 128
+Effects = []
+Name = "Gold Ring"
+Description = "TODO"
+Rarity = 3
+Texture = ExtResource("1_aqtkb")

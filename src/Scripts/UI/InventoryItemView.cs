@@ -2,60 +2,65 @@ using Anubis.Items;
 
 namespace Anubis.UI;
 
-[Tool]
 public partial class InventoryItemView : Control
 {
     private TextureRect _itemTexture = null!;
-    private Item _item = null!;
+    private TextureRect _rarityTexture = null!;
+    private PanelContainer _panelContainer = null!;
 
     [Export]
-    public string FocusedThemeTypeVariation { get; set; } = string.Empty;
+    public Item? Item { get; set; }
 
     [Export]
-    public Item Item
-    {
-        get => _item;
-        set
-        {
-            _item = value;
-            UpdateView();
-            UpdateConfigurationWarnings();
-        }
-    }
+    public Color CommonRarityColor { get; set; }
 
-    public override string[] _GetConfigurationWarnings()
-    {
-        return Item is null ? ["Inventory item must have an item assigned"] : [];
-    }
+    [Export]
+    public Color MagicRarityColor { get; set; }
+
+    [Export]
+    public Color EpicRarityColor { get; set; }
+
+    [Export]
+    public Color UniqueRarityColor { get; set; }
 
     public override void _Ready()
     {
-        if (Item is null && !Engine.IsEditorHint())
-            throw new InvalidOperationException("Inventory item must have an item assigned");
-
         _itemTexture = this.GetRequiredNode<TextureRect>("%ItemTexture");
+        _rarityTexture = this.GetRequiredNode<TextureRect>("%RarityTexture");
+        _panelContainer = this.GetRequiredNode<PanelContainer>("%PanelContainer");
         UpdateView();
     }
 
     public override Variant _GetDragData(Vector2 atPosition)
     {
+        if (Item is null)
+            return Variant.CreateFrom<GodotObject?>(null!);
+
         SetDragPreview((Control)_itemTexture.Duplicate());
-        return _item;
+        return Item;
     }
 
     private void UpdateView()
     {
-        if (_itemTexture is not null)
-            _itemTexture.Texture = _item?.Texture;
+        _itemTexture.Texture = Item?.Texture;
+        _rarityTexture.Modulate = Item?.Rarity switch
+        {
+            ItemRarity.Common => CommonRarityColor,
+            ItemRarity.Magic => MagicRarityColor,
+            ItemRarity.Epic => EpicRarityColor,
+            ItemRarity.Unique => UniqueRarityColor,
+            null => Colors.Transparent,
+            _ => throw new ArgumentOutOfRangeException(nameof(Item.Rarity), Item.Rarity, "Invalid rarity")
+        };
     }
 
     private void OnFocusEntered()
     {
-        ThemeTypeVariation = FocusedThemeTypeVariation;
+        _panelContainer.SelfModulate = Colors.SlateGray;
     }
 
     private void OnFocusExited()
     {
-        ThemeTypeVariation = string.Empty;
+        _panelContainer.SelfModulate = Colors.White;
     }
 }

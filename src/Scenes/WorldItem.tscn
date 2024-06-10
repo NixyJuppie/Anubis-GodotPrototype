@@ -1,18 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfmn8f8enoyu7"]
+[gd_scene load_steps=4 format=3 uid="uid://dv7vonv5ph5j8"]
 
-[ext_resource type="Script" path="res://Scripts/Items/WorldItem.cs" id="1_w36ba"]
+[ext_resource type="Script" path="res://Scripts/Items/WorldItem.cs" id="1_lamhq"]
+[ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="2_qmvlp"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f1h8l"]
-size = Vector2(64, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_debko"]
+radius = 8.0
 
 [node name="WorldItem" type="Area2D"]
-scale = Vector2(0.2, 0.2)
-collision_layer = 2
-monitorable = false
-script = ExtResource("1_w36ba")
+script = ExtResource("1_lamhq")
+CommonRarityColor = Color(0.921569, 0.929412, 0.913725, 1)
+MagicRarityColor = Color(0.235294, 0.368627, 0.545098, 1)
+EpicRarityColor = Color(0.478431, 0.211765, 0.482353, 1)
+UniqueRarityColor = Color(0.745098, 0.466667, 0.168627, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="RaritySprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-texture = SubResource("PlaceholderTexture2D_f1h8l")
+modulate = Color(1, 1, 1, 0.622899)
+texture = ExtResource("2_qmvlp")
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_debko")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

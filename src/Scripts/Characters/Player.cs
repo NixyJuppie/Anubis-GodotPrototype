@@ -5,8 +5,8 @@ public partial class Player : Character
     public override void _Process(double delta)
     {
         var direction = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
-        var multiplier = Input.IsActionPressed("Sprint") ? 50f : 25f;
-        Velocity = direction * uint.Clamp(Attributes.Agility, 1, 100) * multiplier;
+        var speed = ComputedAttributes.GetMovementSpeed(Input.IsActionPressed("Sprint"));
+        Velocity = direction * speed;
         MoveAndSlide();
     }
 }

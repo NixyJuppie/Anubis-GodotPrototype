@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=3 format=3 uid="uid://dabb5vq0agy1n"]
+
+[ext_resource type="Texture2D" uid="uid://cj5srmwsql5du" path="res://Sprites/Items/SilverRing.png" id="1_ci4lq"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="2_0vmxa"]
+
+[resource]
+script = ExtResource("2_0vmxa")
+SlotTypes = 768
+Effects = []
+Name = "Silver Ring"
+Description = "TODO"
+Rarity = 1
+Texture = ExtResource("1_ci4lq")

@@ -1,91 +1,90 @@
+using Anubis.Characters;
 using Anubis.Characters.Equipment;
+using Anubis.Items;
 
 namespace Anubis.UI;
 
-[Tool]
 public partial class EquipmentSlotView : Control
 {
-    private TextureRect _backgroundTextureRect = null!;
-    private TextureRect _itemTextureRect = null!;
-    private Texture2D? _backgroundTexture;
-    private EquippableItem? _item;
+    private Label _slotName = null!;
+    private TextureRect _itemTexture = null!;
+    private TextureRect _rarityTexture = null!;
+    private PanelContainer _panelContainer = null!;
 
     [Export]
-    public string FocusedThemeTypeVariation { get; set; } = string.Empty;
-
-    [Export]
-    public Texture2D? BackgroundTexture
-    {
-        get => _backgroundTexture;
-        set
-        {
-            _backgroundTexture = value;
-            UpdateView();
-        }
-    }
-
-    [Export]
-    public EquippableItem? Item
-    {
-        get => _item;
-        set
-        {
-            _item = value;
-            UpdateView();
-        }
-    }
+    public Character? Character { get; set; }
 
     [Export]
     public EquipmentSlotType SlotType { get; set; }
 
-    [Signal]
-    public delegate void EquipItemRequestEventHandler(EquippableItem item, EquipmentSlotType slotType);
+    [Export]
+    public Color CommonRarityColor { get; set; }
+
+    [Export]
+    public Color MagicRarityColor { get; set; }
+
+    [Export]
+    public Color EpicRarityColor { get; set; }
+
+    [Export]
+    public Color UniqueRarityColor { get; set; }
 
     public override void _Ready()
     {
-        _backgroundTextureRect = this.GetRequiredNode<TextureRect>("%BackgroundTexture");
-        _itemTextureRect = this.GetRequiredNode<TextureRect>("%ItemTexture");
+        _slotName = this.GetRequiredNode<Label>("%SlotName");
+        _itemTexture = this.GetRequiredNode<TextureRect>("%ItemTexture");
+        _rarityTexture = this.GetRequiredNode<TextureRect>("%RarityTexture");
+        _panelContainer = this.GetRequiredNode<PanelContainer>("%PanelContainer");
         UpdateView();
     }
 
     public override Variant _GetDragData(Vector2 atPosition)
     {
-        if (_item is null)
+        var item = Character?.Equipment.GetSlot(SlotType).Item;
+        if (item is null)
             return Variant.CreateFrom<GodotObject?>(null!);
 
-        SetDragPreview((Control)_itemTextureRect.Duplicate());
-        return _item;
+        SetDragPreview((Control)_itemTexture.Duplicate());
+        return item;
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
-        return data.VariantType == Variant.Type.Object && data.AsGodotObject() is EquippableItem item && item.SlotTypes.HasFlag(SlotType);
+        return data.VariantType == Variant.Type.Object
+               && data.AsGodotObject() is EquippableItem item
+               && item.SlotTypes.HasFlag(SlotType);
     }
 
     public override void _DropData(Vector2 atPosition, Variant data)
     {
-        EmitSignal(SignalName.EquipItemRequest, data, Variant.From(SlotType));
+        Character?.Equip((EquippableItem)data.AsGodotObject(), SlotType);
+        GrabFocus();
     }
 
-    private void UpdateView()
+    public void UpdateView()
     {
-        if (_itemTextureRect is not null)
+        var item = Character?.Equipment.GetSlot(SlotType).Item;
+        _slotName.Text = SlotType.ToDisplayString();
+        _slotName.Visible = item is null;
+        _itemTexture.Texture = item?.Texture;
+        _rarityTexture.Modulate = item?.Rarity switch
         {
-            _itemTextureRect.Visible = Item is not null;
-            _itemTextureRect.Texture = Item?.Texture;
-        }
-
-        if (_backgroundTextureRect is not null)
-            _backgroundTextureRect.Texture = _backgroundTexture;
+            ItemRarity.Common => CommonRarityColor,
+            ItemRarity.Magic => MagicRarityColor,
+            ItemRarity.Epic => EpicRarityColor,
+            ItemRarity.Unique => UniqueRarityColor,
+            null => Colors.Transparent,
+            _ => throw new ArgumentOutOfRangeException(nameof(item.Rarity), item.Rarity, "Invalid rarity")
+        };
     }
 
     private void OnFocusEntered()
     {
-        ThemeTypeVariation = FocusedThemeTypeVariation;
+        _panelContainer.SelfModulate = Colors.SlateGray;
     }
 
     private void OnFocusExited()
     {
-        ThemeTypeVariation = string.Empty;
+        _panelContainer.SelfModulate = Colors.White;
     }
 }
