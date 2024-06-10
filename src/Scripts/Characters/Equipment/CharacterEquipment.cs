@@ -79,37 +79,7 @@ public partial class CharacterEquipment : Resource
         }
     }
 
-    public EquippableItem? Equip(EquippableItem item, EquipmentSlotType slotType)
-    {
-        if (!item.SlotTypes.HasFlag(slotType))
-            throw new InvalidOperationException($"Item {item.Name} cannot be equipped in slot {slotType}");
-
-        var slot = GetSlot(slotType);
-        item.CurrentSlot = slotType;
-
-        var previousItem = slot.Item;
-        slot.Item = item;
-
-        GD.Print($"Equipped {item.Name} in slot {slotType}");
-        return previousItem;
-    }
-
-    public EquippableItem? Unequip(EquipmentSlotType slotType)
-    {
-        var slot = GetSlot(slotType);
-        var item = slot.Item;
-
-        if (item is not null)
-        {
-            item.CurrentSlot = EquipmentSlotType.None;
-            GD.Print($"Unequipped {item.Name} from slot {slotType}");
-        }
-
-        slot.Item = null;
-        return item;
-    }
-
-    private EquipmentSlot GetSlot(EquipmentSlotType slotType)
+    public EquipmentSlot GetSlot(EquipmentSlotType slotType)
     {
         return slotType switch
         {
@@ -131,5 +101,38 @@ public partial class CharacterEquipment : Resource
             EquipmentSlotType.Charm6 => Charm6,
             _ => throw new ArgumentOutOfRangeException(nameof(slotType), slotType, "Invalid slot")
         };
+    }
+
+    public EquippableItem? Equip(EquippableItem item, EquipmentSlotType slotType)
+    {
+        if (!item.SlotTypes.HasFlag(slotType))
+            throw new InvalidOperationException($"Item {item.Name} cannot be equipped in slot {slotType}");
+
+        var slot = GetSlot(slotType);
+        item.CurrentSlot = slotType;
+
+        var previousItem = slot.Item;
+        slot.Item = item;
+
+        GD.Print($"Equipped {item.Name} in slot {slotType}");
+        return previousItem;
+    }
+
+    public EquippableItem? Unequip(EquipmentSlotType slotType)
+    {
+        if (slotType == EquipmentSlotType.None)
+            return null;
+
+        var slot = GetSlot(slotType);
+        var item = slot.Item;
+
+        if (item is not null)
+        {
+            item.CurrentSlot = EquipmentSlotType.None;
+            GD.Print($"Unequipped {item.Name} from slot {slotType}");
+        }
+
+        slot.Item = null;
+        return item;
     }
 }

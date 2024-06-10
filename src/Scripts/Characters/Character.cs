@@ -9,16 +9,32 @@ namespace Anubis.Characters;
 
 public abstract partial class Character : CharacterBody2D
 {
+    private Inventory _inventory = new();
+
     [ExportGroup("Base")] [Export] public string CharacterName { get; set; } = "Character";
     [Export] public uint CharacterLevel { get; set; }
     [Export] public AttributeSet Attributes { get; set; } = new();
 
     [ExportGroup("Storage")] [Export] public CharacterEquipment Equipment { get; set; } = new();
-    [Export] public Inventory Inventory { get; set; } = new();
+
+    [Export]
+    public Inventory Inventory
+    {
+        get => _inventory;
+        set
+        {
+            _inventory.InventoryUpdated -= OnInventoryUpdated;
+            _inventory = value;
+            _inventory.InventoryUpdated += OnInventoryUpdated;
+        }
+    }
 
     [ExportGroup("Computed")] [Export] public DamageSet ComputedDamage { get; set; } = new();
     [Export] public ResistanceSet ComputedResistance { get; set; } = new();
     [Export] public AttributeSet ComputedAttributes { get; set; } = new();
+
+    [Signal]
+    public delegate void CharacterUpdatedEventHandler();
 
     public override void _Ready()
     {
@@ -45,6 +61,8 @@ public abstract partial class Character : CharacterBody2D
         Compute();
     }
 
+    private void OnInventoryUpdated() => EmitSignal(SignalName.CharacterUpdated);
+
     private void Compute()
     {
         ComputedDamage = new DamageSet();
@@ -53,5 +71,7 @@ public abstract partial class Character : CharacterBody2D
 
         foreach (var effect in Equipment.EquippedItems.SelectMany(i => i.Effects).OrderBy(e => e.Order))
             effect.Apply(this);
+
+        EmitSignal(SignalName.CharacterUpdated);
     }
 }

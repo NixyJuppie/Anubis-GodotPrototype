@@ -10,13 +10,18 @@ public partial class Inventory : Resource
 
     public IReadOnlyCollection<Item> Items => _items.AsReadOnly();
 
+    [Signal]
+    public delegate void InventoryUpdatedEventHandler();
+
     public void Add(Item item)
     {
         _items.Add(item);
+        EmitSignal(SignalName.InventoryUpdated);
     }
 
     public void Remove(Item item)
     {
         _items.Remove(item);
+        EmitSignal(SignalName.InventoryUpdated);
     }
 }

@@ -1,4 +1,4 @@
-using Anubis.Characters.Equipment;
+using Anubis.Characters;
 
 namespace Anubis.UI;
 
@@ -21,7 +21,7 @@ public partial class EquipmentView : Control
     private EquipmentSlotView _charm5Slot = null!;
     private EquipmentSlotView _charm6Slot = null!;
 
-    [Export] public CharacterEquipment? Equipment { get; set; }
+    [Export] public Character? Character { get; set; }
 
     public override void _Ready()
     {
@@ -46,52 +46,52 @@ public partial class EquipmentView : Control
 
     public void UpdateView()
     {
-        _leftHandSlot.Slot = Equipment?.LeftHand;
+        _leftHandSlot.Character = Character;
         _leftHandSlot.UpdateView();
 
-        _rightHandSlot.Slot = Equipment?.RightHand;
+        _rightHandSlot.Character = Character;
         _rightHandSlot.UpdateView();
 
-        _headSlot.Slot = Equipment?.Head;
+        _headSlot.Character = Character;
         _headSlot.UpdateView();
 
-        _chestSlot.Slot = Equipment?.Chest;
+        _chestSlot.Character = Character;
         _chestSlot.UpdateView();
 
-        _handsSlot.Slot = Equipment?.Hands;
+        _handsSlot.Character = Character;
         _handsSlot.UpdateView();
 
-        _waistSlot.Slot = Equipment?.Waist;
+        _waistSlot.Character = Character;
         _waistSlot.UpdateView();
 
-        _legsSlot.Slot = Equipment?.Legs;
+        _legsSlot.Character = Character;
         _legsSlot.UpdateView();
 
-        _amuletSlot.Slot = Equipment?.Amulet;
+        _amuletSlot.Character = Character;
         _amuletSlot.UpdateView();
 
-        _ring1Slot.Slot = Equipment?.Ring1;
+        _ring1Slot.Character = Character;
         _ring1Slot.UpdateView();
 
-        _ring2Slot.Slot = Equipment?.Ring2;
+        _ring2Slot.Character = Character;
         _ring2Slot.UpdateView();
 
-        _charm1Slot.Slot = Equipment?.Charm1;
+        _charm1Slot.Character = Character;
         _charm1Slot.UpdateView();
 
-        _charm2Slot.Slot = Equipment?.Charm2;
+        _charm2Slot.Character = Character;
         _charm2Slot.UpdateView();
 
-        _charm3Slot.Slot = Equipment?.Charm3;
+        _charm3Slot.Character = Character;
         _charm3Slot.UpdateView();
 
-        _charm4Slot.Slot = Equipment?.Charm4;
+        _charm4Slot.Character = Character;
         _charm4Slot.UpdateView();
 
-        _charm5Slot.Slot = Equipment?.Charm5;
+        _charm5Slot.Character = Character;
         _charm5Slot.UpdateView();
 
-        _charm6Slot.Slot = Equipment?.Charm6;
+        _charm6Slot.Character = Character;
         _charm6Slot.UpdateView();
     }
 }

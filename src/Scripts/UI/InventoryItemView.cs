@@ -23,7 +23,16 @@ public partial class InventoryItemView : Control
         UpdateView();
     }
 
-    public void UpdateView()
+    public override Variant _GetDragData(Vector2 atPosition)
+    {
+        if (Item is null)
+            return Variant.CreateFrom<GodotObject?>(null!);
+
+        SetDragPreview((Control)_itemTexture.Duplicate());
+        return Item;
+    }
+
+    private void UpdateView()
     {
         _itemTexture.Texture = Item?.Texture;
         _rarityTexture.Modulate = Item?.Rarity switch

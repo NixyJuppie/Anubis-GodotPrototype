@@ -30,6 +30,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="EquipmentView" parent="MainFrame/HBoxContainer" instance=ExtResource("3_7dot3")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InventoryView" parent="MainFrame/HBoxContainer" instance=ExtResource("3_t4tu5")]

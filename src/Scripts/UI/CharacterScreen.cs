@@ -4,25 +4,39 @@ namespace Anubis.UI;
 
 public partial class CharacterScreen : CanvasLayer
 {
-    private CharacterInfoView _characterInfoView = null!;
-    private InventoryView _inventoryView = null!;
+    private CharacterInfoView? _characterInfoView;
+    private EquipmentView? _equipmentView;
+    private InventoryView? _inventoryView;
+    private Character? _character;
 
-    [Export] public Character? Character { get; set; }
+    [Export]
+    public Character? Character
+    {
+        get => _character;
+        set
+        {
+            if (_character is not null)
+                _character.CharacterUpdated -= UpdateView;
+
+            _character = value;
+
+            if (_character is not null)
+                _character.CharacterUpdated += UpdateView;
+        }
+    }
 
     public override void _Ready()
     {
         _characterInfoView = this.GetRequiredNode<CharacterInfoView>("%CharacterInfoView");
         _characterInfoView.Character = Character;
 
+        _equipmentView = this.GetRequiredNode<EquipmentView>("%EquipmentView");
+        _equipmentView.Character = Character;
+
         _inventoryView = this.GetRequiredNode<InventoryView>("%InventoryView");
-        _inventoryView.Inventory = Character?.Inventory;
+        _inventoryView.Character = Character;
 
         UpdateView();
-    }
-
-    public override void _Process(double delta)
-    {
-        UpdateView(); // TODO: dont update every frame
     }
 
     public override void _Input(InputEvent @event)
@@ -34,12 +48,13 @@ public partial class CharacterScreen : CanvasLayer
         UpdateView();
     }
 
-    public void UpdateView()
+    private void UpdateView()
     {
         if (!Visible)
             return;
 
-        _characterInfoView.UpdateView();
-        _inventoryView.UpdateView();
+        _characterInfoView?.UpdateView();
+        _equipmentView?.UpdateView();
+        _inventoryView?.UpdateView();
     }
 }

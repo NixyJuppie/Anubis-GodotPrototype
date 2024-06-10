@@ -1,3 +1,4 @@
+using Anubis.Characters;
 using Anubis.Characters.Equipment;
 using Anubis.Items;
 
@@ -10,8 +11,8 @@ public partial class EquipmentSlotView : Control
     private TextureRect _rarityTexture = null!;
     private PanelContainer _panelContainer = null!;
 
-    [Export] public EquipmentSlot? Slot { get; set; }
-    [Export] public string SlotName { get; set; } = string.Empty;
+    [Export] public Character? Character { get; set; }
+    [Export] public EquipmentSlotType SlotType { get; set; }
 
     [Export] public Color CommonRarityColor { get; set; }
     [Export] public Color MagicRarityColor { get; set; }
@@ -27,19 +28,43 @@ public partial class EquipmentSlotView : Control
         UpdateView();
     }
 
+    public override Variant _GetDragData(Vector2 atPosition)
+    {
+        var item = Character?.Equipment.GetSlot(SlotType).Item;
+        if (item is null)
+            return Variant.CreateFrom<GodotObject?>(null!);
+
+        SetDragPreview((Control)_itemTexture.Duplicate());
+        return item;
+    }
+
+    public override bool _CanDropData(Vector2 atPosition, Variant data)
+    {
+        return data.VariantType == Variant.Type.Object
+               && data.AsGodotObject() is EquippableItem item
+               && item.SlotTypes.HasFlag(SlotType);
+    }
+
+    public override void _DropData(Vector2 atPosition, Variant data)
+    {
+        Character?.Equip((EquippableItem)data.AsGodotObject(), SlotType);
+        GrabFocus();
+    }
+
     public void UpdateView()
     {
-        _slotName.Text = SlotName;
-        _slotName.Visible = Slot?.Item is null;
-        _itemTexture.Texture = Slot?.Item?.Texture;
-        _rarityTexture.Modulate = Slot?.Item?.Rarity switch
+        var item = Character?.Equipment.GetSlot(SlotType).Item;
+        _slotName.Text = SlotType.ToDisplayString();
+        _slotName.Visible = item is null;
+        _itemTexture.Texture = item?.Texture;
+        _rarityTexture.Modulate = item?.Rarity switch
         {
             ItemRarity.Common => CommonRarityColor,
             ItemRarity.Magic => MagicRarityColor,
             ItemRarity.Epic => EpicRarityColor,
             ItemRarity.Unique => UniqueRarityColor,
             null => Colors.Transparent,
-            _ => throw new ArgumentOutOfRangeException(nameof(Slot.Item.Rarity), Slot.Item.Rarity, "Invalid rarity")
+            _ => throw new ArgumentOutOfRangeException(nameof(item.Rarity), item.Rarity, "Invalid rarity")
         };
     }
 
