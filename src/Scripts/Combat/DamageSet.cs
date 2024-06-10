@@ -52,6 +52,6 @@ public partial class DamageSet : Resource
         if (percent == 0)
             return value;
 
-        return (uint)float.Clamp(float.Round(value + (value * percent / 100f)), uint.MinValue, uint.MaxValue);
+        return (uint)float.Clamp(float.Round(value + value * percent / 100f), uint.MinValue, uint.MaxValue);
     }
 }

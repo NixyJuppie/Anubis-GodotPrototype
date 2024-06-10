@@ -1,9 +1,9 @@
 using Anubis.Combat;
 
-namespace Anubis.Characters.Effects.Combat;
+namespace Anubis.Characters.Effects;
 
 [GlobalClass]
-public partial class AddedDamageEffect : CharacterEffect
+public partial class AddDamageEffect : CharacterEffect
 {
     public override EffectOrder Order => EffectOrder.Addition;
 

@@ -4,6 +4,7 @@ using Anubis.Characters.Attributes;
 using Anubis.Characters.Equipment;
 using Anubis.Combat;
 using Anubis.Items;
+using Godot.Collections;
 
 namespace Anubis.Characters;
 
@@ -47,6 +48,9 @@ public abstract partial class Character : CharacterBody2D
     [Export]
     public AttributeSet ComputedAttributes { get; set; } = new();
 
+    [Export]
+    public Array<CharacterAction> ComputedActions { get; set; } = [];
+
     [Signal]
     public delegate void CharacterUpdatedEventHandler();
 
@@ -82,6 +86,9 @@ public abstract partial class Character : CharacterBody2D
         ComputedDamage = new DamageSet();
         ComputedResistance = new ResistanceSet();
         ComputedAttributes = (AttributeSet)Attributes.Duplicate(true);
+        ComputedActions = [];
+
+        GD.Print($"{Equipment.RightHand.Item}");
 
         foreach (var effect in Equipment.EquippedItems.SelectMany(i => i.Effects).OrderBy(e => e.Order))
             effect.Apply(this);

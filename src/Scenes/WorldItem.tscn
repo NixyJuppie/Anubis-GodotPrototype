@@ -7,6 +7,8 @@
 radius = 8.0
 
 [node name="WorldItem" type="Area2D"]
+collision_layer = 2
+monitorable = false
 script = ExtResource("1_lamhq")
 CommonRarityColor = Color(0.921569, 0.929412, 0.913725, 1)
 MagicRarityColor = Color(0.235294, 0.368627, 0.545098, 1)
@@ -15,7 +17,7 @@ UniqueRarityColor = Color(0.745098, 0.466667, 0.168627, 1)
 
 [node name="RaritySprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.622899)
+modulate = Color(1, 1, 1, 0.997854)
 texture = ExtResource("2_qmvlp")
 
 [node name="ItemSprite" type="Sprite2D" parent="."]

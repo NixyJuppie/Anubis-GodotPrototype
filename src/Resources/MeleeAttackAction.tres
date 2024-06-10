@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterAction" load_steps=4 format=3 uid="uid://rqx6exiabenr"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/CharacterAction.cs" id="1_hc0co"]
+[ext_resource type="Texture2D" uid="uid://k77wnwpdl75n" path="res://Sprites/Items/Sword.png" id="1_ytntq"]
+[ext_resource type="PackedScene" uid="uid://dmbuurlyx5j7u" path="res://Scenes/MeleeDamage.tscn" id="2_gnue3"]
+
+[resource]
+script = ExtResource("1_hc0co")
+Name = "Melee Attack"
+Icon = ExtResource("1_ytntq")
+CooldownMs = 100
+Scene = ExtResource("2_gnue3")
