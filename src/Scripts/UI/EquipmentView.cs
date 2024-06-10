@@ -21,7 +21,8 @@ public partial class EquipmentView : Control
     private EquipmentSlotView _charm5Slot = null!;
     private EquipmentSlotView _charm6Slot = null!;
 
-    [Export] public Character? Character { get; set; }
+    [Export]
+    public Character? Character { get; set; }
 
     public override void _Ready()
     {

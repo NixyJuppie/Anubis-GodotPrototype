@@ -2,14 +2,28 @@ namespace Anubis.Combat;
 
 public partial class DamageSet : Resource
 {
-    [ExportGroup("Physical")] [Export] public uint Slash { get; set; }
-    [Export] public uint Pierce { get; set; }
-    [Export] public uint Blunt { get; set; }
+    [ExportGroup("Physical")]
+    [Export]
+    public uint Slash { get; set; }
 
-    [ExportGroup("Elemental")] [Export] public uint Fire { get; set; }
-    [Export] public uint Cold { get; set; }
-    [Export] public uint Lightning { get; set; }
-    [Export] public uint Nature { get; set; }
+    [Export]
+    public uint Pierce { get; set; }
+
+    [Export]
+    public uint Blunt { get; set; }
+
+    [ExportGroup("Elemental")]
+    [Export]
+    public uint Fire { get; set; }
+
+    [Export]
+    public uint Cold { get; set; }
+
+    [Export]
+    public uint Lightning { get; set; }
+
+    [Export]
+    public uint Nature { get; set; }
 
     public void Add(DamageSet damage)
     {

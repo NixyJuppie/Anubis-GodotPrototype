@@ -9,10 +9,17 @@ public partial class WorldItem : Area2D
     private Sprite2D? _raritySprite;
     private Item? _item;
 
-    [Export] public Color CommonRarityColor { get; set; }
-    [Export] public Color MagicRarityColor { get; set; }
-    [Export] public Color EpicRarityColor { get; set; }
-    [Export] public Color UniqueRarityColor { get; set; }
+    [Export]
+    public Color CommonRarityColor { get; set; }
+
+    [Export]
+    public Color MagicRarityColor { get; set; }
+
+    [Export]
+    public Color EpicRarityColor { get; set; }
+
+    [Export]
+    public Color UniqueRarityColor { get; set; }
 
     [Export]
     public Item? Item

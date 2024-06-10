@@ -5,25 +5,57 @@ namespace Anubis.Characters.Equipment;
 [GlobalClass]
 public partial class CharacterEquipment : Resource
 {
-    [ExportGroup("Weapons")] [Export] public EquipmentSlot LeftHand { get; set; } = new();
-    [Export] public EquipmentSlot RightHand { get; set; } = new();
+    [ExportGroup("Weapons")]
+    [Export]
+    public EquipmentSlot LeftHand { get; set; } = new();
 
-    [ExportGroup("Armor")] [Export] public EquipmentSlot Head { get; set; } = new();
-    [Export] public EquipmentSlot Chest { get; set; } = new();
-    [Export] public EquipmentSlot Hands { get; set; } = new();
-    [Export] public EquipmentSlot Waist { get; set; } = new();
-    [Export] public EquipmentSlot Legs { get; set; } = new();
+    [Export]
+    public EquipmentSlot RightHand { get; set; } = new();
 
-    [ExportGroup("Accessories")] [Export] public EquipmentSlot Amulet { get; set; } = new();
-    [Export] public EquipmentSlot Ring1 { get; set; } = new();
-    [Export] public EquipmentSlot Ring2 { get; set; } = new();
+    [ExportGroup("Armor")]
+    [Export]
+    public EquipmentSlot Head { get; set; } = new();
 
-    [ExportGroup("Charms")] [Export] public EquipmentSlot Charm1 { get; set; } = new();
-    [Export] public EquipmentSlot Charm2 { get; set; } = new();
-    [Export] public EquipmentSlot Charm3 { get; set; } = new();
-    [Export] public EquipmentSlot Charm4 { get; set; } = new();
-    [Export] public EquipmentSlot Charm5 { get; set; } = new();
-    [Export] public EquipmentSlot Charm6 { get; set; } = new();
+    [Export]
+    public EquipmentSlot Chest { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Hands { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Waist { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Legs { get; set; } = new();
+
+    [ExportGroup("Accessories")]
+    [Export]
+    public EquipmentSlot Amulet { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Ring1 { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Ring2 { get; set; } = new();
+
+    [ExportGroup("Charms")]
+    [Export]
+    public EquipmentSlot Charm1 { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Charm2 { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Charm3 { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Charm4 { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Charm5 { get; set; } = new();
+
+    [Export]
+    public EquipmentSlot Charm6 { get; set; } = new();
 
     public IEnumerable<EquippableItem> EquippedItems
     {

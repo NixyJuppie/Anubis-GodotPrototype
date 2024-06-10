@@ -9,8 +9,11 @@ public partial class InventoryView : Control
 {
     private Container _itemsContainer = null!;
 
-    [Export] public Character? Character { get; set; }
-    [Export] public PackedScene? InventoryItemView { get; set; }
+    [Export]
+    public Character? Character { get; set; }
+
+    [Export]
+    public PackedScene? InventoryItemView { get; set; }
 
     public override void _Ready()
     {

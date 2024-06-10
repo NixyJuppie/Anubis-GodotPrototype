@@ -7,7 +7,8 @@ public partial class IncreaseDamageEffect : CharacterEffect
 {
     public override EffectOrder Order => EffectOrder.Multiplication;
 
-    [Export] public DamageSet Damage { get; set; } = new();
+    [Export]
+    public DamageSet Damage { get; set; } = new();
 
     public override void Apply(Character character)
     {

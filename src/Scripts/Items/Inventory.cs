@@ -6,7 +6,8 @@ namespace Anubis.Items;
 [GlobalClass]
 public partial class Inventory : Resource
 {
-    [Export] private Array<Item> _items = [];
+    [Export]
+    private Array<Item> _items = [];
 
     public IReadOnlyCollection<Item> Items => _items.AsReadOnly();
 

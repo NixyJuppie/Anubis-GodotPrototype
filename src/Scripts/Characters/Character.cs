@@ -11,11 +11,19 @@ public abstract partial class Character : CharacterBody2D
 {
     private Inventory _inventory = new();
 
-    [ExportGroup("Base")] [Export] public string CharacterName { get; set; } = "Character";
-    [Export] public uint CharacterLevel { get; set; }
-    [Export] public AttributeSet Attributes { get; set; } = new();
+    [ExportGroup("Base")]
+    [Export]
+    public string CharacterName { get; set; } = "Character";
 
-    [ExportGroup("Storage")] [Export] public CharacterEquipment Equipment { get; set; } = new();
+    [Export]
+    public uint CharacterLevel { get; set; }
+
+    [Export]
+    public AttributeSet Attributes { get; set; } = new();
+
+    [ExportGroup("Storage")]
+    [Export]
+    public CharacterEquipment Equipment { get; set; } = new();
 
     [Export]
     public Inventory Inventory
@@ -29,9 +37,15 @@ public abstract partial class Character : CharacterBody2D
         }
     }
 
-    [ExportGroup("Computed")] [Export] public DamageSet ComputedDamage { get; set; } = new();
-    [Export] public ResistanceSet ComputedResistance { get; set; } = new();
-    [Export] public AttributeSet ComputedAttributes { get; set; } = new();
+    [ExportGroup("Computed")]
+    [Export]
+    public DamageSet ComputedDamage { get; set; } = new();
+
+    [Export]
+    public ResistanceSet ComputedResistance { get; set; } = new();
+
+    [Export]
+    public AttributeSet ComputedAttributes { get; set; } = new();
 
     [Signal]
     public delegate void CharacterUpdatedEventHandler();

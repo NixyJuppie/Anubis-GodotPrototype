@@ -8,12 +8,20 @@ public partial class InventoryItemView : Control
     private TextureRect _rarityTexture = null!;
     private PanelContainer _panelContainer = null!;
 
-    [Export] public Item? Item { get; set; }
+    [Export]
+    public Item? Item { get; set; }
 
-    [Export] public Color CommonRarityColor { get; set; }
-    [Export] public Color MagicRarityColor { get; set; }
-    [Export] public Color EpicRarityColor { get; set; }
-    [Export] public Color UniqueRarityColor { get; set; }
+    [Export]
+    public Color CommonRarityColor { get; set; }
+
+    [Export]
+    public Color MagicRarityColor { get; set; }
+
+    [Export]
+    public Color EpicRarityColor { get; set; }
+
+    [Export]
+    public Color UniqueRarityColor { get; set; }
 
     public override void _Ready()
     {

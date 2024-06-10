@@ -7,7 +7,8 @@ public partial class CharacterInfoView : Control
     private RichTextLabel _infoText = null!;
     private string _infoTextTemplate = null!;
 
-    [Export] public Character? Character { get; set; }
+    [Export]
+    public Character? Character { get; set; }
 
     public override void _Ready()
     {
