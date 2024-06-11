@@ -8,5 +8,5 @@
 script = ExtResource("1_hc0co")
 Name = "Melee Attack"
 Icon = ExtResource("1_ytntq")
-CooldownMs = 100
+CooldownMs = 250
 Scene = ExtResource("2_gnue3")

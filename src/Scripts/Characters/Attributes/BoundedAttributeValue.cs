@@ -4,11 +4,11 @@ namespace Anubis.Characters.Attributes;
 [GlobalClass]
 public partial class BoundedAttributeValue : Resource
 {
-    private uint _maxValue = 10;
-    private uint _currentValue = 10;
+    private int _maxValue = 10;
+    private int _currentValue = 10;
 
     [Export] // Must be above CurrentValue because of setter invoking order at game startup
-    public uint MaxValue
+    public int MaxValue
     {
         get => _maxValue;
         set
@@ -19,13 +19,13 @@ public partial class BoundedAttributeValue : Resource
     }
 
     [Export]
-    public uint CurrentValue
+    public int CurrentValue
     {
         get => _currentValue;
-        set => _currentValue = uint.Clamp(value, 0, _maxValue);
+        set => _currentValue = int.Clamp(value, int.MinValue, _maxValue);
     }
 
-    public static implicit operator uint(BoundedAttributeValue value) => value.CurrentValue;
+    public static implicit operator int(BoundedAttributeValue value) => value.CurrentValue;
 
     public override string ToString() => $"{CurrentValue}/{MaxValue}";
 }

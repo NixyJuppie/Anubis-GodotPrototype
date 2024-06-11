@@ -79,12 +79,22 @@ public abstract partial class Character : CharacterBody2D
         Compute();
     }
 
-    public void TakeDamage(DamageSet damage)
+    public void TakeDamage(DamageSet damage, ActionSource? source)
     {
         var finalDamage = damage.WithResistance(ComputedResistance);
-        ComputedAttributes.Health.CurrentValue -= finalDamage.TotalDamage;
-        // TODO: overflow
+        var totalDamage = finalDamage.TotalDamage;
+        ComputedAttributes.Health.CurrentValue -= totalDamage;
+
+        var sourceName = source is null
+            ? "unknown force"
+            : $"{source.Character.CharacterName} ({source.Action.Name})";
+        GD.Print($"{CharacterName} has taken {totalDamage} damage from {sourceName}");
+
+        if (ComputedAttributes.Health <= 0)
+            OnDeath();
     }
+
+    public abstract void OnDeath();
 
     private void OnInventoryUpdated() => EmitSignal(SignalName.CharacterUpdated);
 
@@ -94,8 +104,6 @@ public abstract partial class Character : CharacterBody2D
         ComputedResistance = new ResistanceSet();
         ComputedAttributes = (AttributeSet)Attributes.Duplicate(true);
         ComputedActions = [];
-
-        GD.Print($"{Equipment.RightHand.Item}");
 
         foreach (var effect in Equipment.EquippedItems.SelectMany(i => i.Effects).OrderBy(e => e.Order))
             effect.Apply(this);

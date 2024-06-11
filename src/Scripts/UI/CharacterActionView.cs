@@ -18,6 +18,11 @@ public partial class CharacterActionView : Control
         UpdateView();
     }
 
+    public override void _Process(double delta)
+    {
+        SelfModulate = Action?.CanExecute() ?? true ? Colors.White : Colors.SlateGray;
+    }
+
     private void UpdateView()
     {
         _actionTexture.Texture = Action?.Icon;

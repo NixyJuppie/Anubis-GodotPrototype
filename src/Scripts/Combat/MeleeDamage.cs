@@ -3,11 +3,9 @@ using Anubis.Characters;
 
 namespace Anubis.Combat;
 
-public partial class MeleeDamage : Area2D, ICharacterActionExecution
+public partial class MeleeDamage : CharacterActionExecutor
 {
     private readonly HashSet<Node2D> _hitBodies = [];
-
-    public Character Source { get; set; } = null!;
 
     public override void _PhysicsProcess(double delta)
     {
@@ -17,7 +15,7 @@ public partial class MeleeDamage : Area2D, ICharacterActionExecution
 
     private void HandleBodyCollision(Node2D body)
     {
-        if (body == Source)
+        if (body == Source.Character)
             return;
 
         if (!_hitBodies.Add(body))
@@ -26,6 +24,6 @@ public partial class MeleeDamage : Area2D, ICharacterActionExecution
         if (body is not Character target)
             throw new InvalidOperationException($"Collision with unknown object '{body.Name}' detected!");
 
-        target.TakeDamage(Source.ComputedDamage);
+        target.TakeDamage(Source.Character.ComputedDamage, Source);
     }
 }

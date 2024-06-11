@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=105 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
 [ext_resource type="Script" path="res://Scripts/Characters/CharacterCamera.cs" id="1_vfxa4"]
@@ -208,6 +208,179 @@ Agility = SubResource("Resource_0c62j")
 Intelligence = SubResource("Resource_7b4d3")
 Luck = SubResource("Resource_0fa16")
 
+[sub_resource type="Resource" id="Resource_x248i"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_jk6w0"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_8v0ph"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_kqjvr"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_1k8qr"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_2g17a"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_7guea"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_tjmkc"]
+script = ExtResource("7_6lekf")
+Health = SubResource("Resource_jk6w0")
+Stamina = SubResource("Resource_2g17a")
+Mana = SubResource("Resource_1k8qr")
+Strength = SubResource("Resource_7guea")
+Agility = SubResource("Resource_x248i")
+Intelligence = SubResource("Resource_8v0ph")
+Luck = SubResource("Resource_kqjvr")
+
+[sub_resource type="Resource" id="Resource_p08gv"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_4c30p"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_s0cp7"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_pgqex"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_xugcw"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_6md86"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_ep6ko"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_uk1xy"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_7qxhf"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_6o02d"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_jp81l"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_x6jub"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_0nnye"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_yy4u5"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_m01jh"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_nn1bt"]
+script = ExtResource("15_uriii")
+
+[sub_resource type="Resource" id="Resource_qnuwk"]
+script = ExtResource("16_v7qj0")
+LeftHand = SubResource("Resource_jp81l")
+RightHand = SubResource("Resource_0nnye")
+Head = SubResource("Resource_6o02d")
+Chest = SubResource("Resource_uk1xy")
+Hands = SubResource("Resource_7qxhf")
+Waist = SubResource("Resource_nn1bt")
+Legs = SubResource("Resource_x6jub")
+Amulet = SubResource("Resource_p08gv")
+Ring1 = SubResource("Resource_yy4u5")
+Ring2 = SubResource("Resource_m01jh")
+Charm1 = SubResource("Resource_4c30p")
+Charm2 = SubResource("Resource_s0cp7")
+Charm3 = SubResource("Resource_pgqex")
+Charm4 = SubResource("Resource_xugcw")
+Charm5 = SubResource("Resource_6md86")
+Charm6 = SubResource("Resource_ep6ko")
+
+[sub_resource type="Resource" id="Resource_0jrld"]
+script = ExtResource("17_g3cfj")
+_items = []
+
+[sub_resource type="Resource" id="Resource_mt2lq"]
+script = ExtResource("18_mv6si")
+Slash = 0
+Pierce = 0
+Blunt = 0
+Fire = 0
+Cold = 0
+Lightning = 0
+Nature = 0
+
+[sub_resource type="Resource" id="Resource_bppxs"]
+script = ExtResource("19_77roy")
+Slash = 0
+Pierce = 0
+Blunt = 0
+Fire = 0
+Cold = 0
+Lightning = 0
+Nature = 0
+
+[sub_resource type="Resource" id="Resource_flgaa"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_sijbo"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_upgct"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_bff17"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_07bov"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_xc0e5"]
+script = ExtResource("6_3gkt2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_57kw0"]
+script = ExtResource("5_ys4mm")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_oncas"]
+script = ExtResource("7_6lekf")
+Health = SubResource("Resource_sijbo")
+Stamina = SubResource("Resource_xc0e5")
+Mana = SubResource("Resource_07bov")
+Strength = SubResource("Resource_57kw0")
+Agility = SubResource("Resource_flgaa")
+Intelligence = SubResource("Resource_upgct")
+Luck = SubResource("Resource_bff17")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_tbb82"]
 radius = 8.0
 
@@ -320,12 +493,12 @@ ComputedAttributes = SubResource("Resource_4f1ih")
 position = Vector2(36, 24)
 collision_mask = 7
 script = ExtResource("26_c5klm")
-Attributes = SubResource("Resource_8i1yq")
-Equipment = SubResource("Resource_7sa00")
-Inventory = SubResource("Resource_0wxl8")
-ComputedDamage = SubResource("Resource_ale0h")
-ComputedResistance = SubResource("Resource_1lyg3")
-ComputedAttributes = SubResource("Resource_4f1ih")
+Attributes = SubResource("Resource_tjmkc")
+Equipment = SubResource("Resource_qnuwk")
+Inventory = SubResource("Resource_0jrld")
+ComputedDamage = SubResource("Resource_mt2lq")
+ComputedResistance = SubResource("Resource_bppxs")
+ComputedAttributes = SubResource("Resource_oncas")
 
 [node name="Sprite2D" type="Sprite2D" parent="Content/TestEnemy"]
 texture = ExtResource("3_fby22")

@@ -4,28 +4,28 @@ public partial class DamageSet : Resource
 {
     [ExportGroup("Physical")]
     [Export]
-    public uint Slash { get; set; }
+    public ushort Slash { get; set; }
 
     [Export]
-    public uint Pierce { get; set; }
+    public ushort Pierce { get; set; }
 
     [Export]
-    public uint Blunt { get; set; }
+    public ushort Blunt { get; set; }
 
     [ExportGroup("Elemental")]
     [Export]
-    public uint Fire { get; set; }
+    public ushort Fire { get; set; }
 
     [Export]
-    public uint Cold { get; set; }
+    public ushort Cold { get; set; }
 
     [Export]
-    public uint Lightning { get; set; }
+    public ushort Lightning { get; set; }
 
     [Export]
-    public uint Nature { get; set; }
+    public ushort Nature { get; set; }
 
-    public uint TotalDamage => Slash + Pierce + Blunt + Fire + Cold + Lightning + Nature;
+    public int TotalDamage => Slash + Pierce + Blunt + Fire + Cold + Lightning + Nature;
 
     public void Add(DamageSet damage)
     {
@@ -63,19 +63,19 @@ public partial class DamageSet : Resource
         };
     }
 
-    private static uint IncreaseByPercent(uint value, uint percent)
+    private static ushort IncreaseByPercent(ushort value, ushort percent)
     {
         if (percent == 0)
             return value;
 
-        return (uint)float.Clamp(float.Round(value + value * percent / 100f), uint.MinValue, uint.MaxValue);
+        return (ushort)float.Clamp(float.Round(value + value * percent / 100f), ushort.MinValue, ushort.MaxValue);
     }
 
-    private static uint DecreaseByPercent(uint value, uint percent)
+    private static ushort DecreaseByPercent(ushort value, byte percent)
     {
         if (percent == 0)
             return value;
 
-        return (uint)float.Clamp(float.Round(value - value * percent / 100f), uint.MinValue, uint.MaxValue);
+        return (ushort)float.Clamp(float.Round(value - value * percent / 100f), ushort.MinValue, ushort.MaxValue);
     }
 }

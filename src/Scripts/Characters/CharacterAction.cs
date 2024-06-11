@@ -1,3 +1,5 @@
+using Anubis.Combat;
+
 namespace Anubis.Characters;
 
 [GlobalClass]
@@ -17,6 +19,8 @@ public partial class CharacterAction : Resource
     [Export]
     public PackedScene? Scene { get; set; }
 
+    public bool CanExecute() => Time.GetTicksMsec() >= _lastExecutionTime + CooldownMs;
+
     public void Execute(Character character)
     {
         if (Scene is null)
@@ -28,10 +32,8 @@ public partial class CharacterAction : Resource
 
         _lastExecutionTime = currentTime;
 
-        var scene = Scene.Instantiate();
-        if (scene is ICharacterActionExecution actionExecution)
-            actionExecution.Source = character;
-
-        character.AddChild(scene);
+        var actionExecutor = (CharacterActionExecutor)Scene.Instantiate();
+        actionExecutor.Source = new ActionSource(character, this);
+        character.AddChild(actionExecutor); // TODO: maybe sibling?
     }
 }
