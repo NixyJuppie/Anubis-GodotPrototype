@@ -25,6 +25,8 @@ public partial class DamageSet : Resource
     [Export]
     public uint Nature { get; set; }
 
+    public uint TotalDamage => Slash + Pierce + Blunt + Fire + Cold + Lightning + Nature;
+
     public void Add(DamageSet damage)
     {
         Slash += damage.Slash;
@@ -47,11 +49,33 @@ public partial class DamageSet : Resource
         Nature = IncreaseByPercent(Nature, damage.Nature);
     }
 
+    public DamageSet WithResistance(ResistanceSet resistance)
+    {
+        return new DamageSet
+        {
+            Slash = DecreaseByPercent(Slash, resistance.Slash),
+            Pierce = DecreaseByPercent(Pierce, resistance.Pierce),
+            Blunt = DecreaseByPercent(Blunt, resistance.Blunt),
+            Fire = DecreaseByPercent(Fire, resistance.Fire),
+            Cold = DecreaseByPercent(Cold, resistance.Cold),
+            Lightning = DecreaseByPercent(Lightning, resistance.Lightning),
+            Nature = DecreaseByPercent(Nature, resistance.Nature)
+        };
+    }
+
     private static uint IncreaseByPercent(uint value, uint percent)
     {
         if (percent == 0)
             return value;
 
         return (uint)float.Clamp(float.Round(value + value * percent / 100f), uint.MinValue, uint.MaxValue);
+    }
+
+    private static uint DecreaseByPercent(uint value, uint percent)
+    {
+        if (percent == 0)
+            return value;
+
+        return (uint)float.Clamp(float.Round(value - value * percent / 100f), uint.MinValue, uint.MaxValue);
     }
 }

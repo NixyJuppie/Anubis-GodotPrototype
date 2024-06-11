@@ -30,7 +30,7 @@ public partial class CharacterAction : Resource
 
         var scene = Scene.Instantiate();
         if (scene is ICharacterActionExecution actionExecution)
-            actionExecution.Character = character;
+            actionExecution.Source = character;
 
         character.AddChild(scene);
     }

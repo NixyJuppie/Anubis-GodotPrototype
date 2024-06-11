@@ -79,6 +79,13 @@ public abstract partial class Character : CharacterBody2D
         Compute();
     }
 
+    public void TakeDamage(DamageSet damage)
+    {
+        var finalDamage = damage.WithResistance(ComputedResistance);
+        ComputedAttributes.Health.CurrentValue -= finalDamage.TotalDamage;
+        // TODO: overflow
+    }
+
     private void OnInventoryUpdated() => EmitSignal(SignalName.CharacterUpdated);
 
     private void Compute()
