@@ -1,3 +1,4 @@
+using Anubis.Characters.Effects;
 using Anubis.Items;
 using Godot.Collections;
 
@@ -12,7 +13,7 @@ public partial class EquippableItem : Item
     public EquipmentSlotType SlotTypes { get; set; }
 
     [Export]
-    public Array<Effects.CharacterEffect> Effects { get; set; } = [];
+    public Array<CharacterEffect> Effects { get; set; } = [];
 
     public EquipmentSlotType CurrentSlot { get; set; }
 }

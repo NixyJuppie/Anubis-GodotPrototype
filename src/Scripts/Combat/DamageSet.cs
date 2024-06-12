@@ -4,26 +4,28 @@ public partial class DamageSet : Resource
 {
     [ExportGroup("Physical")]
     [Export]
-    public uint Slash { get; set; }
+    public ushort Slash { get; set; }
 
     [Export]
-    public uint Pierce { get; set; }
+    public ushort Pierce { get; set; }
 
     [Export]
-    public uint Blunt { get; set; }
+    public ushort Blunt { get; set; }
 
     [ExportGroup("Elemental")]
     [Export]
-    public uint Fire { get; set; }
+    public ushort Fire { get; set; }
 
     [Export]
-    public uint Cold { get; set; }
+    public ushort Cold { get; set; }
 
     [Export]
-    public uint Lightning { get; set; }
+    public ushort Lightning { get; set; }
 
     [Export]
-    public uint Nature { get; set; }
+    public ushort Nature { get; set; }
+
+    public int TotalDamage => Slash + Pierce + Blunt + Fire + Cold + Lightning + Nature;
 
     public void Add(DamageSet damage)
     {
@@ -47,11 +49,33 @@ public partial class DamageSet : Resource
         Nature = IncreaseByPercent(Nature, damage.Nature);
     }
 
-    private static uint IncreaseByPercent(uint value, uint percent)
+    public DamageSet WithResistance(ResistanceSet resistance)
+    {
+        return new DamageSet
+        {
+            Slash = DecreaseByPercent(Slash, resistance.Slash),
+            Pierce = DecreaseByPercent(Pierce, resistance.Pierce),
+            Blunt = DecreaseByPercent(Blunt, resistance.Blunt),
+            Fire = DecreaseByPercent(Fire, resistance.Fire),
+            Cold = DecreaseByPercent(Cold, resistance.Cold),
+            Lightning = DecreaseByPercent(Lightning, resistance.Lightning),
+            Nature = DecreaseByPercent(Nature, resistance.Nature)
+        };
+    }
+
+    private static ushort IncreaseByPercent(ushort value, ushort percent)
     {
         if (percent == 0)
             return value;
 
-        return (uint)float.Clamp(float.Round(value + (value * percent / 100f)), uint.MinValue, uint.MaxValue);
+        return (ushort)float.Clamp(float.Round(value + value * percent / 100f), ushort.MinValue, ushort.MaxValue);
+    }
+
+    private static ushort DecreaseByPercent(ushort value, byte percent)
+    {
+        if (percent == 0)
+            return value;
+
+        return (ushort)float.Clamp(float.Round(value - value * percent / 100f), ushort.MinValue, ushort.MaxValue);
     }
 }

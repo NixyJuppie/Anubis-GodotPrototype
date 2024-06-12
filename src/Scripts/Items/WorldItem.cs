@@ -78,8 +78,7 @@ public partial class WorldItem : Area2D
             throw new InvalidOperationException($"{nameof(WorldItem)} must have an item assigned");
 
         if (node is not Character character)
-            throw new InvalidOperationException(
-                $"Unknown object '{node.Name}' entered {nameof(WorldItem)} area, check collision layers!");
+            throw new InvalidOperationException($"Collision with unknown object '{node.Name}' detected!");
 
         character.Inventory.Add(Item);
         QueueFree();

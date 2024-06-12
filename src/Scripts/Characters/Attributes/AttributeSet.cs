@@ -28,7 +28,7 @@ public partial class AttributeSet : Resource
 
     public float GetMovementSpeed(bool isSprinting)
     {
-        var effectiveValue = uint.Clamp(Agility, 1, 100);
+        var effectiveValue = int.Clamp(Agility, 1, 100);
         var value = 5f + effectiveValue / 5f; // 5..25
         return (isSprinting ? value * 2f : value) * 10f;
     }

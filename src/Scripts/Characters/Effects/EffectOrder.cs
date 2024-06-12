@@ -4,4 +4,5 @@ public enum EffectOrder
 {
     Addition,
     Multiplication,
+    PostCalculation
 }

@@ -1,9 +1,9 @@
 using Anubis.Combat;
 
-namespace Anubis.Characters.Effects.Combat;
+namespace Anubis.Characters.Effects;
 
 [GlobalClass]
-public partial class AddedResistanceEffect : CharacterEffect
+public partial class AddResistanceEffect : CharacterEffect
 {
     public override EffectOrder Order => EffectOrder.Addition;
 

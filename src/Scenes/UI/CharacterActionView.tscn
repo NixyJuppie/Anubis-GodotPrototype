@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdarn2xkpnqvl"]
+
+[ext_resource type="Script" path="res://Scripts/UI/CharacterActionView.cs" id="1_5daip"]
+
+[node name="CharacterActionView" type="PanelContainer"]
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 1
+mouse_default_cursor_shape = 2
+theme_type_variation = &"MetalPanelContainer4"
+script = ExtResource("1_5daip")
+
+[node name="ActionTexture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+stretch_mode = 5
+
+[connection signal="focus_entered" from="." to="." method="OnFocusEntered"]

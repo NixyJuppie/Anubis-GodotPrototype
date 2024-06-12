@@ -4,9 +4,9 @@ namespace Anubis.Characters.Attributes;
 public partial class AttributeValue : Resource
 {
     [Export]
-    public uint Value { get; set; } = 10;
+    public int Value { get; set; } = 10;
 
-    public static implicit operator uint(AttributeValue value) => value.Value;
+    public static implicit operator int(AttributeValue value) => value.Value;
 
     public override string ToString() => Value.ToString();
 }

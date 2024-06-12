@@ -1,12 +1,34 @@
-[gd_resource type="Resource" script_class="EquippableItem" load_steps=3 format=3 uid="uid://ca30cqaqu2mc3"]
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=10 format=3 uid="uid://ca30cqaqu2mc3"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="1_7da4a"]
+[ext_resource type="Resource" uid="uid://rqx6exiabenr" path="res://Resources/MeleeAttackAction.tres" id="1_m2y5h"]
 [ext_resource type="Texture2D" uid="uid://k77wnwpdl75n" path="res://Sprites/Items/Sword.png" id="1_yibvl"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/AddActionEffect.cs" id="2_xfww3"]
+[ext_resource type="Script" path="res://Scripts/Combat/DamageSet.cs" id="3_rbrn1"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/AddDamageEffect.cs" id="4_8sxcl"]
+
+[sub_resource type="Resource" id="Resource_kb73n"]
+script = ExtResource("2_xfww3")
+Action = ExtResource("1_m2y5h")
+
+[sub_resource type="Resource" id="Resource_lvwp4"]
+script = ExtResource("3_rbrn1")
+Slash = 5
+Pierce = 0
+Blunt = 0
+Fire = 0
+Cold = 0
+Lightning = 0
+Nature = 0
+
+[sub_resource type="Resource" id="Resource_bqws5"]
+script = ExtResource("4_8sxcl")
+Damage = SubResource("Resource_lvwp4")
 
 [resource]
 script = ExtResource("1_7da4a")
 SlotTypes = 3
-Effects = []
+Effects = [SubResource("Resource_kb73n"), SubResource("Resource_bqws5")]
 Name = "Sword"
 Description = "TODO"
 Rarity = 1

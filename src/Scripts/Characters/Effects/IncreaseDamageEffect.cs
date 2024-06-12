@@ -1,6 +1,6 @@
 using Anubis.Combat;
 
-namespace Anubis.Characters.Effects.Combat;
+namespace Anubis.Characters.Effects;
 
 [GlobalClass]
 public partial class IncreaseDamageEffect : CharacterEffect

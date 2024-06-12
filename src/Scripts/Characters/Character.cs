@@ -4,6 +4,7 @@ using Anubis.Characters.Attributes;
 using Anubis.Characters.Equipment;
 using Anubis.Combat;
 using Anubis.Items;
+using Godot.Collections;
 
 namespace Anubis.Characters;
 
@@ -47,6 +48,9 @@ public abstract partial class Character : CharacterBody2D
     [Export]
     public AttributeSet ComputedAttributes { get; set; } = new();
 
+    [Export]
+    public Array<CharacterAction> ComputedActions { get; set; } = [];
+
     [Signal]
     public delegate void CharacterUpdatedEventHandler();
 
@@ -75,6 +79,23 @@ public abstract partial class Character : CharacterBody2D
         Compute();
     }
 
+    public void TakeDamage(DamageSet damage, ActionSource? source)
+    {
+        var finalDamage = damage.WithResistance(ComputedResistance);
+        var totalDamage = finalDamage.TotalDamage;
+        ComputedAttributes.Health.CurrentValue -= totalDamage;
+
+        var sourceName = source is null
+            ? "unknown force"
+            : $"{source.Character.CharacterName} ({source.Action.Name})";
+        GD.Print($"{CharacterName} has taken {totalDamage} damage from {sourceName}");
+
+        if (ComputedAttributes.Health <= 0)
+            OnDeath();
+    }
+
+    public abstract void OnDeath();
+
     private void OnInventoryUpdated() => EmitSignal(SignalName.CharacterUpdated);
 
     private void Compute()
@@ -82,6 +103,7 @@ public abstract partial class Character : CharacterBody2D
         ComputedDamage = new DamageSet();
         ComputedResistance = new ResistanceSet();
         ComputedAttributes = (AttributeSet)Attributes.Duplicate(true);
+        ComputedActions = [];
 
         foreach (var effect in Equipment.EquippedItems.SelectMany(i => i.Effects).OrderBy(e => e.Order))
             effect.Apply(this);
