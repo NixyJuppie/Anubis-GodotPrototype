@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=15 format=3 uid="uid://b7c0kjykh6g8l"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/Damage.cs" id="1_4byy1"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/AddDamageEffect.cs" id="2_m45yd"]
+[ext_resource type="Script" path="res://Scripts/Combat/Resistance.cs" id="3_gqoak"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/AddResistanceEffect.cs" id="4_ma7su"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/IncreaseDamageEffect.cs" id="5_mqbct"]
+[ext_resource type="Resource" path="res://Resources/Items/Rarities/Epic.tres" id="6_ltc7t"]
+[ext_resource type="Texture2D" uid="uid://67glcerwkr1h" path="res://Sprites/Items/GoldRing.png" id="7_07gch"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="8_ni6s7"]
+
+[sub_resource type="Resource" id="Resource_0fj4q"]
+script = ExtResource("1_4byy1")
+Type = 6
+Value = 5
+
+[sub_resource type="Resource" id="Resource_yscjy"]
+script = ExtResource("2_m45yd")
+Damage = SubResource("Resource_0fj4q")
+
+[sub_resource type="Resource" id="Resource_r1enx"]
+script = ExtResource("3_gqoak")
+Type = 6
+Value = 10
+
+[sub_resource type="Resource" id="Resource_jdxy4"]
+script = ExtResource("4_ma7su")
+Resistance = SubResource("Resource_r1enx")
+
+[sub_resource type="Resource" id="Resource_vubvh"]
+script = ExtResource("1_4byy1")
+Type = 3
+Value = 25
+
+[sub_resource type="Resource" id="Resource_fk6qo"]
+script = ExtResource("5_mqbct")
+Damage = SubResource("Resource_vubvh")
+
+[resource]
+script = ExtResource("8_ni6s7")
+SlotTypes = 768
+Effects = [SubResource("Resource_yscjy"), SubResource("Resource_jdxy4"), SubResource("Resource_fk6qo")]
+Name = "Ring"
+Description = "Amulet of nature and fire"
+Rarity = ExtResource("6_ltc7t")
+Texture = ExtResource("7_07gch")

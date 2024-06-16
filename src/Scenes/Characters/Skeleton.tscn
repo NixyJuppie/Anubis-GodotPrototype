@@ -1,0 +1,179 @@
+[gd_scene load_steps=42 format=3 uid="uid://b5uflqrrxlc36"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Enemy.cs" id="1_yk51a"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeValue.cs" id="2_0ay2k"]
+[ext_resource type="Texture2D" uid="uid://bo13n52dx1ei1" path="res://Sprites/Characters/Skeleton/SkeletonIdle0.png" id="2_m5qbr"]
+[ext_resource type="Texture2D" uid="uid://dg12ucucoi7cb" path="res://Sprites/Characters/Skeleton/SkeletonIdle1.png" id="3_c3hwb"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/BoundedAttributeValue.cs" id="3_k3rp2"]
+[ext_resource type="Texture2D" uid="uid://dmd46k2pa1rxl" path="res://Sprites/Characters/Skeleton/SkeletonIdle2.png" id="4_ribhi"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeSet.cs" id="4_xbjxq"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquipmentSlot.cs" id="5_2ercx"]
+[ext_resource type="Texture2D" uid="uid://dh43kiimwrcrl" path="res://Sprites/Characters/Skeleton/SkeletonIdle3.png" id="5_exk8h"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/CharacterEquipment.cs" id="6_1i1yx"]
+[ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="6_17bqw"]
+[ext_resource type="Script" path="res://Scripts/Items/Inventory.cs" id="7_2gf8m"]
+
+[sub_resource type="Resource" id="Resource_un06u"]
+script = ExtResource("2_0ay2k")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_t543f"]
+script = ExtResource("3_k3rp2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_p23vx"]
+script = ExtResource("2_0ay2k")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_4fsh4"]
+script = ExtResource("2_0ay2k")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_ctehv"]
+script = ExtResource("3_k3rp2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_yj54g"]
+script = ExtResource("3_k3rp2")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_61neu"]
+script = ExtResource("2_0ay2k")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_8wmht"]
+script = ExtResource("4_xbjxq")
+Health = SubResource("Resource_t543f")
+Stamina = SubResource("Resource_yj54g")
+Mana = SubResource("Resource_ctehv")
+Strength = SubResource("Resource_61neu")
+Agility = SubResource("Resource_un06u")
+Intelligence = SubResource("Resource_p23vx")
+Luck = SubResource("Resource_4fsh4")
+
+[sub_resource type="Resource" id="Resource_wpdv8"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_clgdp"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_mbbsi"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_psuxk"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_ptomw"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_bjqgo"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_7grsv"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_j0vyh"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_tqaiq"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_7lgsb"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_l4b86"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_bvmib"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_j7yxb"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_7mxjm"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_88joq"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_qrv6u"]
+script = ExtResource("5_2ercx")
+
+[sub_resource type="Resource" id="Resource_pfa7i"]
+script = ExtResource("6_1i1yx")
+LeftHand = SubResource("Resource_l4b86")
+RightHand = SubResource("Resource_j7yxb")
+Head = SubResource("Resource_7lgsb")
+Chest = SubResource("Resource_j0vyh")
+Hands = SubResource("Resource_tqaiq")
+Waist = SubResource("Resource_qrv6u")
+Legs = SubResource("Resource_bvmib")
+Amulet = SubResource("Resource_wpdv8")
+Ring1 = SubResource("Resource_7mxjm")
+Ring2 = SubResource("Resource_88joq")
+Charm1 = SubResource("Resource_clgdp")
+Charm2 = SubResource("Resource_mbbsi")
+Charm3 = SubResource("Resource_psuxk")
+Charm4 = SubResource("Resource_ptomw")
+Charm5 = SubResource("Resource_bjqgo")
+Charm6 = SubResource("Resource_7grsv")
+
+[sub_resource type="Resource" id="Resource_nimqh"]
+script = ExtResource("7_2gf8m")
+_items = []
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fi5in"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_m5qbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c3hwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ribhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_exk8h")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7obkf"]
+radius = 8.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s3wb4"]
+polygon = PackedVector2Array(6, 6, 0, 8, -6, 6, -8, 0, -6, -6, 0, -8, 6, -6, 8, 0)
+
+[node name="Skeleton" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 11
+script = ExtResource("1_yk51a")
+CharacterName = "Skeleton"
+CharacterLevel = 1
+Attributes = SubResource("Resource_8wmht")
+Equipment = SubResource("Resource_pfa7i")
+Inventory = SubResource("Resource_nimqh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_fi5in")
+animation = &"Idle"
+frame_progress = 0.613358
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.5
+texture = ExtResource("6_17bqw")
+texture_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7obkf")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_s3wb4")

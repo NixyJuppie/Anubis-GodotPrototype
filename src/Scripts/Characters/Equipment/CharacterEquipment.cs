@@ -1,118 +1,101 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Anubis.Characters.Equipment;
 
 [GlobalClass]
 public partial class CharacterEquipment : Resource
 {
-    [ExportGroup("Weapons")]
-    [Export]
-    public EquipmentSlot LeftHand { get; set; } = new();
+    [ExportGroup("Weapons")] [Export] [MaybeNull] public EquipmentSlot LeftHand { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot RightHand { get; set; }
 
-    [Export]
-    public EquipmentSlot RightHand { get; set; } = new();
+    [ExportGroup("Armor")] [Export] [MaybeNull] public EquipmentSlot Head { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Chest { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Hands { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Waist { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Legs { get; set; }
 
-    [ExportGroup("Armor")]
-    [Export]
-    public EquipmentSlot Head { get; set; } = new();
+    [ExportGroup("Accessories")] [Export] [MaybeNull] public EquipmentSlot Amulet { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Ring1 { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Ring2 { get; set; }
 
-    [Export]
-    public EquipmentSlot Chest { get; set; } = new();
+    [ExportGroup("Charms")] [Export] [MaybeNull] public EquipmentSlot Charm1 { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Charm2 { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Charm3 { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Charm4 { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Charm5 { get; set; }
+    [Export] [MaybeNull] public EquipmentSlot Charm6 { get; set; }
 
-    [Export]
-    public EquipmentSlot Hands { get; set; } = new();
-
-    [Export]
-    public EquipmentSlot Waist { get; set; } = new();
-
-    [Export]
-    public EquipmentSlot Legs { get; set; } = new();
-
-    [ExportGroup("Accessories")]
-    [Export]
-    public EquipmentSlot Amulet { get; set; } = new();
-
-    [Export]
-    public EquipmentSlot Ring1 { get; set; } = new();
-
-    [Export]
-    public EquipmentSlot Ring2 { get; set; } = new();
-
-    [ExportGroup("Charms")]
-    [Export]
-    public EquipmentSlot Charm1 { get; set; } = new();
-
-    [Export]
-    public EquipmentSlot Charm2 { get; set; } = new();
-
-    [Export]
-    public EquipmentSlot Charm3 { get; set; } = new();
-
-    [Export]
-    public EquipmentSlot Charm4 { get; set; } = new();
-
-    [Export]
-    public EquipmentSlot Charm5 { get; set; } = new();
-
-    [Export]
-    public EquipmentSlot Charm6 { get; set; } = new();
-
-    public IEnumerable<EquippableItem> EquippedItems
+    public IEnumerable<EquippableItem> EnumerateEquipped()
     {
-        get
-        {
-            if (LeftHand.Item is not null)
-                yield return LeftHand.Item;
+        if (LeftHand?.Item is not null)
+            yield return LeftHand.Item;
 
-            if (RightHand.Item is not null)
-                yield return RightHand.Item;
+        if (RightHand?.Item is not null)
+            yield return RightHand.Item;
 
-            if (Head.Item is not null)
-                yield return Head.Item;
+        if (Head?.Item is not null)
+            yield return Head.Item;
 
-            if (Chest.Item is not null)
-                yield return Chest.Item;
+        if (Chest?.Item is not null)
+            yield return Chest.Item;
 
-            if (Hands.Item is not null)
-                yield return Hands.Item;
+        if (Hands?.Item is not null)
+            yield return Hands.Item;
 
-            if (Waist.Item is not null)
-                yield return Waist.Item;
+        if (Waist?.Item is not null)
+            yield return Waist.Item;
 
-            if (Legs.Item is not null)
-                yield return Legs.Item;
+        if (Legs?.Item is not null)
+            yield return Legs.Item;
 
-            if (Amulet.Item is not null)
-                yield return Amulet.Item;
+        if (Amulet?.Item is not null)
+            yield return Amulet.Item;
 
-            if (Ring1.Item is not null)
-                yield return Ring1.Item;
+        if (Ring1?.Item is not null)
+            yield return Ring1.Item;
 
-            if (Ring2.Item is not null)
-                yield return Ring2.Item;
+        if (Ring2?.Item is not null)
+            yield return Ring2.Item;
 
-            if (Charm1.Item is not null)
-                yield return Charm1.Item;
+        if (Charm1?.Item is not null)
+            yield return Charm1.Item;
 
-            if (Charm2.Item is not null)
-                yield return Charm2.Item;
+        if (Charm2?.Item is not null)
+            yield return Charm2.Item;
 
-            if (Charm3.Item is not null)
-                yield return Charm3.Item;
+        if (Charm3?.Item is not null)
+            yield return Charm3.Item;
 
-            if (Charm4.Item is not null)
-                yield return Charm4.Item;
+        if (Charm4?.Item is not null)
+            yield return Charm4.Item;
 
-            if (Charm5.Item is not null)
-                yield return Charm5.Item;
+        if (Charm5?.Item is not null)
+            yield return Charm5.Item;
 
-            if (Charm6.Item is not null)
-                yield return Charm6.Item;
-        }
+        if (Charm6?.Item is not null)
+            yield return Charm6.Item;
     }
 
     public EquipmentSlot GetSlot(EquipmentSlotType slotType)
     {
+        RequiredPropertyNotAssignedException.ThrowIfNull(LeftHand);
+        RequiredPropertyNotAssignedException.ThrowIfNull(RightHand);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Head);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Chest);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Hands);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Waist);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Legs);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Amulet);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Ring1);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Ring2);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Charm1);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Charm2);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Charm3);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Charm4);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Charm5);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Charm6);
+
         return slotType switch
         {
             EquipmentSlotType.LeftHand => LeftHand,

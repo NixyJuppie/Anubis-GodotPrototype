@@ -7,12 +7,11 @@ public partial class CharacterInfoView : Control
     private RichTextLabel _infoText = null!;
     private string _infoTextTemplate = null!;
 
-    [Export]
-    public Character? Character { get; set; }
+    [Export] public Character? Character { get; set; }
 
     public override void _Ready()
     {
-        _infoText = this.GetRequiredNode<RichTextLabel>("%InfoText");
+        _infoText = GetNode<RichTextLabel>("%InfoText");
         _infoTextTemplate = _infoText.Text;
         UpdateView();
     }
@@ -24,6 +23,16 @@ public partial class CharacterInfoView : Control
             _infoText.Text = $"[color=red]{nameof(CharacterInfoView)} must have a character assigned[/color]";
             return;
         }
+
+        RequiredPropertyNotAssignedException.ThrowIfNull(Character.ComputedAttributes?.Health);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Character.ComputedAttributes?.Stamina);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Character.ComputedAttributes?.Mana);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Character.ComputedAttributes?.Strength);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Character.ComputedAttributes?.Agility);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Character.ComputedAttributes?.Intelligence);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Character.ComputedAttributes?.Luck);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Character.ComputedDamage);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Character.ComputedResistance);
 
         _infoText.Text = _infoTextTemplate
             .Replace("{Name}", Character.CharacterName)

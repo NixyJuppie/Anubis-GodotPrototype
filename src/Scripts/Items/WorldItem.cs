@@ -10,18 +10,6 @@ public partial class WorldItem : Area2D
     private Item? _item;
 
     [Export]
-    public Color CommonRarityColor { get; set; }
-
-    [Export]
-    public Color MagicRarityColor { get; set; }
-
-    [Export]
-    public Color EpicRarityColor { get; set; }
-
-    [Export]
-    public Color UniqueRarityColor { get; set; }
-
-    [Export]
     public Item? Item
     {
         get => _item;
@@ -29,19 +17,13 @@ public partial class WorldItem : Area2D
         {
             _item = value;
             UpdateView();
-            UpdateConfigurationWarnings();
         }
-    }
-
-    public override string[] _GetConfigurationWarnings()
-    {
-        return Item is null ? ["World item must have an item assigned"] : [];
     }
 
     public override void _Ready()
     {
-        _itemSprite = this.GetRequiredNode<Sprite2D>("%ItemSprite");
-        _raritySprite = this.GetRequiredNode<Sprite2D>("%RaritySprite");
+        _itemSprite = GetNode<Sprite2D>("%ItemSprite");
+        _raritySprite = GetNode<Sprite2D>("%RaritySprite");
         UpdateView();
     }
 
@@ -61,15 +43,7 @@ public partial class WorldItem : Area2D
             _itemSprite.Texture = _item?.Texture;
 
         if (_raritySprite is not null)
-            _raritySprite.Modulate = _item?.Rarity switch
-            {
-                ItemRarity.Common => CommonRarityColor,
-                ItemRarity.Magic => MagicRarityColor,
-                ItemRarity.Epic => EpicRarityColor,
-                ItemRarity.Unique => UniqueRarityColor,
-                null => Colors.Transparent,
-                _ => throw new ArgumentOutOfRangeException(nameof(_item.Rarity), _item.Rarity, "Invalid rarity")
-            };
+            _raritySprite.Modulate = _item?.Rarity?.Color ?? Colors.Transparent;
     }
 
     private void OnBodyEntered(Node2D node)
@@ -80,6 +54,7 @@ public partial class WorldItem : Area2D
         if (node is not Character character)
             throw new InvalidOperationException($"Collision with unknown object '{node.Name}' detected!");
 
+        RequiredPropertyNotAssignedException.ThrowIfNull(character.Inventory);
         character.Inventory.Add(Item);
         QueueFree();
     }

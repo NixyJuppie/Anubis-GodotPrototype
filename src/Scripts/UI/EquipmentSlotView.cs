@@ -1,6 +1,7 @@
 using Anubis.Characters;
 using Anubis.Characters.Equipment;
 using Anubis.Items;
+using EquippableItem = Anubis.Characters.Equipment.EquippableItem;
 
 namespace Anubis.UI;
 
@@ -11,36 +12,21 @@ public partial class EquipmentSlotView : Control
     private TextureRect _rarityTexture = null!;
     private PanelContainer _panelContainer = null!;
 
-    [Export]
-    public Character? Character { get; set; }
-
-    [Export]
-    public EquipmentSlotType SlotType { get; set; }
-
-    [Export]
-    public Color CommonRarityColor { get; set; }
-
-    [Export]
-    public Color MagicRarityColor { get; set; }
-
-    [Export]
-    public Color EpicRarityColor { get; set; }
-
-    [Export]
-    public Color UniqueRarityColor { get; set; }
+    [Export] public Character? Character { get; set; }
+    [Export] public EquipmentSlotType SlotType { get; set; }
 
     public override void _Ready()
     {
-        _slotName = this.GetRequiredNode<Label>("%SlotName");
-        _itemTexture = this.GetRequiredNode<TextureRect>("%ItemTexture");
-        _rarityTexture = this.GetRequiredNode<TextureRect>("%RarityTexture");
-        _panelContainer = this.GetRequiredNode<PanelContainer>("%PanelContainer");
+        _slotName = GetNode<Label>("%SlotName");
+        _itemTexture = GetNode<TextureRect>("%ItemTexture");
+        _rarityTexture = GetNode<TextureRect>("%RarityTexture");
+        _panelContainer = GetNode<PanelContainer>("%PanelContainer");
         UpdateView();
     }
 
     public override Variant _GetDragData(Vector2 atPosition)
     {
-        var item = Character?.Equipment.GetSlot(SlotType).Item;
+        var item = Character?.Equipment?.GetSlot(SlotType).Item;
         if (item is null)
             return Variant.CreateFrom<GodotObject?>(null!);
 
@@ -63,19 +49,11 @@ public partial class EquipmentSlotView : Control
 
     public void UpdateView()
     {
-        var item = Character?.Equipment.GetSlot(SlotType).Item;
+        var item = Character?.Equipment?.GetSlot(SlotType).Item;
         _slotName.Text = SlotType.ToDisplayString();
         _slotName.Visible = item is null;
         _itemTexture.Texture = item?.Texture;
-        _rarityTexture.Modulate = item?.Rarity switch
-        {
-            ItemRarity.Common => CommonRarityColor,
-            ItemRarity.Magic => MagicRarityColor,
-            ItemRarity.Epic => EpicRarityColor,
-            ItemRarity.Unique => UniqueRarityColor,
-            null => Colors.Transparent,
-            _ => throw new ArgumentOutOfRangeException(nameof(item.Rarity), item.Rarity, "Invalid rarity")
-        };
+        _rarityTexture.Modulate = item?.Rarity?.Color ?? Colors.Transparent;
     }
 
     private void OnFocusEntered()

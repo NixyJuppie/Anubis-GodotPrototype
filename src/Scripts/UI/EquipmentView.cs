@@ -21,27 +21,26 @@ public partial class EquipmentView : Control
     private EquipmentSlotView _charm5Slot = null!;
     private EquipmentSlotView _charm6Slot = null!;
 
-    [Export]
-    public Character? Character { get; set; }
+    [Export] public Character? Character { get; set; }
 
     public override void _Ready()
     {
-        _leftHandSlot = this.GetRequiredNode<EquipmentSlotView>("%LeftHandSlot");
-        _rightHandSlot = this.GetRequiredNode<EquipmentSlotView>("%RightHandSlot");
-        _headSlot = this.GetRequiredNode<EquipmentSlotView>("%HeadSlot");
-        _chestSlot = this.GetRequiredNode<EquipmentSlotView>("%ChestSlot");
-        _handsSlot = this.GetRequiredNode<EquipmentSlotView>("%HandsSlot");
-        _waistSlot = this.GetRequiredNode<EquipmentSlotView>("%WaistSlot");
-        _legsSlot = this.GetRequiredNode<EquipmentSlotView>("%LegsSlot");
-        _amuletSlot = this.GetRequiredNode<EquipmentSlotView>("%AmuletSlot");
-        _ring1Slot = this.GetRequiredNode<EquipmentSlotView>("%Ring1Slot");
-        _ring2Slot = this.GetRequiredNode<EquipmentSlotView>("%Ring2Slot");
-        _charm1Slot = this.GetRequiredNode<EquipmentSlotView>("%Charm1Slot");
-        _charm2Slot = this.GetRequiredNode<EquipmentSlotView>("%Charm2Slot");
-        _charm3Slot = this.GetRequiredNode<EquipmentSlotView>("%Charm3Slot");
-        _charm4Slot = this.GetRequiredNode<EquipmentSlotView>("%Charm4Slot");
-        _charm5Slot = this.GetRequiredNode<EquipmentSlotView>("%Charm5Slot");
-        _charm6Slot = this.GetRequiredNode<EquipmentSlotView>("%Charm6Slot");
+        _leftHandSlot = GetNode<EquipmentSlotView>("%LeftHandSlot");
+        _rightHandSlot = GetNode<EquipmentSlotView>("%RightHandSlot");
+        _headSlot = GetNode<EquipmentSlotView>("%HeadSlot");
+        _chestSlot = GetNode<EquipmentSlotView>("%ChestSlot");
+        _handsSlot = GetNode<EquipmentSlotView>("%HandsSlot");
+        _waistSlot = GetNode<EquipmentSlotView>("%WaistSlot");
+        _legsSlot = GetNode<EquipmentSlotView>("%LegsSlot");
+        _amuletSlot = GetNode<EquipmentSlotView>("%AmuletSlot");
+        _ring1Slot = GetNode<EquipmentSlotView>("%Ring1Slot");
+        _ring2Slot = GetNode<EquipmentSlotView>("%Ring2Slot");
+        _charm1Slot = GetNode<EquipmentSlotView>("%Charm1Slot");
+        _charm2Slot = GetNode<EquipmentSlotView>("%Charm2Slot");
+        _charm3Slot = GetNode<EquipmentSlotView>("%Charm3Slot");
+        _charm4Slot = GetNode<EquipmentSlotView>("%Charm4Slot");
+        _charm5Slot = GetNode<EquipmentSlotView>("%Charm5Slot");
+        _charm6Slot = GetNode<EquipmentSlotView>("%Charm6Slot");
         UpdateView();
     }
 

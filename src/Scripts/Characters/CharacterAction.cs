@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Anubis.Combat;
 
 namespace Anubis.Characters;
@@ -7,24 +8,16 @@ public partial class CharacterAction : Resource
 {
     private ulong _lastExecutionTime;
 
-    [Export]
-    public string Name { get; set; } = string.Empty;
-
-    [Export]
-    public Texture2D? Icon { get; set; }
-
-    [Export]
-    public uint CooldownMs { get; set; }
-
-    [Export]
-    public PackedScene? Scene { get; set; }
+    [Export] public string Name { get; set; } = string.Empty;
+    [Export] public Texture2D? Icon { get; set; }
+    [Export] public uint CooldownMs { get; set; }
+    [Export] [MaybeNull] public PackedScene Scene { get; set; }
 
     public bool CanExecute() => Time.GetTicksMsec() >= _lastExecutionTime + CooldownMs;
 
     public void Execute(Character character)
     {
-        if (Scene is null)
-            throw new InvalidOperationException($"{nameof(CharacterAction)} must have a scene assigned");
+        RequiredPropertyNotAssignedException.ThrowIfNull(Scene);
 
         var currentTime = Time.GetTicksMsec();
         if (currentTime < _lastExecutionTime + CooldownMs)
@@ -32,7 +25,7 @@ public partial class CharacterAction : Resource
 
         _lastExecutionTime = currentTime;
 
-        var actionExecutor = (CharacterActionExecutor)Scene.Instantiate();
+        var actionExecutor = Scene.Instantiate<CharacterActionExecutor>();
         actionExecutor.Source = new ActionSource(character, this);
         character.AddChild(actionExecutor); // TODO: maybe sibling?
     }

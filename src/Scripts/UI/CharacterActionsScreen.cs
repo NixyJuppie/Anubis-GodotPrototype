@@ -5,7 +5,7 @@ namespace Anubis.UI;
 
 public partial class CharacterActionsScreen : Node
 {
-    private Container? _actionsContainer = null!;
+    private Container? _actionsContainer;
     private Character? _character;
 
     [Export]
@@ -24,12 +24,11 @@ public partial class CharacterActionsScreen : Node
         }
     }
 
-    [Export]
-    public PackedScene? ActionView { get; set; }
+    [Export] public PackedScene? ActionView { get; set; }
 
     public override void _Ready()
     {
-        _actionsContainer = this.GetRequiredNode<Container>("%ActionsContainer");
+        _actionsContainer = GetNode<Container>("%ActionsContainer");
         UpdateView();
     }
 
@@ -46,7 +45,7 @@ public partial class CharacterActionsScreen : Node
 
         foreach (var action in Character.ComputedActions)
         {
-            var actionView = (CharacterActionView)ActionView.Instantiate();
+            var actionView = ActionView.Instantiate<CharacterActionView>();
             actionView.Character = Character;
             actionView.Action = action;
             _actionsContainer.AddChild(actionView);

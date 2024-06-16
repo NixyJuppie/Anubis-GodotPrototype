@@ -1,13 +1,54 @@
-[gd_resource type="Resource" script_class="EquippableItem" load_steps=3 format=3 uid="uid://ca0t3y4oqpbeg"]
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=16 format=3 uid="uid://hgjnqjuoivoy"]
 
-[ext_resource type="Texture2D" uid="uid://h5682iwwf41b" path="res://Sprites/Items/Breastplate.png" id="1_2wo68"]
-[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="2_fk1i1"]
+[ext_resource type="Script" path="res://Scripts/Combat/Resistance.cs" id="1_vmd1o"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/AddResistanceEffect.cs" id="2_a51by"]
+[ext_resource type="Resource" path="res://Resources/Items/Rarities/Magic.tres" id="3_hx8x2"]
+[ext_resource type="Script" path="res://Scripts/Combat/Damage.cs" id="3_yfs8y"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/IncreaseDamageEffect.cs" id="4_mde08"]
+[ext_resource type="Texture2D" uid="uid://h5682iwwf41b" path="res://Sprites/Items/Breastplate.png" id="6_fowvr"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="7_hhuiu"]
+
+[sub_resource type="Resource" id="Resource_msrnt"]
+script = ExtResource("1_vmd1o")
+Type = 0
+Value = 10
+
+[sub_resource type="Resource" id="Resource_s04g0"]
+script = ExtResource("2_a51by")
+Resistance = SubResource("Resource_msrnt")
+
+[sub_resource type="Resource" id="Resource_gjout"]
+script = ExtResource("1_vmd1o")
+Type = 1
+Value = 5
+
+[sub_resource type="Resource" id="Resource_xiae4"]
+script = ExtResource("2_a51by")
+Resistance = SubResource("Resource_gjout")
+
+[sub_resource type="Resource" id="Resource_0eqlp"]
+script = ExtResource("1_vmd1o")
+Type = 2
+Value = 5
+
+[sub_resource type="Resource" id="Resource_xfkmc"]
+script = ExtResource("2_a51by")
+Resistance = SubResource("Resource_0eqlp")
+
+[sub_resource type="Resource" id="Resource_jue7b"]
+script = ExtResource("3_yfs8y")
+Type = 0
+Value = 10
+
+[sub_resource type="Resource" id="Resource_tojrm"]
+script = ExtResource("4_mde08")
+Damage = SubResource("Resource_jue7b")
 
 [resource]
-script = ExtResource("2_fk1i1")
+script = ExtResource("7_hhuiu")
 SlotTypes = 8
-Effects = []
+Effects = [SubResource("Resource_s04g0"), SubResource("Resource_xiae4"), SubResource("Resource_xfkmc"), SubResource("Resource_tojrm")]
 Name = "Breastplate"
-Description = "TODO"
-Rarity = 3
-Texture = ExtResource("1_2wo68")
+Description = ""
+Rarity = ExtResource("3_hx8x2")
+Texture = ExtResource("6_fowvr")
