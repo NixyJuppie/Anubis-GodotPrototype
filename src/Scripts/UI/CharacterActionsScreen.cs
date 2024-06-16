@@ -45,7 +45,7 @@ public partial class CharacterActionsScreen : Node
 
         foreach (var action in Character.ComputedActions)
         {
-            var actionView = (CharacterActionView)ActionView.Instantiate();
+            var actionView = ActionView.Instantiate<CharacterActionView>();
             actionView.Character = Character;
             actionView.Action = action;
             _actionsContainer.AddChild(actionView);

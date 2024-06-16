@@ -25,7 +25,7 @@ public partial class CharacterAction : Resource
 
         _lastExecutionTime = currentTime;
 
-        var actionExecutor = (CharacterActionExecutor)Scene.Instantiate();
+        var actionExecutor = Scene.Instantiate<CharacterActionExecutor>();
         actionExecutor.Source = new ActionSource(character, this);
         character.AddChild(actionExecutor); // TODO: maybe sibling?
     }

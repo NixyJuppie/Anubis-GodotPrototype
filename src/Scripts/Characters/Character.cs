@@ -43,7 +43,8 @@ public abstract partial class Character : CharacterBody2D
     [Export] [MaybeNull] public AttributeSet ComputedAttributes { get; set; }
     [Export] public Array<CharacterAction> ComputedActions { get; set; } = [];
 
-    [Signal] public delegate void CharacterUpdatedEventHandler();
+    [Signal]
+    public delegate void CharacterUpdatedEventHandler();
 
     public override void _Ready()
     {
@@ -80,6 +81,9 @@ public abstract partial class Character : CharacterBody2D
     {
         RequiredPropertyNotAssignedException.ThrowIfNull(ComputedResistance);
         RequiredPropertyNotAssignedException.ThrowIfNull(ComputedAttributes?.Health);
+
+        if (ComputedAttributes.Health <= 0)
+            return;
 
         var finalDamage = ComputedResistance.CalculateDamage(damage);
         ComputedAttributes.Health.CurrentValue -= finalDamage.Value;

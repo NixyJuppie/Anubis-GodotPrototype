@@ -54,7 +54,7 @@ public partial class InventoryView : Control
 
         foreach (var item in Character.Inventory.Items)
         {
-            var itemView = (InventoryItemView)InventoryItemView.Instantiate();
+            var itemView = InventoryItemView.Instantiate<InventoryItemView>();
             itemView.Item = item;
             _itemsContainer.AddChild(itemView);
 

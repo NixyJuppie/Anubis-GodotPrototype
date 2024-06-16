@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://k77wnwpdl75n" path="res://Sprites/Items/Sword.png" id="1_yibvl"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/AddActionEffect.cs" id="2_xfww3"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/AddDamageEffect.cs" id="4_8sxcl"]
-[ext_resource type="Resource" uid="uid://b64l63n37hr44" path="res://Resources/Items/Rarities/Magic.tres" id="5_413xj"]
+[ext_resource type="Resource" path="res://Resources/Items/Rarities/Common.tres" id="5_x1kbi"]
 
 [sub_resource type="Resource" id="Resource_0fj4q"]
 script = ExtResource("1_cpsa5")
@@ -27,5 +27,5 @@ SlotTypes = 3
 Effects = [SubResource("Resource_yscjy"), SubResource("Resource_5gqy8")]
 Name = "Sword"
 Description = "Simple sword"
-Rarity = ExtResource("5_413xj")
+Rarity = ExtResource("5_x1kbi")
 Texture = ExtResource("1_yibvl")

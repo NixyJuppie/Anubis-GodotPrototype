@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=15 format=3 uid="uid://b5lue2084tp5l"]
+
+[ext_resource type="Script" path="res://Scripts/Combat/Damage.cs" id="1_1ajx4"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/AddDamageEffect.cs" id="2_hedrf"]
+[ext_resource type="Script" path="res://Scripts/Combat/Resistance.cs" id="3_37d2a"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/AddResistanceEffect.cs" id="4_7luk6"]
+[ext_resource type="Script" path="res://Scripts/Characters/Effects/IncreaseDamageEffect.cs" id="5_klcvu"]
+[ext_resource type="Resource" path="res://Resources/Items/Rarities/Epic.tres" id="6_ix6x6"]
+[ext_resource type="Texture2D" uid="uid://ciujlnf8skh5e" path="res://Sprites/Items/Amulet.png" id="7_3v6ru"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="7_sf7qf"]
+
+[sub_resource type="Resource" id="Resource_0fj4q"]
+script = ExtResource("1_1ajx4")
+Type = 3
+Value = 5
+
+[sub_resource type="Resource" id="Resource_yscjy"]
+script = ExtResource("2_hedrf")
+Damage = SubResource("Resource_0fj4q")
+
+[sub_resource type="Resource" id="Resource_r1enx"]
+script = ExtResource("3_37d2a")
+Type = 3
+Value = 10
+
+[sub_resource type="Resource" id="Resource_jdxy4"]
+script = ExtResource("4_7luk6")
+Resistance = SubResource("Resource_r1enx")
+
+[sub_resource type="Resource" id="Resource_vubvh"]
+script = ExtResource("1_1ajx4")
+Type = 0
+Value = 5
+
+[sub_resource type="Resource" id="Resource_fk6qo"]
+script = ExtResource("5_klcvu")
+Damage = SubResource("Resource_vubvh")
+
+[resource]
+script = ExtResource("7_sf7qf")
+SlotTypes = 128
+Effects = [SubResource("Resource_yscjy"), SubResource("Resource_jdxy4"), SubResource("Resource_fk6qo")]
+Name = "Amulet"
+Description = "Amulet of fire"
+Rarity = ExtResource("6_ix6x6")
+Texture = ExtResource("7_3v6ru")

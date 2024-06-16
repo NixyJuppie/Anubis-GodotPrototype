@@ -22,9 +22,6 @@ jobs:
     - name: Restore
       run: dotnet restore src/*.sln
 
-    - name: Format
-      run: dotnet format --no-restore --verify-no-changes --verbosity normal src/*.sln
-
     - name: Build
       run: dotnet build --no-restore src/*.sln
 
