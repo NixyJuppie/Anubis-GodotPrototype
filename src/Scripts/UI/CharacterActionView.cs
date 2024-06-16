@@ -14,7 +14,7 @@ public partial class CharacterActionView : Control
 
     public override void _Ready()
     {
-        _actionTexture = this.GetRequiredNode<TextureRect>("%ActionTexture");
+        _actionTexture = GetNode<TextureRect>("%ActionTexture");
         UpdateView();
     }
 

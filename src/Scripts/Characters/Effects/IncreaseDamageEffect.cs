@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Anubis.Combat;
 
 namespace Anubis.Characters.Effects;
@@ -5,13 +6,14 @@ namespace Anubis.Characters.Effects;
 [GlobalClass]
 public partial class IncreaseDamageEffect : CharacterEffect
 {
-    public override EffectOrder Order => EffectOrder.Multiplication;
-
-    [Export]
-    public DamageSet Damage { get; set; } = new();
+    public override CharacterEffectOrder Order => CharacterEffectOrder.Multiplication;
+    [Export] [MaybeNull] public Damage Damage { get; set; }
 
     public override void Apply(Character character)
     {
+        RequiredPropertyNotAssignedException.ThrowIfNull(Damage);
+        RequiredPropertyNotAssignedException.ThrowIfNull(character.ComputedDamage);
+
         character.ComputedDamage.Increase(Damage);
     }
 }

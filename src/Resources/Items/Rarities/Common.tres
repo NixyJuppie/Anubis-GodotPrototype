@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemRarity" load_steps=2 format=3 uid="uid://dgdypd2376m2f"]
+
+[ext_resource type="Script" path="res://Scripts/Items/ItemRarity.cs" id="1_kiccv"]
+
+[resource]
+script = ExtResource("1_kiccv")
+Name = "Common"
+Color = Color(1, 1, 1, 1)

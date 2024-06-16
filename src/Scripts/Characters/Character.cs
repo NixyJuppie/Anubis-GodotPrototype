@@ -1,58 +1,49 @@
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Anubis.Characters.Attributes;
 using Anubis.Characters.Equipment;
 using Anubis.Combat;
 using Anubis.Items;
 using Godot.Collections;
+using EquippableItem = Anubis.Characters.Equipment.EquippableItem;
 
 namespace Anubis.Characters;
 
 public abstract partial class Character : CharacterBody2D
 {
-    private Inventory _inventory = new();
+    [MaybeNull] private Inventory _inventory;
 
-    [ExportGroup("Base")]
-    [Export]
-    public string CharacterName { get; set; } = "Character";
+    [ExportGroup("Base")] [Export] public string CharacterName { get; set; } = string.Empty;
+    [Export] public uint CharacterLevel { get; set; }
+    [Export] [MaybeNull] public AttributeSet Attributes { get; set; }
 
-    [Export]
-    public uint CharacterLevel { get; set; }
-
-    [Export]
-    public AttributeSet Attributes { get; set; } = new();
-
-    [ExportGroup("Storage")]
-    [Export]
-    public CharacterEquipment Equipment { get; set; } = new();
+    [ExportGroup("Storage")] [Export] [MaybeNull] public CharacterEquipment Equipment { get; set; }
 
     [Export]
+    [MaybeNull]
     public Inventory Inventory
     {
         get => _inventory;
         set
         {
-            _inventory.InventoryUpdated -= OnInventoryUpdated;
+            if (_inventory is not null)
+                _inventory.InventoryUpdated -= OnInventoryUpdated;
+
             _inventory = value;
-            _inventory.InventoryUpdated += OnInventoryUpdated;
+
+            if (_inventory is not null)
+                _inventory.InventoryUpdated += OnInventoryUpdated;
         }
     }
 
-    [ExportGroup("Computed")]
-    [Export]
-    public DamageSet ComputedDamage { get; set; } = new();
+    [ExportGroup("Computed")] [Export] [MaybeNull] public CharacterDamage ComputedDamage { get; set; }
+    [Export] [MaybeNull] public CharacterResistance ComputedResistance { get; set; }
+    [Export] [MaybeNull] public AttributeSet ComputedAttributes { get; set; }
+    [Export] public Array<CharacterAction> ComputedActions { get; set; } = [];
 
-    [Export]
-    public ResistanceSet ComputedResistance { get; set; } = new();
-
-    [Export]
-    public AttributeSet ComputedAttributes { get; set; } = new();
-
-    [Export]
-    public Array<CharacterAction> ComputedActions { get; set; } = [];
-
-    [Signal]
-    public delegate void CharacterUpdatedEventHandler();
+    [Signal] public delegate void CharacterUpdatedEventHandler();
 
     public override void _Ready()
     {
@@ -61,6 +52,9 @@ public abstract partial class Character : CharacterBody2D
 
     public void Equip(EquippableItem item, EquipmentSlotType slotType)
     {
+        RequiredPropertyNotAssignedException.ThrowIfNull(Equipment);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Inventory);
+
         if (item.CurrentSlot != EquipmentSlotType.None)
             Debug.Assert(Equipment.Unequip(item.CurrentSlot) == item);
 
@@ -73,39 +67,47 @@ public abstract partial class Character : CharacterBody2D
 
     public void Unequip(EquipmentSlotType slotType)
     {
+        RequiredPropertyNotAssignedException.ThrowIfNull(Equipment);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Inventory);
+
         if (Equipment.Unequip(slotType) is { } previousItem)
             Inventory.Add(previousItem);
 
         Compute();
     }
 
-    public void TakeDamage(DamageSet damage, ActionSource? source)
+    public void TakeDamage(Damage damage, ActionSource? source)
     {
-        var finalDamage = damage.WithResistance(ComputedResistance);
-        var totalDamage = finalDamage.TotalDamage;
-        ComputedAttributes.Health.CurrentValue -= totalDamage;
+        RequiredPropertyNotAssignedException.ThrowIfNull(ComputedResistance);
+        RequiredPropertyNotAssignedException.ThrowIfNull(ComputedAttributes?.Health);
+
+        var finalDamage = ComputedResistance.CalculateDamage(damage);
+        ComputedAttributes.Health.CurrentValue -= finalDamage.Value;
 
         var sourceName = source is null
             ? "unknown force"
             : $"{source.Character.CharacterName} ({source.Action.Name})";
-        GD.Print($"{CharacterName} has taken {totalDamage} damage from {sourceName}");
+        GD.Print($"{CharacterName} has taken {finalDamage.Value} {finalDamage.Type} damage from {sourceName}");
 
         if (ComputedAttributes.Health <= 0)
             OnDeath();
     }
 
-    public abstract void OnDeath();
+    protected abstract void OnDeath();
 
     private void OnInventoryUpdated() => EmitSignal(SignalName.CharacterUpdated);
 
     private void Compute()
     {
-        ComputedDamage = new DamageSet();
-        ComputedResistance = new ResistanceSet();
+        RequiredPropertyNotAssignedException.ThrowIfNull(Attributes);
+        RequiredPropertyNotAssignedException.ThrowIfNull(Equipment);
+
+        ComputedDamage = new CharacterDamage();
+        ComputedResistance = new CharacterResistance();
         ComputedAttributes = (AttributeSet)Attributes.Duplicate(true);
         ComputedActions = [];
 
-        foreach (var effect in Equipment.EquippedItems.SelectMany(i => i.Effects).OrderBy(e => e.Order))
+        foreach (var effect in Equipment.EnumerateEquipped().SelectMany(i => i.Effects).OrderBy(e => e.Order))
             effect.Apply(this);
 
         EmitSignal(SignalName.CharacterUpdated);

@@ -2,6 +2,7 @@ using System.Linq;
 using Anubis.Characters;
 using Anubis.Characters.Equipment;
 using Anubis.Items;
+using EquippableItem = Anubis.Characters.Equipment.EquippableItem;
 
 namespace Anubis.UI;
 
@@ -9,15 +10,13 @@ public partial class InventoryView : Control
 {
     private Container _itemsContainer = null!;
 
-    [Export]
-    public Character? Character { get; set; }
+    [Export] public Character? Character { get; set; }
 
-    [Export]
-    public PackedScene? InventoryItemView { get; set; }
+    [Export] public PackedScene? InventoryItemView { get; set; }
 
     public override void _Ready()
     {
-        _itemsContainer = this.GetRequiredNode<Container>("%ItemsContainer");
+        _itemsContainer = GetNode<Container>("%ItemsContainer");
         UpdateView();
     }
 

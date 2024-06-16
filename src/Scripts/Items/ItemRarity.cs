@@ -1,9 +1,9 @@
 namespace Anubis.Items;
 
-public enum ItemRarity
+[Tool] // required because of https://github.com/godotengine/godot/issues/85459
+[GlobalClass]
+public partial class ItemRarity : Resource
 {
-    Common,
-    Magic,
-    Epic,
-    Unique
+    [Export] public string Name { get; set; } = string.Empty;
+    [Export] public Color Color { get; set; } = Colors.White;
 }

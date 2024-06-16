@@ -1,6 +1,6 @@
 namespace Anubis.Characters.Effects;
 
-public enum EffectOrder
+public enum CharacterEffectOrder
 {
     Addition,
     Multiplication,

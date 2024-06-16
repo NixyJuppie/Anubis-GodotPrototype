@@ -6,13 +6,11 @@ namespace Anubis.Items;
 [GlobalClass]
 public partial class Inventory : Resource
 {
-    [Export]
-    private Array<Item> _items = [];
+    [Export] private Array<Item> _items = [];
 
     public IReadOnlyCollection<Item> Items => _items.AsReadOnly();
 
-    [Signal]
-    public delegate void InventoryUpdatedEventHandler();
+    [Signal] public delegate void InventoryUpdatedEventHandler();
 
     public void Add(Item item)
     {

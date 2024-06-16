@@ -8,26 +8,13 @@ public partial class InventoryItemView : Control
     private TextureRect _rarityTexture = null!;
     private PanelContainer _panelContainer = null!;
 
-    [Export]
-    public Item? Item { get; set; }
-
-    [Export]
-    public Color CommonRarityColor { get; set; }
-
-    [Export]
-    public Color MagicRarityColor { get; set; }
-
-    [Export]
-    public Color EpicRarityColor { get; set; }
-
-    [Export]
-    public Color UniqueRarityColor { get; set; }
+    [Export] public Item? Item { get; set; }
 
     public override void _Ready()
     {
-        _itemTexture = this.GetRequiredNode<TextureRect>("%ItemTexture");
-        _rarityTexture = this.GetRequiredNode<TextureRect>("%RarityTexture");
-        _panelContainer = this.GetRequiredNode<PanelContainer>("%PanelContainer");
+        _itemTexture = GetNode<TextureRect>("%ItemTexture");
+        _rarityTexture = GetNode<TextureRect>("%RarityTexture");
+        _panelContainer = GetNode<PanelContainer>("%PanelContainer");
         UpdateView();
     }
 
@@ -43,15 +30,7 @@ public partial class InventoryItemView : Control
     private void UpdateView()
     {
         _itemTexture.Texture = Item?.Texture;
-        _rarityTexture.Modulate = Item?.Rarity switch
-        {
-            ItemRarity.Common => CommonRarityColor,
-            ItemRarity.Magic => MagicRarityColor,
-            ItemRarity.Epic => EpicRarityColor,
-            ItemRarity.Unique => UniqueRarityColor,
-            null => Colors.Transparent,
-            _ => throw new ArgumentOutOfRangeException(nameof(Item.Rarity), Item.Rarity, "Invalid rarity")
-        };
+        _rarityTexture.Modulate = Item?.Rarity?.Color ?? Colors.Transparent;
     }
 
     private void OnFocusEntered()

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemRarity" load_steps=2 format=3 uid="uid://b64l63n37hr44"]
+
+[ext_resource type="Script" path="res://Scripts/Items/ItemRarity.cs" id="1_sm4g5"]
+
+[resource]
+script = ExtResource("1_sm4g5")
+Name = "Magic"
+Color = Color(0.235294, 0.368627, 0.545098, 1)

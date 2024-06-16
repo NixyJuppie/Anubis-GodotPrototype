@@ -27,13 +27,13 @@ public partial class CharacterScreen : CanvasLayer
 
     public override void _Ready()
     {
-        _characterInfoView = this.GetRequiredNode<CharacterInfoView>("%CharacterInfoView");
+        _characterInfoView = GetNode<CharacterInfoView>("%CharacterInfoView");
         _characterInfoView.Character = Character;
 
-        _equipmentView = this.GetRequiredNode<EquipmentView>("%EquipmentView");
+        _equipmentView = GetNode<EquipmentView>("%EquipmentView");
         _equipmentView.Character = Character;
 
-        _inventoryView = this.GetRequiredNode<InventoryView>("%InventoryView");
+        _inventoryView = GetNode<InventoryView>("%InventoryView");
         _inventoryView.Character = Character;
 
         UpdateView();

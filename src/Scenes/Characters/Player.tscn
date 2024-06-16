@@ -1,0 +1,202 @@
+[gd_scene load_steps=46 format=3 uid="uid://bf6fe1ueiarvv"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Player.cs" id="1_hrncn"]
+[ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="2_1jl2i"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeValue.cs" id="2_b4rwr"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/BoundedAttributeValue.cs" id="3_1ut0e"]
+[ext_resource type="Script" path="res://Scripts/Characters/Attributes/AttributeSet.cs" id="4_ceufm"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquipmentSlot.cs" id="5_cwap6"]
+[ext_resource type="Script" path="res://Scripts/Characters/Equipment/CharacterEquipment.cs" id="6_4kt76"]
+[ext_resource type="Script" path="res://Scripts/Items/Inventory.cs" id="7_sfn1m"]
+[ext_resource type="Texture2D" uid="uid://qhirhasc1sfb" path="res://Sprites/Characters/Player/PlayerIdle0.png" id="8_4v35h"]
+[ext_resource type="Texture2D" uid="uid://d1pohxaoa2yh5" path="res://Sprites/Characters/Player/PlayerIdle1.png" id="9_m12hb"]
+[ext_resource type="Texture2D" uid="uid://5bvfufjxrqwp" path="res://Sprites/Characters/Player/PlayerIdle2.png" id="10_b8o64"]
+[ext_resource type="Texture2D" uid="uid://0xd86xoomlsa" path="res://Sprites/Characters/Player/PlayerIdle3.png" id="11_7ch6n"]
+[ext_resource type="Texture2D" uid="uid://bhmw8ed2xuj70" path="res://Sprites/Characters/Player/PlayerRun0.png" id="12_oykfr"]
+[ext_resource type="Texture2D" uid="uid://dxxn5cbuw1q3l" path="res://Sprites/Characters/Player/PlayerRun1.png" id="13_hhtub"]
+[ext_resource type="Texture2D" uid="uid://bsmuik0o1jj32" path="res://Sprites/Characters/Player/PlayerRun2.png" id="14_vi56e"]
+[ext_resource type="Texture2D" uid="uid://dj1i7nkxd7vqe" path="res://Sprites/Characters/Player/PlayerRun3.png" id="15_5yw0m"]
+
+[sub_resource type="Resource" id="Resource_bcubx"]
+script = ExtResource("2_b4rwr")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_yj3l3"]
+script = ExtResource("3_1ut0e")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_6a0as"]
+script = ExtResource("2_b4rwr")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_5o0ci"]
+script = ExtResource("2_b4rwr")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_pldvw"]
+script = ExtResource("3_1ut0e")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_1dl3q"]
+script = ExtResource("3_1ut0e")
+MaxValue = 10
+CurrentValue = 10
+
+[sub_resource type="Resource" id="Resource_8vb7x"]
+script = ExtResource("2_b4rwr")
+Value = 10
+
+[sub_resource type="Resource" id="Resource_j6d5w"]
+script = ExtResource("4_ceufm")
+Health = SubResource("Resource_yj3l3")
+Stamina = SubResource("Resource_1dl3q")
+Mana = SubResource("Resource_pldvw")
+Strength = SubResource("Resource_8vb7x")
+Agility = SubResource("Resource_bcubx")
+Intelligence = SubResource("Resource_6a0as")
+Luck = SubResource("Resource_5o0ci")
+
+[sub_resource type="Resource" id="Resource_cxuaq"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_s4lk2"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_12asc"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_cu7wj"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_rfnyo"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_edvrm"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_kxwx5"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_cy827"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_qx2w7"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_2hukc"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_3utss"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_fhuoi"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_uxmja"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_jarv7"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_8yecg"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_3g557"]
+script = ExtResource("5_cwap6")
+
+[sub_resource type="Resource" id="Resource_tklai"]
+script = ExtResource("6_4kt76")
+LeftHand = SubResource("Resource_3utss")
+RightHand = SubResource("Resource_uxmja")
+Head = SubResource("Resource_2hukc")
+Chest = SubResource("Resource_cy827")
+Hands = SubResource("Resource_qx2w7")
+Waist = SubResource("Resource_3g557")
+Legs = SubResource("Resource_fhuoi")
+Amulet = SubResource("Resource_cxuaq")
+Ring1 = SubResource("Resource_jarv7")
+Ring2 = SubResource("Resource_8yecg")
+Charm1 = SubResource("Resource_s4lk2")
+Charm2 = SubResource("Resource_12asc")
+Charm3 = SubResource("Resource_cu7wj")
+Charm4 = SubResource("Resource_rfnyo")
+Charm5 = SubResource("Resource_edvrm")
+Charm6 = SubResource("Resource_kxwx5")
+
+[sub_resource type="Resource" id="Resource_5pv27"]
+script = ExtResource("7_sfn1m")
+_items = []
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b37ws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_4v35h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_m12hb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_b8o64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_7ch6n")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_oykfr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_hhtub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_vi56e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5yw0m")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nsjqv"]
+radius = 8.0
+height = 18.5
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tyx71"]
+polygon = PackedVector2Array(6, 8, 0, 10, -6, 8, -8, 0, -6, -7, 0.125404, -9, 6, -7, 8, 0)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_hrncn")
+CharacterName = "Player"
+CharacterLevel = 1
+Attributes = SubResource("Resource_j6d5w")
+Equipment = SubResource("Resource_tklai")
+Inventory = SubResource("Resource_5pv27")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_b37ws")
+animation = &"Idle"
+frame_progress = 0.687636
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.5
+texture = ExtResource("2_1jl2i")
+texture_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("CapsuleShape2D_nsjqv")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_tyx71")

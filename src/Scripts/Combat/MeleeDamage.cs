@@ -15,6 +15,8 @@ public partial class MeleeDamage : CharacterActionExecutor
 
     private void HandleBodyCollision(Node2D body)
     {
+        RequiredPropertyNotAssignedException.ThrowIfNull(Source?.Character.ComputedDamage);
+
         if (body == Source.Character)
             return;
 
@@ -24,6 +26,7 @@ public partial class MeleeDamage : CharacterActionExecutor
         if (body is not Character target)
             throw new InvalidOperationException($"Collision with unknown object '{body.Name}' detected!");
 
-        target.TakeDamage(Source.Character.ComputedDamage, Source);
+        foreach (var damage in Source.Character.ComputedDamage.Enumerate())
+            target.TakeDamage(damage, Source);
     }
 }
