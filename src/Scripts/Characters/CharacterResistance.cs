@@ -28,14 +28,14 @@ public partial class CharacterResistance : Resource
         return new Damage
         {
             Type = damage.Type,
-            Value = (ushort)float.Clamp(
+            Value = (int)float.Clamp(
                 float.Round(damage.Value - damage.Value * resistance / 100f),
-                ushort.MinValue,
-                ushort.MaxValue)
+                int.MinValue,
+                int.MaxValue)
         };
     }
 
-    private ushort Get(DamageType type)
+    private byte Get(DamageType type)
     {
         return type switch
         {

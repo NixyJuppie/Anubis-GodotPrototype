@@ -1,10 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=23 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
 [ext_resource type="Script" path="res://Scripts/Characters/CharacterCamera.cs" id="1_vfxa4"]
 [ext_resource type="PackedScene" uid="uid://bf6fe1ueiarvv" path="res://Scenes/Characters/Player.tscn" id="2_ohp4h"]
+[ext_resource type="Script" path="res://Scripts/World/WorldArea.cs" id="2_yu1k7"]
 [ext_resource type="PackedScene" uid="uid://cq7xffh8k3wuj" path="res://Scenes/WorldItem.tscn" id="3_f3ycq"]
 [ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="3_fby22"]
+[ext_resource type="Resource" uid="uid://dbsu6gan5711k" path="res://Resources/SeedSource.tres" id="3_mcme8"]
+[ext_resource type="TileSet" uid="uid://ixt6utqgosgs" path="res://Resources/GrassTileset.tres" id="3_w23l4"]
 [ext_resource type="PackedScene" uid="uid://b5uflqrrxlc36" path="res://Scenes/Characters/Skeleton.tscn" id="5_cj5kc"]
 [ext_resource type="Resource" uid="uid://hgjnqjuoivoy" path="res://Resources/Items/Breastplate.tres" id="5_vosn4"]
 [ext_resource type="Resource" uid="uid://m703qyuq73l1" path="res://Resources/Items/Sword.tres" id="6_y1fw4"]
@@ -41,21 +44,32 @@ zoom = Vector2(7.5, 7.5)
 script = ExtResource("1_vfxa4")
 Target = NodePath("../../Content/Player")
 
+[node name="WorldArea" type="Node2D" parent="."]
+script = ExtResource("2_yu1k7")
+SeedSource = ExtResource("3_mcme8")
+MinSize = 10
+MaxSize = 100
+TileSet = ExtResource("3_w23l4")
+
 [node name="World" type="Node" parent="."]
 
 [node name="Background" type="Sprite2D" parent="World"]
+visible = false
 modulate = Color(0.156863, 0.156863, 0.156863, 1)
 z_index = -10
 scale = Vector2(10000, 10000)
 texture = SubResource("CanvasTexture_qgvai")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="World"]
+visible = false
 color = Color(0.0627451, 0.0627451, 0.0627451, 1)
 
 [node name="DirectionalLight" type="DirectionalLight2D" parent="World"]
+visible = false
 energy = 0.5
 
 [node name="PurpleLight" type="StaticBody2D" parent="World"]
+visible = false
 position = Vector2(85, -40)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/PurpleLight"]
@@ -76,24 +90,29 @@ shape = SubResource("CircleShape2D_d7c48")
 [node name="Content" type="Node" parent="."]
 
 [node name="Sword" parent="Content" instance=ExtResource("3_f3ycq")]
+visible = false
 position = Vector2(-50, -25)
 Item = ExtResource("6_y1fw4")
 
 [node name="Amulet" parent="Content" instance=ExtResource("3_f3ycq")]
+visible = false
 position = Vector2(-75, 25)
 Item = ExtResource("5_vosn4")
 
 [node name="Skeleton" parent="Content" instance=ExtResource("5_cj5kc")]
+visible = false
 position = Vector2(50, -15)
 LootTable = SubResource("Resource_c05yn")
 WorldItemScene = ExtResource("3_f3ycq")
 
 [node name="Skeleton2" parent="Content" instance=ExtResource("5_cj5kc")]
+visible = false
 position = Vector2(50, -60)
 LootTable = SubResource("Resource_mcwic")
 WorldItemScene = ExtResource("3_f3ycq")
 
 [node name="Skeleton3" parent="Content" instance=ExtResource("5_cj5kc")]
+visible = false
 position = Vector2(90, -60)
 LootTable = SubResource("Resource_gosm3")
 WorldItemScene = ExtResource("3_f3ycq")

@@ -10,3 +10,4 @@
 - [16x16 RPG Item Pack 2 by Alex' Assets](https://alexs-assets.itch.io/16x16-rpg-item-pack-2) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/))
 - [16x16 DungeonTileset II by 0x72](https://0x72.itch.io/dungeontileset-ii) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/))
 - [Pixel Art GUI Elements by Mounir Tohami](https://mounirtohami.itch.io/pixel-art-gui-elements) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/))
+- [Ninja Adventure by pixel-boy](https://pixel-boy.itch.io/ninja-adventure-asset-pack) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/))

@@ -4,5 +4,5 @@ namespace Anubis.Combat;
 public partial class Damage : Resource
 {
     [Export] public DamageType Type { get; set; }
-    [Export] public ushort Value { get; set; }
+    [Export] public int Value { get; set; }
 }

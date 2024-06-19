@@ -6,18 +6,18 @@ namespace Anubis.Characters;
 [GlobalClass]
 public partial class CharacterDamage : Resource
 {
-    [ExportGroup("Physical")] [Export] public ushort Slash { get; set; }
-    [Export] public ushort Pierce { get; set; }
-    [Export] public ushort Blunt { get; set; }
+    [ExportGroup("Physical")] [Export] public int Slash { get; set; }
+    [Export] public int Pierce { get; set; }
+    [Export] public int Blunt { get; set; }
 
-    [ExportGroup("Elemental")] [Export] public ushort Fire { get; set; }
-    [Export] public ushort Cold { get; set; }
-    [Export] public ushort Lightning { get; set; }
-    [Export] public ushort Nature { get; set; }
+    [ExportGroup("Elemental")] [Export] public int Fire { get; set; }
+    [Export] public int Cold { get; set; }
+    [Export] public int Lightning { get; set; }
+    [Export] public int Nature { get; set; }
 
     public void Add(Damage damage)
     {
-        Set(damage.Type, ushort.CreateSaturating(Get(damage.Type) + damage.Value));
+        Set(damage.Type, Get(damage.Type) + damage.Value);
     }
 
     public void Increase(Damage damage)
@@ -26,10 +26,10 @@ public partial class CharacterDamage : Resource
             return;
 
         var value = Get(damage.Type);
-        var newValue = (ushort)float.Clamp(
+        var newValue = (int)float.Clamp(
             float.Round(value + value * damage.Value / 100f),
-            ushort.MinValue,
-            ushort.MaxValue);
+            int.MinValue,
+            int.MaxValue);
         Set(damage.Type, newValue);
     }
 
@@ -60,7 +60,7 @@ public partial class CharacterDamage : Resource
             yield return new Damage { Type = DamageType.Nature, Value = Nature };
     }
 
-    private ushort Get(DamageType type)
+    private int Get(DamageType type)
     {
         return type switch
         {
@@ -75,7 +75,7 @@ public partial class CharacterDamage : Resource
         };
     }
 
-    private void Set(DamageType type, ushort value)
+    private void Set(DamageType type, int value)
     {
         _ = type switch
         {

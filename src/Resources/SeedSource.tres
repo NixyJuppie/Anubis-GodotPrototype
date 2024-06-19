@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SeedSource" load_steps=2 format=3 uid="uid://dbsu6gan5711k"]
+
+[ext_resource type="Script" path="res://Scripts/SeedSource.cs" id="1_774e4"]
+
+[resource]
+script = ExtResource("1_774e4")
+Input = ""

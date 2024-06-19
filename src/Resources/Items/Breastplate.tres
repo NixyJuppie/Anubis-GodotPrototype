@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Combat/Resistance.cs" id="1_vmd1o"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/AddResistanceEffect.cs" id="2_a51by"]
-[ext_resource type="Resource" path="res://Resources/Items/Rarities/Magic.tres" id="3_hx8x2"]
+[ext_resource type="Resource" uid="uid://b64l63n37hr44" path="res://Resources/Items/Rarities/Magic.tres" id="3_hx8x2"]
 [ext_resource type="Script" path="res://Scripts/Combat/Damage.cs" id="3_yfs8y"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/IncreaseDamageEffect.cs" id="4_mde08"]
 [ext_resource type="Texture2D" uid="uid://h5682iwwf41b" path="res://Sprites/Items/Breastplate.png" id="6_fowvr"]

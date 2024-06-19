@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Combat/Resistance.cs" id="3_gqoak"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/AddResistanceEffect.cs" id="4_ma7su"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/IncreaseDamageEffect.cs" id="5_mqbct"]
-[ext_resource type="Resource" path="res://Resources/Items/Rarities/Epic.tres" id="6_ltc7t"]
+[ext_resource type="Resource" uid="uid://c1g0cr00e78eh" path="res://Resources/Items/Rarities/Epic.tres" id="6_ltc7t"]
 [ext_resource type="Texture2D" uid="uid://67glcerwkr1h" path="res://Sprites/Items/GoldRing.png" id="7_07gch"]
 [ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="8_ni6s7"]
 

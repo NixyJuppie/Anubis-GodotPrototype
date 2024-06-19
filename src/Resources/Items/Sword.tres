@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://k77wnwpdl75n" path="res://Sprites/Items/Sword.png" id="1_yibvl"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/AddActionEffect.cs" id="2_xfww3"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/AddDamageEffect.cs" id="4_8sxcl"]
-[ext_resource type="Resource" path="res://Resources/Items/Rarities/Common.tres" id="5_x1kbi"]
+[ext_resource type="Resource" uid="uid://dgdypd2376m2f" path="res://Resources/Items/Rarities/Common.tres" id="5_x1kbi"]
 
 [sub_resource type="Resource" id="Resource_0fj4q"]
 script = ExtResource("1_cpsa5")

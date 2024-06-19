@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Combat/Resistance.cs" id="3_s3jah"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/AddResistanceEffect.cs" id="4_2g4tu"]
 [ext_resource type="Script" path="res://Scripts/Characters/Effects/IncreaseDamageEffect.cs" id="5_peuea"]
-[ext_resource type="Resource" path="res://Resources/Items/Rarities/Unique.tres" id="6_84oyo"]
+[ext_resource type="Resource" uid="uid://ba6qfwkp1n2h2" path="res://Resources/Items/Rarities/Unique.tres" id="6_84oyo"]
 [ext_resource type="Texture2D" uid="uid://cwod30lu8oexj" path="res://Sprites/Items/HornedHelmet.png" id="7_ipgp1"]
 [ext_resource type="Script" path="res://Scripts/Characters/Equipment/EquippableItem.cs" id="8_ukmh0"]
 
