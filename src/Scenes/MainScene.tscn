@@ -1,131 +1,35 @@
-[gd_scene load_steps=23 format=3 uid="uid://bp12243ymi7xu"]
+[gd_scene load_steps=8 format=3 uid="uid://bp12243ymi7xu"]
 
 [ext_resource type="PackedScene" uid="uid://ccto0df4yxn4s" path="res://Scenes/VersionInfo.tscn" id="1_lxjk0"]
 [ext_resource type="Script" path="res://Scripts/Characters/CharacterCamera.cs" id="1_vfxa4"]
 [ext_resource type="PackedScene" uid="uid://bf6fe1ueiarvv" path="res://Scenes/Characters/Player.tscn" id="2_ohp4h"]
-[ext_resource type="Script" path="res://Scripts/World/WorldArea.cs" id="2_yu1k7"]
-[ext_resource type="PackedScene" uid="uid://cq7xffh8k3wuj" path="res://Scenes/WorldItem.tscn" id="3_f3ycq"]
-[ext_resource type="Texture2D" uid="uid://bgsahx6qe0im4" path="res://Sprites/Light.png" id="3_fby22"]
-[ext_resource type="Resource" uid="uid://dbsu6gan5711k" path="res://Resources/SeedSource.tres" id="3_mcme8"]
+[ext_resource type="Script" path="res://Scripts/World/World.cs" id="2_yu1k7"]
 [ext_resource type="TileSet" uid="uid://ixt6utqgosgs" path="res://Resources/GrassTileset.tres" id="3_w23l4"]
-[ext_resource type="PackedScene" uid="uid://b5uflqrrxlc36" path="res://Scenes/Characters/Skeleton.tscn" id="5_cj5kc"]
-[ext_resource type="Resource" uid="uid://hgjnqjuoivoy" path="res://Resources/Items/Breastplate.tres" id="5_vosn4"]
-[ext_resource type="Resource" uid="uid://m703qyuq73l1" path="res://Resources/Items/Sword.tres" id="6_y1fw4"]
-[ext_resource type="Resource" uid="uid://b5lue2084tp5l" path="res://Resources/Items/Amulet.tres" id="7_3ftcm"]
-[ext_resource type="Script" path="res://Scripts/Characters/Loot/FixedLootTable.cs" id="8_58hpg"]
-[ext_resource type="Resource" uid="uid://b7c0kjykh6g8l" path="res://Resources/Items/Ring.tres" id="9_5fv33"]
-[ext_resource type="Resource" uid="uid://dx31fxabaxsag" path="res://Resources/Items/Helmet.tres" id="10_ut4oo"]
 [ext_resource type="PackedScene" uid="uid://bp26ym3vkmuqj" path="res://Scenes/UI/CharacterScreen.tscn" id="15_j8yig"]
 [ext_resource type="PackedScene" uid="uid://drb01ghmxbitp" path="res://Scenes/UI/CharacterActionsScreen.tscn" id="26_105b4"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_qgvai"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_d7c48"]
-radius = 8.0
-
-[sub_resource type="Resource" id="Resource_c05yn"]
-script = ExtResource("8_58hpg")
-Items = [ExtResource("7_3ftcm")]
-
-[sub_resource type="Resource" id="Resource_mcwic"]
-script = ExtResource("8_58hpg")
-Items = [ExtResource("9_5fv33")]
-
-[sub_resource type="Resource" id="Resource_gosm3"]
-script = ExtResource("8_58hpg")
-Items = [ExtResource("10_ut4oo")]
-
 [node name="MainScene" type="Node2D"]
 
-[node name="Core" type="Node" parent="."]
-
-[node name="Camera" type="Camera2D" parent="Core" node_paths=PackedStringArray("Target")]
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("Target")]
 zoom = Vector2(7.5, 7.5)
 script = ExtResource("1_vfxa4")
-Target = NodePath("../../Content/Player")
+Target = NodePath("../Player")
 
-[node name="WorldArea" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="."]
+position = Vector2(-64, 0)
 script = ExtResource("2_yu1k7")
-SeedSource = ExtResource("3_mcme8")
-MinSize = 10
-MaxSize = 100
-TileSet = ExtResource("3_w23l4")
+TileSets = [ExtResource("3_w23l4")]
+Count = 3
 
-[node name="World" type="Node" parent="."]
-
-[node name="Background" type="Sprite2D" parent="World"]
-visible = false
-modulate = Color(0.156863, 0.156863, 0.156863, 1)
-z_index = -10
-scale = Vector2(10000, 10000)
-texture = SubResource("CanvasTexture_qgvai")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="World"]
-visible = false
-color = Color(0.0627451, 0.0627451, 0.0627451, 1)
-
-[node name="DirectionalLight" type="DirectionalLight2D" parent="World"]
-visible = false
-energy = 0.5
-
-[node name="PurpleLight" type="StaticBody2D" parent="World"]
-visible = false
-position = Vector2(85, -40)
-
-[node name="Sprite2D" type="Sprite2D" parent="World/PurpleLight"]
-texture = ExtResource("3_fby22")
-
-[node name="PointLight2D" type="PointLight2D" parent="World/PurpleLight"]
-color = Color(0.478431, 0.211765, 0.482353, 1)
-energy = 1.5
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 0.5
-texture = ExtResource("3_fby22")
-texture_scale = 10.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/PurpleLight"]
-shape = SubResource("CircleShape2D_d7c48")
-
-[node name="Content" type="Node" parent="."]
-
-[node name="Sword" parent="Content" instance=ExtResource("3_f3ycq")]
-visible = false
-position = Vector2(-50, -25)
-Item = ExtResource("6_y1fw4")
-
-[node name="Amulet" parent="Content" instance=ExtResource("3_f3ycq")]
-visible = false
-position = Vector2(-75, 25)
-Item = ExtResource("5_vosn4")
-
-[node name="Skeleton" parent="Content" instance=ExtResource("5_cj5kc")]
-visible = false
-position = Vector2(50, -15)
-LootTable = SubResource("Resource_c05yn")
-WorldItemScene = ExtResource("3_f3ycq")
-
-[node name="Skeleton2" parent="Content" instance=ExtResource("5_cj5kc")]
-visible = false
-position = Vector2(50, -60)
-LootTable = SubResource("Resource_mcwic")
-WorldItemScene = ExtResource("3_f3ycq")
-
-[node name="Skeleton3" parent="Content" instance=ExtResource("5_cj5kc")]
-visible = false
-position = Vector2(90, -60)
-LootTable = SubResource("Resource_gosm3")
-WorldItemScene = ExtResource("3_f3ycq")
-
-[node name="Player" parent="Content" instance=ExtResource("2_ohp4h")]
+[node name="Player" parent="." instance=ExtResource("2_ohp4h")]
 
 [node name="UI" type="Node" parent="."]
 
 [node name="ActionsScreen" parent="UI" node_paths=PackedStringArray("Character") instance=ExtResource("26_105b4")]
-Character = NodePath("../../Content/Player")
+Character = NodePath("../../Player")
 
 [node name="CharacterScreen" parent="UI" node_paths=PackedStringArray("Character") instance=ExtResource("15_j8yig")]
 visible = false
-Character = NodePath("../../Content/Player")
+Character = NodePath("../../Player")
 
 [node name="VersionInfo" parent="UI" instance=ExtResource("1_lxjk0")]
