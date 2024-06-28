@@ -1,7 +1,7 @@
 # Anubis
 
 > [!WARNING]
-> This project is a prototype, focusing on implementing core gameplay mechanics.
+> This project is a prototype that aimed to implement and test the basic mechanics of [my future game](https://github.com/NixyJuppie/Anubis).
 
 ## Requirements
 - [Godot v4.3-beta1 (.NET)](https://godotengine.org/download/archive/4.3-beta1)
